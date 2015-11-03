@@ -1,8 +1,10 @@
 <ion-view view-title="Blogs">
   <ion-content>
     <ion-list>
-      <ion-item ng-repeat="playlist in playlists" href="#/app/playlists/{{playlist.id}}">
-        {{playlist.title}}
+      <ion-item ng-repeat="playlist in playlists" href="#/app/playlists/{{playlist.id}}" class="item-avatar">
+        <img ng-src="{{item.img}}">
+        <h2>{{playlist.title}}</h2>
+        <p>Blog description</p>
       </ion-item>
     </ion-list>
   </ion-content>
