@@ -52,5 +52,16 @@ angular.module('starter.controllers', [])
   ];
 })
 
+.controller('BlogsCtrl', function($scope) {
+  $scope.blogs = [
+    { title: 'Reggae', id: 1, img: '' },
+    { title: 'Chill', id: 2, img: '' },
+    { title: 'Dubstep', id: 3, img: '' },
+    { title: 'Indie', id: 4, img: '' },
+    { title: 'Rap', id: 5, img: '' },
+    { title: 'Cowbell', id: 6, img: '' }
+  ];
+})
+
 .controller('PlaylistCtrl', function($scope, $stateParams) {
 });
