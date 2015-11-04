@@ -11,6 +11,8 @@ angular.module('starter.controllers', [])
 *   guarantees that the only time we're pulling down data are when the applicable
 *   view is being rendered. The call to the service should also be the very
 *   first thing each controller does if it is pulling down data from a service.
+*   I set up the PostsCtrl as an example of some best practices I think we
+*   should follow
 */
 
 .controller('AppCtrl', function($scope, $ionicModal, $timeout) {
