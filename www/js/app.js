@@ -22,8 +22,8 @@ angular.module('starter', ['ionic', 'starter.services', 'starter.controllers'])
 })
 
 /**
- * The next few configs are sort of to future-proofing us to render blog posts
- * in-app)
+ * The next few configs are sort of future-proofing us to render blog posts
+ * in-app
  */
 
 /**
