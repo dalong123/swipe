@@ -1,19 +1,18 @@
 angular.module('starter', ['ionic', 'starter.services', 'starter.controllers'])
 
 /**
- * Still not entirely sure what this does, though I haven't looked into it much.
- * I know it's not needed now and is obviously part of the build process for
- * transpiling everything to a native friendly format, so it's probably best
+ * Still not entirely sure what this does, though I haven't looked into it much
+ * at all. I know it's not needed now and is obviously part of the build process
+ * for transpiling everything to a native-friendly format, so it's probably best
  * to not fuck with it for now.
  */
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
-    // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
-    // for form inputs)
+    // Hide the accessory bar by default (remove this to show the accessory bar
+    // above the keyboard for form inputs)
     if (window.cordova && window.cordova.plugins.Keyboard) {
       cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
       cordova.plugins.Keyboard.disableScroll(true);
-
     }
     if (window.StatusBar) {
       // org.apache.cordova.statusbar required
@@ -23,7 +22,12 @@ angular.module('starter', ['ionic', 'starter.services', 'starter.controllers'])
 })
 
 /**
- * Needed for routing to work
+ * The next few configs are sort of to future-proofing us to render blog posts
+ * in-app)
+ */
+
+/**
+ * Needed for routing to work with iFrames
  */
 .config(function ($compileProvider){
   $compileProvider.aHrefSanitizationWhitelist(/^\s*(https?|ftp|mailto|file|tel):/);
@@ -38,7 +42,8 @@ angular.module('starter', ['ionic', 'starter.services', 'starter.controllers'])
 })
 
 /**
- * Whitelisting all domains to allow iframe to view them. Should use a safer way?
+ * Whitelisting all domains to allow iframe to view them. Should we use a safer
+ * way?
  */
 .config(function($sceDelegateProvider){
     $sceDelegateProvider.resourceUrlWhitelist(['**', 'self']);
@@ -84,6 +89,7 @@ angular.module('starter', ['ionic', 'starter.services', 'starter.controllers'])
         }
       }
     })
+
     .state('app.blogs', {
       url: '/blogs',
       views: {
