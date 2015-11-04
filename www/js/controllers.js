@@ -91,7 +91,7 @@ angular.module('starter.controllers', [])
 //   });
 //
 //   // Set the scoped variable to our localized variable that has since been
-//   // initialized by the call to the API service
+//   // populated by the call to the API service
 //   $scope.posts = posts;
 })
 
