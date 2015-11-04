@@ -1,9 +1,3 @@
-// Ionic Starter App
-
-// angular.module is a global place for creating, registering and retrieving Angular modules
-// 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
-// the 2nd parameter is an array of 'requires'
-// 'starter.controllers' is found in controllers.js
 angular.module('starter', ['ionic', 'starter.services', 'starter.controllers'])
 
 .run(function($ionicPlatform) {
@@ -22,21 +16,33 @@ angular.module('starter', ['ionic', 'starter.services', 'starter.controllers'])
   });
 })
 
+/**
+ *
+ */
 .config(function ($compileProvider){
   // Needed for routing to work
   $compileProvider.aHrefSanitizationWhitelist(/^\s*(https?|ftp|mailto|file|tel):/);
 })
 
+/**
+ *
+ */
 .config(function($httpProvider){
     $httpProvider.defaults.useXDomain = true;
     delete $httpProvider.defaults.headers.common['X-Requested-With'];
 })
 
+/**
+ *
+ */
 .config(function($sceDelegateProvider){
     //Whitelisting all domains to allow iframe to view them. Should use a safer way?
     $sceDelegateProvider.resourceUrlWhitelist(['**', 'self']);
 })
 
+/**
+ *
+ */
 .config(function($stateProvider, $urlRouterProvider) {
   $stateProvider
 
@@ -56,11 +62,21 @@ angular.module('starter', ['ionic', 'starter.services', 'starter.controllers'])
     }
   })
 
+  .state('app.about', {
+    url: '/about',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/about.html'
+      }
+    }
+  })
+
   .state('app.posts', {
       url: '/posts',
       views: {
         'menuContent': {
-          templateUrl: 'templates/posts.html'
+          templateUrl: 'templates/posts.html',
+          controller: 'PostsCtrl'
         }
       }
     })

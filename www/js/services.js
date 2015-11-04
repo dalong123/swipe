@@ -1,7 +1,7 @@
 angular.module('starter.services', [])
 
 /**
- * Very simple  service that returns data from an unoffical HN api.
+ * Very simple service that returns data from an unoffical HN api.
  */
 .factory('Stories', function($http) {
   return {
@@ -15,5 +15,32 @@ angular.module('starter.services', [])
         var URL = 'http://node-hnapi.herokuapp.com/item/' + storyID;
         $http.get(URL).success(callback);
     }
+  }
+})
+
+.factory('Blog', function($http) {
+  // return {
+  //   var blogs = [{
+  //     title: 'Swipe down to clear the card',
+  //     image: 'img/pic.png'
+  //   }, {
+  //     title: 'Where is this?',
+  //     image: 'img/pic.png'
+  //   }, {
+  //     title: 'What kind of grass is this?',
+  //     image: 'img/pic2.png'
+  //   }, {
+  //     title: 'What beach is this?',
+  //     image: 'img/pic3.png'
+  //   }, {
+  //     title: 'What kind of clouds are these?',
+  //     image: 'img/pic4.png'
+  //   }];
+  // }
+})
+
+.factory('API', function($http) {
+  return {
+
   }
 });
