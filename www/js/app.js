@@ -1,5 +1,11 @@
 angular.module('starter', ['ionic', 'starter.services', 'starter.controllers'])
 
+/**
+ * Still not entirely sure what this does, though I haven't looked into it much.
+ * I know it's not needed now and is obviously part of the build process for
+ * transpiling everything to a native friendly format, so it's probably best
+ * to not fuck with it for now.
+ */
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
@@ -17,15 +23,14 @@ angular.module('starter', ['ionic', 'starter.services', 'starter.controllers'])
 })
 
 /**
- *
+ * Needed for routing to work
  */
 .config(function ($compileProvider){
-  // Needed for routing to work
   $compileProvider.aHrefSanitizationWhitelist(/^\s*(https?|ftp|mailto|file|tel):/);
 })
 
 /**
- *
+ * Setup safe CORS functionality
  */
 .config(function($httpProvider){
     $httpProvider.defaults.useXDomain = true;
@@ -33,15 +38,14 @@ angular.module('starter', ['ionic', 'starter.services', 'starter.controllers'])
 })
 
 /**
- *
+ * Whitelisting all domains to allow iframe to view them. Should use a safer way?
  */
 .config(function($sceDelegateProvider){
-    //Whitelisting all domains to allow iframe to view them. Should use a safer way?
     $sceDelegateProvider.resourceUrlWhitelist(['**', 'self']);
 })
 
 /**
- *
+ * Configure routing all controllers for all views
  */
 .config(function($stateProvider, $urlRouterProvider) {
   $stateProvider
@@ -99,6 +103,7 @@ angular.module('starter', ['ionic', 'starter.services', 'starter.controllers'])
       }
     }
   });
+
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/app/home');
 });
