@@ -59,15 +59,46 @@ angular.module('starter.controllers', [])
 /**
  *
  */
-.controller('BlogsCtrl', function($scope) {
-  $scope.blogs = [
-    { title: 'Reggae', id: 1, img: '' },
-    { title: 'Chill', id: 2, img: '' },
-    { title: 'Dubstep', id: 3, img: '' },
-    { title: 'Indie', id: 4, img: '' },
-    { title: 'Rap', id: 5, img: '' },
-    { title: 'Cowbell', id: 6, img: '' }
-  ];
+.controller('BlogsCtrl', function($scope, Blog) {
+  var blogs = [];
+
+  // This is the ionic-specific funtion used to target the view's entry. As a
+  // result of template caching, this controller is only called when one of its
+  // views is rendered
+  $scope.$on('$ionicView.enter', function(e) {
+    // Make calls to the API/Blog services as necessary and initialize all
+    // view-centric variables
+    Blog.getBlogsAsync(function(results) {
+      console.log(results);
+      blogs = results;
+    });
+  });
+
+  $scope.blogs = blogs;
+})
+
+// We need to figure out a way to pass the entire blog object via the router
+// rather than fetching all of blogs.json and doing id filtering on it.
+.controller('BlogCtrl', function($scope, $stateParams, Blog){
+
+  // take in the route param for the specific view (IT SHOULD BE A NUMBER)
+  var blogId = $stateParams.blogId;
+  var blog = {};
+
+  $scope.$on('$ionicView.enter', function(e) {
+    // do an if/else check for the AllBlogs view - this way we only need to share
+    // one view that renders the swipeable content
+    if(blogId === 'all'){
+      // We know it's the all blogs route, so we don't need to initialize
+    }
+    else
+    {
+      blog = Blog.getBlog(blogId);
+      console.log(blog.title);
+    }
+  });
+
+  $scope.blog = blog;
 })
 
 /**

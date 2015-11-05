@@ -20,48 +20,38 @@ angular.module('starter.services', [])
   }
 })
 
-.factory('Blog', function($http) {
-  var blogs = [{
-    title: 'Pigeons & Planes',
-    id: 1,
-    image: '',
-    url: '',
-    kimonoId: ''
-  }, {
-    title: 'Soulection',
-    id: 2,
-    image: '',
-    url: '',
-    kimonoId: ''
-  }, {
-    title: 'HypeM',
-    id: 3,
-    image: '',
-    url: '',
-    kimonoId: ''
-  }, {
-    title: 'Pigeons & Planes',
-    id: 4,
-    image: '',
-    url: '',
-    kimonoId: ''
-  }, {
-    title: 'Pigeons & Planes',
-    id: 5,
-    image: '',
-    url: '',
-    kimonoId: ''
-  }];
+/**
+ *
+ */
+.factory('Blog', function($http, $filter) {
 
   return {
-    getBlogs: function() {
-      return blogs;
+    getBlogsAsync: function(callback) {
+      $http.get('blogs.json').success(callback);
+    },
+    getBlog: function(blogId) {
+      var blog = {};
+      $http.get('blogs.json').success(function(data) {
+        blog = $filter('filter')(data, {id:blogId})[0];
+        console.log(blog.title);
+        return blog;
+      });
     }
   }
-})
-
-.factory('API', function($http) {
-  return {
-
-  }
 });
+
+/**
+ *
+ */
+// .factory('API', function($http) {
+//   return {
+//     getBlogsAsync: function(callback) {
+//       var URL = 'http://node-hnapi.herokuapp.com/news';
+//       $http.get(URL).success(callback);
+//     },
+//     getBlogAsync: function(kimonoId, callback) {
+//       var URL = 'http://node-hnapi.herokuapp.com/item/' + kimonoId;
+//       $http.get(URL).success(callback);
+//     }
+//   }
+// });

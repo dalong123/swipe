@@ -1,34 +1,43 @@
-<ion-side-menus enable-menu-with-back-views="false">
+<ion-side-menus enable-menu-with-back-views="true">
   <ion-side-menu-content>
     <ion-nav-bar class="bar-stable">
       <ion-nav-back-button>
       </ion-nav-back-button>
 
-      <ion-nav-buttons side="left">
-        <button class="button button-icon button-clear ion-navicon" menu-toggle="left">
-        </button>
+      <ion-nav-buttons side="right">
+        <button class="button button-outline button-assertive" menu-toggle="right">
+        Menu</button>
       </ion-nav-buttons>
     </ion-nav-bar>
     <ion-nav-view name="menuContent"></ion-nav-view>
   </ion-side-menu-content>
 
-  <ion-side-menu side="left">
+  <ion-side-menu side="right">
     <ion-header-bar class="bar-stable">
-      <h1 class="title">Left</h1>
+      <button class="button button-icon icon ion-ios-paperplane-outline pull-left"
+      src="#/app/about" type="button">
+      </button>
+      <div class="title">Swipe</div>
+      <button class="button button-icon icon ion-ios-help-outline pull-right"
+      ng-click="login()" type="button">
+      </button>
     </ion-header-bar>
     <ion-content>
       <ion-list>
-        <ion-item menu-close ng-click="login()">
+        <!-- <ion-item menu-close ng-click="login()">
           Login
+        </ion-item> -->
+        <ion-item menu-close href="#/app/home" class="item-icon-left">
+          <i class="icon ion-home"></i>
+          Home
         </ion-item>
-        <ion-item menu-close href="#/app/search">
-          Search
+        <ion-item menu-close href="#/app/posts" class="item-icon-left">
+          <i class="icon ion-pizza"></i>
+          All Posts
         </ion-item>
-        <ion-item menu-close href="#/app/browse">
-          Browse
-        </ion-item>
-        <ion-item menu-close href="#/app/playlists">
-          Playlists
+        <ion-item menu-close href="#/app/blogs" class="item-icon-left">
+          <i class="icon ion-planet"></i>
+          Blogs
         </ion-item>
       </ion-list>
     </ion-content>

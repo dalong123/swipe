@@ -80,16 +80,6 @@ angular.module('starter', ['ionic', 'starter.services', 'starter.controllers'])
     }
   })
 
-  .state('app.posts', {
-    url: '/posts',
-    views: {
-      'menuContent': {
-        templateUrl: 'templates/posts.html',
-        controller: 'PostsCtrl'
-      }
-    }
-  })
-
   .state('app.blogs', {
     url: '/blogs',
     views: {
@@ -101,11 +91,11 @@ angular.module('starter', ['ionic', 'starter.services', 'starter.controllers'])
   })
 
   .state('app.single', {
-    url: '/playlists/:playlistId',
+    url: '/blogs/:blogId',
     views: {
       'menuContent': {
-        templateUrl: 'templates/playlist.html',
-        controller: 'PlaylistCtrl'
+        templateUrl: 'templates/blog.html',
+        controller:  'BlogCtrl'
       }
     }
   });
