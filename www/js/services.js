@@ -33,7 +33,7 @@ angular.module('starter.services', [])
       var blog = {};
       $http.get('blogs.json').success(function(data) {
         blog = $filter('filter')(data, {id:blogId})[0];
-        console.log(blog.title);
+        console.log("Logging from the service" + blog.title);
         return blog;
       });
     }
