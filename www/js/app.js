@@ -37,8 +37,8 @@ angular.module('starter', ['ionic', 'starter.services', 'starter.controllers'])
  * Setup safe CORS functionality
  */
 .config(function($httpProvider){
-    $httpProvider.defaults.useXDomain = true;
-    delete $httpProvider.defaults.headers.common['X-Requested-With'];
+  $httpProvider.defaults.useXDomain = true;
+  delete $httpProvider.defaults.headers.common['X-Requested-With'];
 })
 
 /**
@@ -46,7 +46,7 @@ angular.module('starter', ['ionic', 'starter.services', 'starter.controllers'])
  * way?
  */
 .config(function($sceDelegateProvider){
-    $sceDelegateProvider.resourceUrlWhitelist(['**', 'self']);
+  $sceDelegateProvider.resourceUrlWhitelist(['**', 'self']);
 })
 
 /**
@@ -81,24 +81,24 @@ angular.module('starter', ['ionic', 'starter.services', 'starter.controllers'])
   })
 
   .state('app.posts', {
-      url: '/posts',
-      views: {
-        'menuContent': {
-          templateUrl: 'templates/posts.html',
-          controller: 'PostsCtrl'
-        }
+    url: '/posts',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/posts.html',
+        controller: 'PostsCtrl'
       }
-    })
+    }
+  })
 
-    .state('app.blogs', {
-      url: '/blogs',
-      views: {
-        'menuContent': {
-          templateUrl: 'templates/blogs.html',
-          controller: 'BlogsCtrl'
-        }
+  .state('app.blogs', {
+    url: '/blogs',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/blogs.html',
+        controller: 'BlogsCtrl'
       }
-    })
+    }
+  })
 
   .state('app.single', {
     url: '/playlists/:playlistId',
