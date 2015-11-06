@@ -60,7 +60,7 @@ angular.module('starter.controllers', [])
   $scope.$on('$ionicView.enter', function(e) {
     // Make calls to the API/Blog services as necessary and initialize all
     // view-centric variables
-    var blogsLocalStore = LocalStorage.getObject('tits');
+    var blogsLocalStore = LocalStorage.getObject('blogs');
 
     if(!angular.equals({}, blogsLocalStore))
     {
