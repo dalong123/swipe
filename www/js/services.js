@@ -1,34 +1,89 @@
 angular.module('starter.services', [])
 
-/**
- * Very simple service that returns data from an unoffical HN api.
- */
-.factory('Stories', function($http) {
+.factory('LocalStorage', ['$window', function($window) {
   return {
-    //Gets a list of the front page stories and calls the passed function with
-    //that list.
-    getStoriesAsync: function(callback) {
-    var URL = 'http://node-hnapi.herokuapp.com/news';
-    $http.get(URL).success(callback);
+    set: function(key, value) {
+      $window.localStorage[key] = value;
     },
-    //Gets the story by the given ID, and calls the passed function with the
-    //story object.
-    getStoryByIDAsync: function(storyID, callback){
-        var URL = 'http://node-hnapi.herokuapp.com/item/' + storyID;
-        $http.get(URL).success(callback);
+    get: function(key, defaultValue) {
+      return $window.localStorage[key] || defaultValue;
+    },
+    setObject: function(key, value) {
+      $window.localStorage[key] = JSON.stringify(value);
+    },
+    getObject: function(key) {
+      return JSON.parse($window.localStorage[key] || '{}');
     }
   }
-})
+}])
 
 /**
  *
  */
-.factory('Blog', function($http, $q, $filter) {
+.factory('Blog', function($http, $q, $filter, LocalStorage) {
 
+  /**
+   * [defer description]
+   * @method defer
+   * @return {[type]} [description]
+   */
   var deferred = $q.defer();
 
   return {
+
+    /**
+     * [function description]
+     * @method function
+     * @return {[type]} [description]
+     */
+    getBlogs: function() {
+      // Get the blogs object from localStorage, regardless of whether it's
+      // defined or not
+      var blogsLocalStore = LocalStorage.getObject('blogs');
+      if(blogsLocalStore !== undefined){
+        return blogsLocalStore;
+      } else {
+        getBlogsAsync().then(
+          function(result) {
+            // promise was fullfilled (regardless of outcome)
+            // checks for information will be peformed here
+            LocalStorage.setObject('blogs', result);
+            return result;
+          },
+          function(error) {
+            // handle errors here
+            console.log(error.statusText);
+          }
+        );
+      }
+    },
+
+    /**
+     * [function description]
+     * @method function
+     * @return {[type]} [description]
+     */
     getBlogsAsync: function() {
+      return $http.get('blogs.json')
+        .then(function(response) {
+          // promise is fulfilled
+          deferred.resolve(response.data);
+          return deferred.promise;
+        }, function(response) {
+          // the following line rejects the promise
+          deferred.reject(response);
+          return deferred.promise;
+        });
+    },
+
+    /**
+     * [function description]
+     * @method function
+     * @param  {[type]}  kimonoId   [description]
+     * @param  {Boolean} isOnDemand [description]
+     * @return {[type]}             [description]
+     */
+    getFeedAsync: function(kimonoId, isOnDemand) {
       return $http.get('blogs.json')
         .then(function(response) {
           // promise is fulfilled
@@ -42,19 +97,3 @@ angular.module('starter.services', [])
     }
   }
 });
-
-/**
- *
- */
-// .factory('API', function($http) {
-//   return {
-//     getBlogsAsync: function(callback) {
-//       var URL = 'http://node-hnapi.herokuapp.com/news';
-//       $http.get(URL).success(callback);
-//     },
-//     getBlogAsync: function(kimonoId, callback) {
-//       var URL = 'http://node-hnapi.herokuapp.com/item/' + kimonoId;
-//       $http.get(URL).success(callback);
-//     }
-//   }
-// });

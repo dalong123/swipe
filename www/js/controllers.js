@@ -52,7 +52,7 @@ angular.module('starter.controllers', [])
 /**
  *
  */
-.controller('BlogsCtrl', function($scope, $q, Blog) {
+.controller('BlogsCtrl', function($scope, $q, LocalStorage, Blog) {
 
   // This is the ionic-specific funtion used to target the view's entry. As a
   // result of template caching, this controller is only called when one of its
@@ -60,17 +60,25 @@ angular.module('starter.controllers', [])
   $scope.$on('$ionicView.enter', function(e) {
     // Make calls to the API/Blog services as necessary and initialize all
     // view-centric variables
-    Blog.getBlogsAsync().then(
-      function(result) {
-        // promise was fullfilled (regardless of outcome)
-        // checks for information will be peformed here
-        $scope.blogs = result;
-      },
-      function(error) {
-        // handle errors here
-        console.log(error.statusText);
-      }
-    );
+    var blogsLocalStore = LocalStorage.getObject('tits');
+
+    if(!angular.equals({}, blogsLocalStore))
+    {
+      return blogsLocalStore;
+    }
+    else {
+      Blog.getBlogsAsync().then(
+        function(result) {
+          // promise was fullfilled (regardless of outcome)
+          // checks for information will be peformed here
+          $scope.blogs = result;
+        },
+        function(error) {
+          // handle errors here
+          console.log(error.statusText);
+        }
+      );
+    }
   });
 })
 
