@@ -2,6 +2,7 @@
   <ion-content>
     <ion-list>
       <ion-item ng-repeat="blog in blogs" href="#/app/blogs/{{blog.id}}" class="item-avatar">
+        <img class="people-bar-content-person" ng-src="{{blog.image}}" />
         <h2>{{blog.title}}</h2>
         <p>Blog description</p>
       </ion-item>
