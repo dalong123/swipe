@@ -52,13 +52,6 @@ angular.module('starter.controllers', [])
 /**
  *
  */
-.controller('PlaylistsCtrl', function($scope) {
-
-})
-
-/**
- *
- */
 .controller('BlogsCtrl', function($scope, Blog) {
 
   // This is the ionic-specific funtion used to target the view's entry. As a
@@ -87,7 +80,6 @@ angular.module('starter.controllers', [])
   {
     Blog.getBlogsAsync(function(results) {
       $scope.blog = $filter('filter')(results, {id:blogId})[0];
-      console.log(blog);
     });
   }
 })
@@ -116,9 +108,3 @@ angular.module('starter.controllers', [])
 //   // populated by the call to the API service
 //   $scope.posts = posts;
 })
-
-/**
- *
- */
-.controller('PlaylistCtrl', function($scope, $stateParams) {
-});

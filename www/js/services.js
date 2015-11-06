@@ -23,7 +23,7 @@ angular.module('starter.services', [])
 /**
  *
  */
-.factory('Blog', function($http, $filter) {
+.factory('Blog', function($http, $q, $filter) {
 
   return {
     getBlogsAsync: function(callback) {
