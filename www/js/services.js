@@ -25,17 +25,20 @@ angular.module('starter.services', [])
  */
 .factory('Blog', function($http, $q, $filter) {
 
+  var deferred = $q.defer();
+
   return {
-    getBlogsAsync: function(callback) {
-      $http.get('blogs.json').success(callback);
-    },
-    getBlog: function(blogId) {
-      var blog = {};
-      $http.get('blogs.json').success(function(data) {
-        blog = $filter('filter')(data, {id:blogId})[0];
-        console.log("Logging from the service" + blog.title);
-        return blog;
-      });
+    getBlogsAsync: function() {
+      return $http.get('blogs.json')
+        .then(function(response) {
+          // promise is fulfilled
+          deferred.resolve(response.data);
+          return deferred.promise;
+        }, function(response) {
+          // the following line rejects the promise
+          deferred.reject(response);
+          return deferred.promise;
+        });
     }
   }
 });

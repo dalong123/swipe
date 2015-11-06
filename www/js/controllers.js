@@ -52,7 +52,7 @@ angular.module('starter.controllers', [])
 /**
  *
  */
-.controller('BlogsCtrl', function($scope, Blog) {
+.controller('BlogsCtrl', function($scope, $q, Blog) {
 
   // This is the ionic-specific funtion used to target the view's entry. As a
   // result of template caching, this controller is only called when one of its
@@ -60,9 +60,17 @@ angular.module('starter.controllers', [])
   $scope.$on('$ionicView.enter', function(e) {
     // Make calls to the API/Blog services as necessary and initialize all
     // view-centric variables
-    Blog.getBlogsAsync(function(results) {
-      $scope.blogs = results;
-    });
+    Blog.getBlogsAsync().then(
+      function(result) {
+        // promise was fullfilled (regardless of outcome)
+        // checks for information will be peformed here
+        $scope.blogs = result;
+      },
+      function(error) {
+        // handle errors here
+        console.log(error.statusText);
+      }
+    );
   });
 })
 
@@ -74,37 +82,23 @@ angular.module('starter.controllers', [])
   var blogId = $stateParams.blogId;
 
   if(blogId === 'all'){
-    // We know it's the all blogs route, so we don't need to initialize
+    // Build out our blog object for the all blogs view. We need to apply scope
+    // variables for everything used in the view
+    $scope.blog = {
+
+    }
   }
   else
   {
-    Blog.getBlogsAsync(function(results) {
-      $scope.blog = $filter('filter')(results, {id:blogId})[0];
-    });
+    Blog.getBlogsAsync().then(
+      function(result) {
+        // promise was fullfilled (regardless of outcome)
+        $scope.blog = $filter('filter')(result, {id:blogId})[0];
+      },
+      function(error) {
+        // handle errors here
+        console.log(error.statusText);
+      }
+    );
   }
-})
-
-/**
- *
- */
- .controller('PostsCtrl', function($scope) {
-//   // If you are calling to a service that returns a callback, create a variable
-//   // of that type first and initialize it in the immediate $on function
-//   var posts = [];
-//
-//   // This is the ionic-specific funtion used to target the view's entry. As a
-//   // result of template caching, this controller is only called when one of its
-//   // views is rendered
-//   $scope.$on('$ionicView.enter', function(e) {
-//     // Make calls to the API/Blog services as necessary and initialize all
-//     // view-centric variables
-//     API.getPostsAsync(function(results) {
-//       console.log(results);
-//       posts = results;
-//     });
-//   });
-//
-//   // Set the scoped variable to our localized variable that has since been
-//   // populated by the call to the API service
-//   $scope.posts = posts;
 })
