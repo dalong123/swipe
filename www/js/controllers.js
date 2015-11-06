@@ -84,7 +84,9 @@ angular.module('starter.controllers', [])
 
 // We need to figure out a way to pass the entire blog object via the router
 // rather than fetching all of blogs.json and doing id filtering on it.
-.controller('BlogCtrl', function($scope, $stateParams, $filter, Blog){
+.controller('BlogCtrl', function($scope, $stateParams, $filter, Blog, LocalStorage){
+
+  $scope.$on('$ionicView.enter', function(e) {
 
   // take in the route param for the specific view (IT SHOULD BE A NUMBER)
   var blogId = $stateParams.blogId;
@@ -98,15 +100,23 @@ angular.module('starter.controllers', [])
   }
   else
   {
-    Blog.getBlogsAsync().then(
-      function(result) {
-        // promise was fullfilled (regardless of outcome)
-        $scope.blog = $filter('filter')(result, {id:blogId})[0];
-      },
-      function(error) {
-        // handle errors here
-        console.log(error.statusText);
-      }
-    );
+    var blogsLocalStore = LocalStorage.getObject('blogs');
+
+    if(!angular.equals({}, blogsLocalStore))
+    {
+      $scope.blog = $filter('filter')(blogsLocalStore, {id:blogId})[0];
+    } else {
+      Blog.getBlogsAsync().then(
+        function(result) {
+          // promise was fullfilled (regardless of outcome)
+          $scope.blog = $filter('filter')(result, {id:blogId})[0];
+        },
+        function(error) {
+          // handle errors here
+          console.log(error.statusText);
+        }
+      );
+    }
   }
+  });
 })
