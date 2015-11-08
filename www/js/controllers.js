@@ -96,8 +96,6 @@ angular.module('starter.controllers', [])
 
   $scope.$on('$ionicView.enter', function(e) {
 
-    var cardTypes = [];
-
     // take in the route param for the specific view (IT SHOULD BE A NUMBER)
     if(blogId === 'all'){
       // Build out our blog object for the all blogs view. We need to apply scope

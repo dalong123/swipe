@@ -20,7 +20,7 @@
 }
 
 swipe-card {
-  width: 100%;
+  display: none;
   position: fixed;
   -webkit-transform: scale(1,1);
   box-sizing: border-box;
