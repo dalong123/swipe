@@ -3,8 +3,8 @@
     <ion-list>
       <ion-item class="item item-thumbnail-left item-text-wrap" ng-repeat="blog in blogs" href="#/app/blogs/{{blog.id}}" class="item-avatar">
         <img ng-src="{{blog.image}}" />
-        <div class="blog-title">{{blog.title}}</div>
-        <div style="color:grey;">{{blog.description}}</div>
+        <h2>{{blog.title}}</h2>
+        <p>{{blog.description}}</p>
       </ion-item>
     </ion-list>
   </ion-content>

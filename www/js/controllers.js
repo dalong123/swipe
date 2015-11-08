@@ -86,6 +86,7 @@ angular.module('starter.controllers', [])
 .controller('BlogCtrl', function($scope, $stateParams, $filter, $ionicSwipeCardDelegate, $ionicModal, Blog, LocalStorage){
 
   var blogId = $stateParams.blogId;
+  var cardTypes = [];
 
   // Create the login modal that we will use later
   $ionicModal.fromTemplateUrl('templates/about-modal.html', {
@@ -111,14 +112,16 @@ angular.module('starter.controllers', [])
       if(!angular.equals({}, blogLocalStore))
       {
         $scope.blog = blogLocalStore;
-        var cardTypes = LocalStorage.getObject('blogs');
+        cardTypes = LocalStorage.getObject('blogs');
+        $scope.cards = Array.prototype.slice.call(cardTypes, 0, 0);
       } else {
         Blog.getBlogsAsync().then(
           function(result) {
             // promise was fullfilled (regardless of outcome)
             $scope.blog = $filter('filter')(result, {id:blogId})[0];
-            var cardTypes = LocalStorage.getObject('blogs');
+            cardTypes = LocalStorage.getObject('blogs');
             LocalStorage.setObject('blog' + blogId, $scope.blog);
+            $scope.cards = Array.prototype.slice.call(cardTypes, 0, 0);
           },
           function(error) {
             // handle errors here
@@ -127,19 +130,18 @@ angular.module('starter.controllers', [])
         );
       }
     }
-    $scope.cards = Array.prototype.slice.call(cardTypes, 0, 0);
-    $scope.cardSwiped = function(index) {
-      $scope.addCard();
-    };
-    $scope.cardDestroyed = function(index) {
-      $scope.cards.splice(index, 1);
-    };
-    $scope.addCard = function() {
-      var newCard = cardTypes[Math.floor(Math.random() * cardTypes.length)];
-      newCard.id = Math.random();
-      $scope.cards.push(angular.extend({}, newCard));
-    };
   });
+  $scope.cardSwiped = function(index) {
+    $scope.addCard();
+  };
+  $scope.cardDestroyed = function(index) {
+    $scope.cards.splice(index, 1);
+  };
+  $scope.addCard = function() {
+    var newCard = cardTypes[Math.floor(Math.random() * cardTypes.length)];
+    newCard.id = Math.random();
+    $scope.cards.push(angular.extend({}, newCard));
+  };
   // Open the login modal
   $scope.showAbout = function() {
     $scope.modal.show();
@@ -147,41 +149,6 @@ angular.module('starter.controllers', [])
   // Open the login modal
   $scope.closeAbout = function() {
     $scope.modal.hide();
-  }
-})
-
-.controller('CardsCtrl', function($scope, $ionicSwipeCardDelegate) {
-  var cardTypes = [{
-    title: 'Swipe down to clear the card',
-    image: 'img/pic.png'
-  }, {
-    title: 'Where is this?',
-    image: 'img/pic.png'
-  }, {
-    title: 'What kind of grass is this?',
-    image: 'img/pic2.png'
-  }, {
-    title: 'What beach is this?',
-    image: 'img/pic3.png'
-  }, {
-    title: 'What kind of clouds are these?',
-    image: 'img/pic4.png'
-  }];
-
-  $scope.cards = Array.prototype.slice.call(cardTypes, 0, 0);
-
-  $scope.cardSwiped = function(index) {
-    $scope.addCard();
-  };
-
-  $scope.cardDestroyed = function(index) {
-    $scope.cards.splice(index, 1);
-  };
-
-  $scope.addCard = function() {
-    var newCard = cardTypes[Math.floor(Math.random() * cardTypes.length)];
-    newCard.id = Math.random();
-    $scope.cards.push(angular.extend({}, newCard));
   }
 })
 

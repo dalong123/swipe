@@ -1,21 +1,19 @@
-<ion-view view-title="{{blog.title}}" no-scroll>
-  <ion-content>
+<ion-view view-title="{{blog.title}}">
+  <ion-content no-scroll>
 
     <swipe-cards ng-controller="CardCtrl">
       <swipe-card on-card-swipe="cardSwiped()">
-        <div class="item item-avatar">
-          <img src="avatar.jpg">
-          <h2>Pretty Hate Machine</h2>
-          <p>Nine Inch Nails</p>
+        <div class="item">
+          <h2>{{blog.title}}</h2>
         </div>
 
         <div class="item item-image">
-          <img src="cover.jpg">
+          <img ng-src="{{blog.image}}">
         </div>
 
         <a class="item item-icon-left assertive" href="#">
           <i class="icon ion-music-note"></i>
-          Start listening
+          Swipe down to start
         </a>
       </swipe-card>
       <swipe-card ng-repeat="card in cards" on-card-swipe="cardSwiped($index)" on-destroy="cardDestroyed($index)">
