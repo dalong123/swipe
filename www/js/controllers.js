@@ -111,6 +111,7 @@ angular.module('starter.controllers', [])
       if(!angular.equals({}, blogLocalStore))
       {
         $scope.blog = blogLocalStore;
+        $scope.cards = LocalStorage.getObject('blogs');
       } else {
         Blog.getBlogsAsync().then(
           function(result) {
