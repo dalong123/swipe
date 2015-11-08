@@ -1,12 +1,11 @@
 <ion-modal-view>
   <ion-header-bar>
-    <h1 class="title"></h1>
+    <h1 class="title">About {{blog.title}}</h1>
     <div class="buttons">
       <button class="button button-clear" ng-click="closeAbout()">Close</button>
     </div>
   </ion-header-bar>
   <ion-content class="padding">
-    <h3>About {{blog.title}}</h3>
     <p>{{blog.description}}</p>
   </ion-content>
 </ion-modal-view>

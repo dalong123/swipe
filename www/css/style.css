@@ -9,7 +9,19 @@
 }
 
 .swipe-cards {
-  
+
+}
+
+.ferns-bg {
+  background: url(../img/ferns.jpeg) no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+.fade-component {
+  opacity: 0.8;
 }
 
 swipe-card {

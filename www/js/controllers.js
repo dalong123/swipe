@@ -81,7 +81,7 @@ angular.module('starter.controllers', [])
   });
 })
 
-// We need to figure out a way to pass the entire blog object via the router
+// We need to figure out a way to pass the entire blog object via the router,
 // rather than fetching all of blogs.json and doing id filtering on it.
 .controller('BlogCtrl', function($scope, $stateParams, $filter, $ionicSwipeCardDelegate, $ionicModal, Blog, LocalStorage){
 
@@ -102,8 +102,15 @@ angular.module('starter.controllers', [])
       // Build out our blog object for the all blogs view. We need to apply scope
       // variables for everything used in the view
       $scope.blog = {
-        "title": "boobs"
+        "title": "All Blogs",
+        "id": 0,
+        "image": "https://pbs.twimg.com/profile_images/1682109813/PandP_BIG.jpg",
+        "url": "",
+        "description": "All Blogs",
+        "kimonoId": ""
       }
+      cardTypes = LocalStorage.getObject('blogs');
+      $scope.cards = Array.prototype.slice.call(cardTypes, 0, 0);
     }
     else
     {
@@ -119,8 +126,8 @@ angular.module('starter.controllers', [])
           function(result) {
             // promise was fullfilled (regardless of outcome)
             $scope.blog = $filter('filter')(result, {id:blogId})[0];
-            cardTypes = LocalStorage.getObject('blogs');
             LocalStorage.setObject('blog' + blogId, $scope.blog);
+            cardTypes = LocalStorage.getObject('blogs');
             $scope.cards = Array.prototype.slice.call(cardTypes, 0, 0);
           },
           function(error) {
