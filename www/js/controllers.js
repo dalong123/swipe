@@ -85,6 +85,8 @@ angular.module('starter.controllers', [])
 // rather than fetching all of blogs.json and doing id filtering on it.
 .controller('BlogCtrl', function($scope, $stateParams, $filter, $ionicSwipeCardDelegate, $ionicModal, Blog, LocalStorage){
 
+  var blogId = $stateParams.blogId;
+
   // Create the login modal that we will use later
   $ionicModal.fromTemplateUrl('templates/about-modal.html', {
     scope: $scope
@@ -95,8 +97,6 @@ angular.module('starter.controllers', [])
   $scope.$on('$ionicView.enter', function(e) {
 
     // take in the route param for the specific view (IT SHOULD BE A NUMBER)
-    var blogId = $stateParams.blogId;
-
     if(blogId === 'all'){
       // Build out our blog object for the all blogs view. We need to apply scope
       // variables for everything used in the view
