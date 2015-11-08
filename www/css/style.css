@@ -1,5 +1,5 @@
 .pane {
-  background-color: #333;
+  /*background-color: #333;*/
 }
 
 .bar.bar-transparent {
@@ -9,7 +9,7 @@
 }
 
 .swipe-cards {
-  margin-top: 25px;
+  
 }
 
 swipe-card {
