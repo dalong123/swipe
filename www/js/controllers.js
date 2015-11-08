@@ -96,6 +96,8 @@ angular.module('starter.controllers', [])
 
   $scope.$on('$ionicView.enter', function(e) {
 
+    var cardTypes = [];
+
     // take in the route param for the specific view (IT SHOULD BE A NUMBER)
     if(blogId === 'all'){
       // Build out our blog object for the all blogs view. We need to apply scope
@@ -111,13 +113,13 @@ angular.module('starter.controllers', [])
       if(!angular.equals({}, blogLocalStore))
       {
         $scope.blog = blogLocalStore;
-        $scope.cards = LocalStorage.getObject('blogs');
+        var cardTypes = LocalStorage.getObject('blogs');
       } else {
         Blog.getBlogsAsync().then(
           function(result) {
             // promise was fullfilled (regardless of outcome)
             $scope.blog = $filter('filter')(result, {id:blogId})[0];
-            $scope.cards = LocalStorage.getObject('blogs');
+            var cardTypes = LocalStorage.getObject('blogs');
             LocalStorage.setObject('blog' + blogId, $scope.blog);
           },
           function(error) {
@@ -127,8 +129,19 @@ angular.module('starter.controllers', [])
         );
       }
     }
+    $scope.cards = Array.prototype.slice.call(cardTypes, 0, 0);
+    $scope.cardSwiped = function(index) {
+      $scope.addCard();
+    };
+    $scope.cardDestroyed = function(index) {
+      $scope.cards.splice(index, 1);
+    };
+    $scope.addCard = function() {
+      var newCard = cardTypes[Math.floor(Math.random() * cardTypes.length)];
+      newCard.id = Math.random();
+      $scope.cards.push(angular.extend({}, newCard));
+    };
   });
-
   // Open the login modal
   $scope.showAbout = function() {
     $scope.modal.show();
@@ -136,7 +149,7 @@ angular.module('starter.controllers', [])
   // Open the login modal
   $scope.closeAbout = function() {
     $scope.modal.hide();
-  };
+  }
 })
 
 .controller('CardsCtrl', function($scope, $ionicSwipeCardDelegate) {

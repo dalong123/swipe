@@ -8,8 +8,8 @@
   border: none;
 }
 
-#footer .button {
-  color: #fff;
+.swipe-cards {
+  margin-top: -150px;
 }
 
 @-webkit-keyframes bounceIn {
