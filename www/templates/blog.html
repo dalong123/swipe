@@ -2,18 +2,15 @@
   <ion-content class="ferns-bg" no-scroll>
 
     <swipe-cards ng-controller="CardCtrl">
-      <swipe-card on-card-swipe="cardSwiped()">
-        <div class="item item-image">
-          <img ng-src="{{blog.image}}">
+      <swipe-card on-card-swipe="cardSwiped()" class="fade-component padding-top">
+        <div class="item" style="text-align:center;">
+          <h2 class="padding-bottom">Swipe down to start</h2>
+          <ion-spinner icon="ripple" class="padding-top"></ion-spinner>
         </div>
-        <a class="item item-icon-left" href="#">
-          <i class="icon ion-music-note"></i>
-          Swipe down to start
-        </a>
       </swipe-card>
 
       <swipe-card ng-repeat="card in cards" on-card-swipe="cardSwiped($index)" on-destroy="cardDestroyed($index)">
-        <div class="item" class="fade-component">
+        <div class="item item-text-wrap" class="fade-component">
           <h2>{{card.title}}</h2>
         </div>
 
@@ -21,7 +18,7 @@
           <img ng-src="{{card.image}}">
         </div>
 
-        <a class="item item-icon-left" href="#">
+        <a class="item item-icon-left" ng-href="#/story/{{story.id}}">
           <i class="icon ion-music-note"></i>
           Start listening
         </a>

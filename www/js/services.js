@@ -38,7 +38,9 @@ angular.module('starter.services', [])
         });
     },
     getFeedAsync: function(kimonoId, isOnDemand) {
-      return $http.get('blogs.json')
+      var URL = 'http://node-hnapi.herokuapp.com/news';
+
+      return $http.get(URL)
         .then(function(response) {
           // promise is fulfilled
           deferred.resolve(response.data);

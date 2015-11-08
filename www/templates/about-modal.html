@@ -6,6 +6,9 @@
     </div>
   </ion-header-bar>
   <ion-content class="padding">
-    <p>{{blog.description}}</p>
+    <div class="item item-image">
+      <img ng-src="{{blog.image}}">
+    </div>
+    <p class="padding-top">{{blog.description}}</p>
   </ion-content>
 </ion-modal-view>
