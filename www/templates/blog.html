@@ -1,6 +1,17 @@
 <ion-view view-title="{{blog.title}}">
   <ion-content>
-    <h1>{{blog.title}}</h1>
-    <p>
+    <div class="list card">
+      <div class="item item-image">
+        <img ng-src="{{blog.image}}">
+      </div>
+      <a class="item item-icon-left assertive" href="#">
+        <i class="icon ion-music-note"></i>
+        Start listening
+      </a>
+    </div>
   </ion-content>
+  <div class="bar bar-footer">
+    <button class="button button-clear button-assertive pull-left">About</button>
+    <button class="button button-clear button-assertive pull-right">Visit {{blog.title}}</button>
+  </div>
 </ion-view>
