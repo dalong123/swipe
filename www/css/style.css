@@ -1,1 +1,32 @@
-/* Empty. Add your own CSS if you like */
+.pane {
+  background-color: #333;
+}
+
+.bar.bar-transparent {
+  background-color: transparent;
+  background-image: none;
+  border: none;
+}
+
+#footer .button {
+  color: #fff;
+}
+
+@-webkit-keyframes bounceIn {
+  0% {
+    -webkit-transform: scale(0,0);
+  }
+  70% {
+    -webkit-transform: scale(1.2,1.2);
+  }
+  100% {
+    -webkit-transform: scale(1,1);
+  }
+}
+
+swipe-card.pop-in-start {
+  -webkit-transform: scale(0,0);
+}
+swipe-card.pop-in {
+  -webkit-animation: bounceIn 0.4s ease-out;
+}

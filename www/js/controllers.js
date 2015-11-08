@@ -83,7 +83,14 @@ angular.module('starter.controllers', [])
 
 // We need to figure out a way to pass the entire blog object via the router
 // rather than fetching all of blogs.json and doing id filtering on it.
-.controller('BlogCtrl', function($scope, $stateParams, $filter, Blog, LocalStorage){
+.controller('BlogCtrl', function($scope, $stateParams, $filter, $ionicSwipeCardDelegate, $ionicModal, Blog, LocalStorage){
+
+  // Create the login modal that we will use later
+  $ionicModal.fromTemplateUrl('templates/about-modal.html', {
+    scope: $scope
+  }).then(function(modal) {
+    $scope.modal = modal;
+  });
 
   $scope.$on('$ionicView.enter', function(e) {
 
@@ -109,6 +116,7 @@ angular.module('starter.controllers', [])
           function(result) {
             // promise was fullfilled (regardless of outcome)
             $scope.blog = $filter('filter')(result, {id:blogId})[0];
+            $scope.cards = LocalStorage.getObject('blogs');
             LocalStorage.setObject('blog' + blogId, $scope.blog);
           },
           function(error) {
@@ -119,4 +127,55 @@ angular.module('starter.controllers', [])
       }
     }
   });
+
+  // Open the login modal
+  $scope.showAbout = function() {
+    $scope.modal.show();
+  };
+  // Open the login modal
+  $scope.closeAbout = function() {
+    $scope.modal.hide();
+  };
+})
+
+.controller('CardsCtrl', function($scope, $ionicSwipeCardDelegate) {
+  var cardTypes = [{
+    title: 'Swipe down to clear the card',
+    image: 'img/pic.png'
+  }, {
+    title: 'Where is this?',
+    image: 'img/pic.png'
+  }, {
+    title: 'What kind of grass is this?',
+    image: 'img/pic2.png'
+  }, {
+    title: 'What beach is this?',
+    image: 'img/pic3.png'
+  }, {
+    title: 'What kind of clouds are these?',
+    image: 'img/pic4.png'
+  }];
+
+  $scope.cards = Array.prototype.slice.call(cardTypes, 0, 0);
+
+  $scope.cardSwiped = function(index) {
+    $scope.addCard();
+  };
+
+  $scope.cardDestroyed = function(index) {
+    $scope.cards.splice(index, 1);
+  };
+
+  $scope.addCard = function() {
+    var newCard = cardTypes[Math.floor(Math.random() * cardTypes.length)];
+    newCard.id = Math.random();
+    $scope.cards.push(angular.extend({}, newCard));
+  }
+})
+
+.controller('CardCtrl', function($scope, $ionicSwipeCardDelegate) {
+  $scope.goAway = function() {
+    var card = $ionicSwipeCardDelegate.getSwipeableCard($scope);
+    card.swipe();
+  };
 });

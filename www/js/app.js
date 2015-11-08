@@ -1,4 +1,4 @@
-angular.module('starter', ['ionic', 'starter.services', 'starter.controllers'])
+angular.module('starter', ['ionic', 'starter.services', 'starter.controllers', 'ionic.contrib.ui.cards'])
 
 /**
  * Still not entirely sure what this does, though I haven't looked into it much
@@ -102,4 +102,17 @@ angular.module('starter', ['ionic', 'starter.services', 'starter.controllers'])
 
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/app/home');
+})
+
+.directive('noScroll', function($document) {
+
+  return {
+    restrict: 'A',
+    link: function($scope, $element, $attr) {
+
+      $document.on('touchmove', function(e) {
+        e.preventDefault();
+      });
+    }
+  }
 });
