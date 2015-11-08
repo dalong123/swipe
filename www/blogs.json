@@ -3,59 +3,69 @@
   "id": 1,
   "image": "https://pbs.twimg.com/profile_images/1682109813/PandP_BIG.jpg",
   "url": "",
+  description: "A Hip Hop and Indie Rock Blog with Free MP3's",
   "kimonoId": ""
 }, {
   "title": "Soulection",
   "id": 2,
   "image": "http://factmag-images.s3.amazonaws.com/wp-content/uploads/2015/06/soulection-616x440.jpg",
   "url": "",
+  description: "Based in Los Angeles, CA, Soulection is a record label, radio show and niche collective of creative music makers and programmers worldwide.",
   "kimonoId": ""
 }, {
   "title": "HypeM",
   "id": 3,
   "image": "http://thegearedlife.com/wp-content/uploads/2013/10/the-hype-machine.jpg",
   "url": "",
+  description: "Every day, thousands of people around the world write about music they love — and it all ends up here.",
   "kimonoId": ""
 }, {
   "title": "Stereogum",
   "id": 4,
   "image": "http://highwheelrecords.com/highwheelrecords/wp-content/uploads/2014/05/stereogum-logo.jpeg",
   "url": "",
+  description: "Mp3s, music videos, concert reviews, tour dates and contests.",
   "kimonoId": ""
 }, {
   "title": "Earmilk",
   "id": 5,
   "image": "http://www.awkwordrap.com/wp-content/uploads/2012/03/earmilk1.jpg",
   "url": "",
+  description: "EARMILK is a music blog based out of the United States & Canada which has an international appeal with its top cities being major metropolitan areas all over the world.",
   "kimonoId": ""
 }, {
   "title": "Et Musique",
   "id": 6,
   "image": "http://songs.to/covers/80b2b608fe54610bcf63f6ce5a17391e211c3626.png",
   "url": "",
+  description: "Et Musique Pour Tous is a boutique creative group specializing in music culture and branding for hospitality and retail brands.  EMPT is committed to providing insightful writing, reviews and highly curated music. ",
   "kimonoId": ""
 }, {
   "title": "Indie Shuffle",
   "id": 7,
   "image": "http://comein-comeout.com/wp-content/uploads/2014/04/indie-shuffle-755x530.jpg",
   "url": "",
+  description: "",
   "kimonoId": ""
 }, {
   "title": "Consequence of Sound",
   "id": 8,
   "image": "https://upload.wikimedia.org/wikipedia/commons/f/ff/Logo_for_Consequence_of_Sound.jpg",
   "url": "",
+  description: "",
   "kimonoId": ""
 }, {
   "title": "G.M.A.D",
   "id": 9,
   "image": "https://33.media.tumblr.com/tumblr_lz5yubLuri1r0pli0o1_cover.jpg",
   "url": "",
+  description: "",
   "kimonoId": ""
 }, {
   "title": "Gorilla vs Bear",
   "id": 10,
   "image": "http://2.bp.blogspot.com/_BwtBUmwXrKA/SnMkKa2Pg-I/AAAAAAAAGC0/SdF5xqFDx0Y/s200/GvsB+square+logo.jpg",
   "url": "",
+  description: "",
   "kimonoId": ""
 }]
