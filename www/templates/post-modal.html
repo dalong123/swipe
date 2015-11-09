@@ -1,12 +1,11 @@
 <ion-modal-view>
   <ion-header-bar>
-    <h1 class="title pull-left">{{blog.title}}</h1>
+    <h1 class="title pull-left">{{card.title.text}}</h1>
     <div class="buttons">
       <button class="button button-clear" ng-click="closeModal()">Close</button>
     </div>
   </ion-header-bar>
-  <ion-content class="padding">
-    <img class="full-image" ng-src="{{blog.image}}">
-    <p>{{blog.description}}</p>
+  <ion-content>
+    <iframe src="{{card.title.href}}" width="100%" height="100%"></iframe>
   </ion-content>
 </ion-modal-view>
