@@ -68,6 +68,25 @@ angular.module('starter.controllers', [])
 
 })
 
+.controller('HomeCtrl', function($scope, $q, Blog) {
+
+  $scope.$on('$ionicView.enter', function(e) {
+    // Make calls to the API/Blog services as necessary and initialize all
+    // view-centric variables
+    Blog.getFeedAsync("d3cthg28", 1).then(
+      function(response) {
+        // promise was fullfilled (regardless of outcome)
+        $scope.blogs = response;
+      },
+      function(error) {
+        // handle errors here
+        console.log(error.statusText);
+      }
+    );
+  });
+
+})
+
 /**
  *
  */
@@ -104,7 +123,7 @@ angular.module('starter.controllers', [])
 
 // We need to figure out a way to pass the entire blog object via the router,
 // rather than fetching all of blogs.json and doing id filtering on it.
-.controller('BlogCtrl', function($scope, $stateParams, $filter, $ionicSwipeCardDelegate, $ionicModal, Blog, LocalStorage){
+.controller('BlogCtrl', function($scope, $stateParams, $filter, $ionicSwipeCardDelegate, $ionicModal, $ionicLoading, Blog, LocalStorage){
 
   // Create the login modal that we will use later
   $ionicModal.fromTemplateUrl('templates/post-modal.html', {
@@ -112,6 +131,12 @@ angular.module('starter.controllers', [])
   }).then(function(modal) {
     $scope.modal = modal;
   });
+
+  $scope.show = function() {
+    $ionicLoading.show({
+      template: 'Loading...'
+    });
+  };
 
   $scope.$on('$ionicView.enter', function(e) {
 
@@ -145,6 +170,9 @@ angular.module('starter.controllers', [])
             // promise was fullfilled (regardless of outcome)
             cardTypes = res;
             $scope.cards = Array.prototype.slice.call(cardTypes, 0, 0);
+            $scope.hide = function(){
+              $ionicLoading.hide();
+            };
           },
           function(error) {
             // handle errors here

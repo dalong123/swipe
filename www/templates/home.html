@@ -5,21 +5,14 @@
         <!-- <img src="mcfly.jpg"> -->
         <h2>Today's Top Posts<span><p style="float: right;">November 01, 2015</p></span></h2>
       </div>
-      <a href="#" class="item item-icon-left">
-        <i class="icon ion-home"></i>
-        Post 1
+      <a ng-repeat="blog in blogs" href="{{blog.title.href}}" class="item item-text-wrap" target="_blank">
+        <p>
+          {{blog.title.text}}
+        </p>
       </a>
-      <a href="#" class="item item-icon-left">
-        <i class="icon ion-ios-telephone"></i>
-        Post 2
-      </a>
-      <a href="#" class="item item-icon-left">
-        <i class="icon ion-wifi"></i>
-        Post 4
-      </a>
-      <a href="#" class="item item-icon-left">
-        <i class="icon ion-card"></i>
-        Enter card information
+      <a href="#/app/blogs/all" class="item item-icon-right">
+        See more posts
+        <i class="icon ion-ios-arrow-right"></i>
       </a>
     </div>
 

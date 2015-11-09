@@ -40,7 +40,15 @@ h1 h2 h3 h4 {
 }
 
 .fade-component {
-  opacity: 0.8;
+  background: rgba(255,255,255, 0.7) !important;
+}
+
+.fade-component .card {
+  background: rgba(255,255,255, 0.7) !important;
+}
+
+.fade-component .item {
+  background: rgba(255,255,255, 0.7) !important;
 }
 
 .scroll-content > .scroll {
