@@ -1,40 +1,46 @@
 <ion-view view-title="{{blog.title}}">
-  <ion-content no-scroll>
+  <ion-content class="ferns-bg" no-scroll>
 
     <swipe-cards ng-controller="CardCtrl">
-      <swipe-card on-card-swipe="cardSwiped()">
-        <div class="item">
-          <h2>{{blog.title}}</h2>
+      <swipe-card class="fade-component padding-top" on-card-swipe="cardSwiped()">
+        <div class="item" style="text-align:center;">
+          <h2 class="padding-bottom">Swipe down to start</h2>
+          <ion-spinner class="padding-top" icon="ripple"></ion-spinner>
         </div>
-
-        <div class="item item-image">
-          <img ng-src="{{blog.image}}">
-        </div>
-
-        <a class="item item-icon-left assertive" href="#">
-          <i class="icon ion-music-note"></i>
-          Swipe down to start
-        </a>
       </swipe-card>
+
       <swipe-card ng-repeat="card in cards" on-card-swipe="cardSwiped($index)" on-destroy="cardDestroyed($index)">
         <div class="item">
-          <h2>{{card.title}}</h2>
+          <!-- <img src="mcfly.jpg"> -->
+          <h2>{{card.index}}<span><p style="float: right;">{{card.date}}</p></span></h2>
         </div>
 
-        <div class="item item-image">
-          <img ng-src="{{card.image}}">
+        <div class="item item-body">
+          <p>
+            {{card.title.text}}
+          </p>
         </div>
 
-        <a class="item item-icon-left assertive" href="#">
-          <i class="icon ion-music-note"></i>
-          Start listening
-        </a>
+        <div class="item tabs tabs-secondary tabs-icon-left">
+          <a class="tab-item" href="#">
+            <i class="icon ion-thumbsup"></i>
+            Like
+          </a>
+          <a class="tab-item" href="#">
+            <i class="icon ion-chatbox"></i>
+            Comment
+          </a>
+          <a class="tab-item" href="#">
+            <i class="icon ion-share"></i>
+            Share
+          </a>
+        </div>
       </swipe-card>
     </swipe-cards>
   </ion-content>
   <div class="bar bar-footer">
-    <button class="button button-clear button-assertive pull-left" ng-click="showAbout()">About</button>
-    <button class="button button-clear button-assertive pull-right">Visit
+    <button class="button button-clear button-balanced pull-left" ng-click="showAbout()">About</button>
+    <button class="button button-clear button-balanced pull-right">Visit
       {{blog.title}}</button>
   </div>
 </ion-view>

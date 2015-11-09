@@ -1,5 +1,18 @@
+@import url(https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,300,400italic,600);
+
+body {
+  font-family: 'Source Sans Pro', sans-serif;
+}
+
+.spinner svg {
+  width: 100px;
+  height: 100px;
+  stroke: #444;
+  fill: #444;
+}
+
 .pane {
-  background-color: #333;
+  /*background-color: #333;*/
 }
 
 .bar.bar-transparent {
@@ -9,7 +22,19 @@
 }
 
 .swipe-cards {
-  margin-top: 50px;
+
+}
+
+.ferns-bg {
+  background: url(../img/ferns.jpeg) no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+.fade-component {
+  opacity: 0.8;
 }
 
 swipe-card {

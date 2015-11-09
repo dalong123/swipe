@@ -81,12 +81,9 @@ angular.module('starter.controllers', [])
   });
 })
 
-// We need to figure out a way to pass the entire blog object via the router
+// We need to figure out a way to pass the entire blog object via the router,
 // rather than fetching all of blogs.json and doing id filtering on it.
 .controller('BlogCtrl', function($scope, $stateParams, $filter, $ionicSwipeCardDelegate, $ionicModal, Blog, LocalStorage){
-
-  var blogId = $stateParams.blogId;
-  var cardTypes = [];
 
   // Create the login modal that we will use later
   $ionicModal.fromTemplateUrl('templates/about-modal.html', {
@@ -97,13 +94,23 @@ angular.module('starter.controllers', [])
 
   $scope.$on('$ionicView.enter', function(e) {
 
+    var blogId = $stateParams.blogId;
+    var cardTypes = [];
+
     // take in the route param for the specific view (IT SHOULD BE A NUMBER)
     if(blogId === 'all'){
       // Build out our blog object for the all blogs view. We need to apply scope
       // variables for everything used in the view
       $scope.blog = {
-        "title": "boobs"
+        "title": "All Blogs",
+        "id": 0,
+        "image": "https://pbs.twimg.com/profile_images/1682109813/PandP_BIG.jpg",
+        "url": "",
+        "description": "All Blogs",
+        "kimonoId": "d3cthg28"
       }
+      cardTypes = LocalStorage.getObject('blogs');
+      $scope.cards = Array.prototype.slice.call(cardTypes, 0, 0);
     }
     else
     {
@@ -112,16 +119,34 @@ angular.module('starter.controllers', [])
       if(!angular.equals({}, blogLocalStore))
       {
         $scope.blog = blogLocalStore;
-        cardTypes = LocalStorage.getObject('blogs');
-        $scope.cards = Array.prototype.slice.call(cardTypes, 0, 0);
+        Blog.getFeedAsync($scope.blog.kimonoId, 1).then(
+          function(res) {
+            // promise was fullfilled (regardless of outcome)
+            cardTypes = res;
+            $scope.cards = Array.prototype.slice.call(cardTypes, 0, 0);
+          },
+          function(error) {
+            // handle errors here
+            console.log(error.statusText);
+          }
+        );
       } else {
         Blog.getBlogsAsync().then(
           function(result) {
             // promise was fullfilled (regardless of outcome)
             $scope.blog = $filter('filter')(result, {id:blogId})[0];
-            cardTypes = LocalStorage.getObject('blogs');
             LocalStorage.setObject('blog' + blogId, $scope.blog);
-            $scope.cards = Array.prototype.slice.call(cardTypes, 0, 0);
+            Blog.getFeedAsync($scope.blog.kimonoId, 1).then(
+              function(res) {
+                // promise was fullfilled (regardless of outcome)
+                cardTypes = res;
+                $scope.cards = Array.prototype.slice.call(cardTypes, 0, 0);
+              },
+              function(error) {
+                // handle errors here
+                console.log(error.statusText);
+              }
+            );
           },
           function(error) {
             // handle errors here
@@ -130,26 +155,27 @@ angular.module('starter.controllers', [])
         );
       }
     }
+
+    $scope.cardSwiped = function(index) {
+      $scope.addCard();
+    };
+    $scope.cardDestroyed = function(index) {
+      $scope.cards.splice(index, 1);
+    };
+    $scope.addCard = function() {
+      var newCard = cardTypes[Math.floor(Math.random() * cardTypes.length)];
+      newCard.id = Math.random();
+      $scope.cards.push(angular.extend({}, newCard));
+    };
+    // Open the login modal
+    $scope.showAbout = function() {
+      $scope.modal.show();
+    };
+    // Open the login modal
+    $scope.closeAbout = function() {
+      $scope.modal.hide();
+    }
   });
-  $scope.cardSwiped = function(index) {
-    $scope.addCard();
-  };
-  $scope.cardDestroyed = function(index) {
-    $scope.cards.splice(index, 1);
-  };
-  $scope.addCard = function() {
-    var newCard = cardTypes[Math.floor(Math.random() * cardTypes.length)];
-    newCard.id = Math.random();
-    $scope.cards.push(angular.extend({}, newCard));
-  };
-  // Open the login modal
-  $scope.showAbout = function() {
-    $scope.modal.show();
-  };
-  // Open the login modal
-  $scope.closeAbout = function() {
-    $scope.modal.hide();
-  }
 })
 
 .controller('CardCtrl', function($scope, $ionicSwipeCardDelegate) {
