@@ -16,25 +16,16 @@
         </div>
 
         <div class="item item-body">
-          <p>
+          <img class="full-image" ng-src="{{blog.image}}">
+          <h2 class="padding-bottom">
             {{card.title.text}}
-          </p>
+          </h2>
         </div>
 
-        <div class="item tabs tabs-secondary tabs-icon-left">
-          <a class="tab-item" href="#">
-            <i class="icon ion-thumbsup"></i>
-            Like
-          </a>
-          <a class="tab-item" href="#">
-            <i class="icon ion-chatbox"></i>
-            Comment
-          </a>
-          <a class="tab-item" href="#">
-            <i class="icon ion-share"></i>
-            Share
-          </a>
-        </div>
+        <a ng-href="{{card.title.href}}" target="_blank" class="item item-icon-right">
+
+          <span class="pull-right">View Post<i class="icon ion-ios-arrow-right"></i></span>
+        </a>
       </swipe-card>
     </swipe-cards>
   </ion-content>
