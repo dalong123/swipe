@@ -22,10 +22,9 @@ angular.module('starter.services', [])
  */
 .factory('Blog', function($http, $q, $filter) {
 
-  var deferred = $q.defer();
-
   return {
     getBlogsAsync: function() {
+      var deferred = $q.defer();
       return $http.get('blogs.json')
         .then(function(response) {
           // promise is fulfilled
@@ -38,7 +37,8 @@ angular.module('starter.services', [])
         });
     },
     getFeedAsync: function(kimonoId, isOnDemand) {
-      var URL = 'http://node-hnapi.herokuapp.com/news';
+      var deferred = $q.defer();
+      var URL = 'http://localhost:8888/api/getfeed/' + kimonoId;
 
       return $http.get(URL)
         .then(function(response) {

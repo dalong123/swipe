@@ -107,7 +107,7 @@ angular.module('starter.controllers', [])
         "image": "https://pbs.twimg.com/profile_images/1682109813/PandP_BIG.jpg",
         "url": "",
         "description": "All Blogs",
-        "kimonoId": ""
+        "kimonoId": "d3cthg28"
       }
       cardTypes = LocalStorage.getObject('blogs');
       $scope.cards = Array.prototype.slice.call(cardTypes, 0, 0);
@@ -119,16 +119,34 @@ angular.module('starter.controllers', [])
       if(!angular.equals({}, blogLocalStore))
       {
         $scope.blog = blogLocalStore;
-        cardTypes = LocalStorage.getObject('blogs');
-        $scope.cards = Array.prototype.slice.call(cardTypes, 0, 0);
+        Blog.getFeedAsync($scope.blog.kimonoId, 1).then(
+          function(res) {
+            // promise was fullfilled (regardless of outcome)
+            cardTypes = res;
+            $scope.cards = Array.prototype.slice.call(cardTypes, 0, 0);
+          },
+          function(error) {
+            // handle errors here
+            console.log(error.statusText);
+          }
+        );
       } else {
         Blog.getBlogsAsync().then(
           function(result) {
             // promise was fullfilled (regardless of outcome)
             $scope.blog = $filter('filter')(result, {id:blogId})[0];
             LocalStorage.setObject('blog' + blogId, $scope.blog);
-            cardTypes = LocalStorage.getObject('blogs');
-            $scope.cards = Array.prototype.slice.call(cardTypes, 0, 0);
+            Blog.getFeedAsync($scope.blog.kimonoId, 1).then(
+              function(res) {
+                // promise was fullfilled (regardless of outcome)
+                cardTypes = res;
+                $scope.cards = Array.prototype.slice.call(cardTypes, 0, 0);
+              },
+              function(error) {
+                // handle errors here
+                console.log(error.statusText);
+              }
+            );
           },
           function(error) {
             // handle errors here
