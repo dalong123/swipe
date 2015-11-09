@@ -1,9 +1,9 @@
-<ion-view view-title="Home">
+<ion-view view-title="Swipe">
   <ion-content class="ferns-bg">
     <div class="list card fade-component">
       <div class="item">
         <!-- <img src="mcfly.jpg"> -->
-        <h2>Today's Top Posts<span><p style="float: right;">November 01, 2015</p></span></h2>
+        <h2>Today's Top Posts<span><p style="float: right;">{{date | date:'MMM. dd, yyyy'}}</p></span></h2>
       </div>
       <a ng-repeat="blog in blogs" href="{{blog.title.href}}" class="item item-text-wrap" target="_blank">
         <p>
@@ -12,7 +12,7 @@
       </a>
       <a href="#/app/blogs/all" class="item item-icon-right">
         See more posts
-        <i class="icon ion-ios-arrow-right"></i>
+        <i class="icon ion-ios-arrow-right padding-right"></i>
       </a>
     </div>
 
@@ -49,6 +49,10 @@
         <h2 class="padding-top">Earmilk</h2>
         <button class="button button-icon icon ion-ios-arrow-right padding-top">
         </button>
+      </a>
+      <a href="#/app/blogs" class="item item-icon-right">
+        See all blogs
+        <i class="icon ion-ios-arrow-right padding-right"></i>
       </a>
     </div>
 

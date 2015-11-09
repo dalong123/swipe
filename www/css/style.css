@@ -5,9 +5,9 @@ body {
   font-family: 'Source Sans Pro', sans-serif;
 }
 
-h1 h2 h3 h4 {
+h1, h2, h3, h4, .title, .menu-right .item-content {
   font-family: 'PT Sans', sans-serif;
-  font-weight: bold;
+  font-weight: 600;
 }
 
 .spinner svg {
@@ -48,6 +48,10 @@ h1 h2 h3 h4 {
 }
 
 .fade-component .item {
+  background: rgba(255,255,255, 0.7) !important;
+}
+
+.fade-component .item-content {
   background: rgba(255,255,255, 0.7) !important;
 }
 

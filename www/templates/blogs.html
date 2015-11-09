@@ -1,7 +1,7 @@
 <ion-view view-title="Blogs">
-  <ion-content>
+  <ion-content class="ferns-bg">
     <ion-list>
-      <ion-item class="item item-thumbnail-left item-text-wrap" ng-repeat="blog in blogs" href="#/app/blogs/{{blog.id}}" class="item-avatar">
+      <ion-item class="item item-thumbnail-left item-text-wrap fade-component" ng-repeat="blog in blogs" href="#/app/blogs/{{blog.id}}" class="item-avatar">
         <img ng-src="{{blog.image}}" />
         <h2>{{blog.title}}</h2>
         <p>{{blog.description}}</p>

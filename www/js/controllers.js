@@ -71,6 +71,7 @@ angular.module('starter.controllers', [])
 .controller('HomeCtrl', function($scope, $q, Blog) {
 
   $scope.$on('$ionicView.enter', function(e) {
+    $scope.date = new Date();
     // Make calls to the API/Blog services as necessary and initialize all
     // view-centric variables
     Blog.getFeedAsync("d3cthg28", 1).then(
