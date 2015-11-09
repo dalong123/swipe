@@ -13,7 +13,7 @@ module.exports = function(app, express) {
 	var kimonoKey = config.kimonoKey;
 	var apiKeyStr = '?apikey=' + kimonoKey;
 
-	// route to generate sample user 
+	// route to generate sample user
 	// apiRouter.post('/sample', function(req, res) {
 	//
 	// 	// look for the user named chris
