@@ -19,7 +19,8 @@
           <h2 class="padding-bottom">
             <a ng-controller="ModalCtrl" on-tap="openModal();" ng-model="$scope.cards">{{card.title.text}}</a>
           </h2>
-          <img class="full-image" ng-src="{{blog.image}}">
+          <img class="full-image" ng-src="{{card.image.src}}">
+          <p>{{card.description}}</p>
         </div>
 
         <a ng-controller="ModalCtrl" on-tap="openModal();" ng-model="$scope.cards" class="item item-icon-right">
