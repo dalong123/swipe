@@ -214,7 +214,7 @@ angular.module('starter.controllers', [])
     };
     $scope.addCard = function() {
       var newCard = cardTypes[Math.floor(Math.random() * cardTypes.length)];
-      newCard.id = Math.random();
+      newCard.id =  Math.floor(Math.random() * (cardTypes.length - 1)) + 1;
       $scope.cards.push(angular.extend({}, newCard));
     };
     // Open the login modal
