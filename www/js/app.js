@@ -1,4 +1,4 @@
-angular.module('starter', ['ionic', 'starter.services', 'starter.controllers', 'ionic.contrib.ui.cards'])
+angular.module('starter', ['ionic', 'starter.services', 'starter.controllers', 'ionic.contrib.ui.cards', 'plangular'])
 
 /**
  * Still not entirely sure what this does, though I haven't looked into it much
@@ -49,6 +49,10 @@ angular.module('starter', ['ionic', 'starter.services', 'starter.controllers', '
   $sceDelegateProvider.resourceUrlWhitelist(['**', 'self']);
 })
 
+.config(function(plangularConfigProvider){
+  plangularConfigProvider.clientId = '87b01554e0e9467dca5c7646da65965a';
+})
+
 /**
  * Configure routing all controllers for all views
  */
@@ -77,6 +81,16 @@ angular.module('starter', ['ionic', 'starter.services', 'starter.controllers', '
     views: {
       'menuContent': {
         templateUrl: 'templates/about.html'
+      }
+    }
+  })
+
+  .state('app.sounds', {
+    url: '/sounds',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/sounds.html',
+        controller: 'SoundsCtrl'
       }
     }
   })

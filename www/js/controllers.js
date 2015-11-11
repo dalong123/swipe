@@ -68,12 +68,23 @@ angular.module('starter.controllers', [])
 
 })
 
-.controller('HomeCtrl', function($scope, $q, Blog) {
+.controller('HomeCtrl', function($scope, $q, Sounds, Blog) {
 
   $scope.$on('$ionicView.enter', function(e) {
     $scope.date = new Date();
     // Make calls to the API/Blog services as necessary and initialize all
     // view-centric variables
+    Sounds.getSoundsAsync().then(
+      function(result) {
+        // promise was fullfilled (regardless of outcome)
+        // checks for information will be peformed here
+        $scope.sounds = result;
+      },
+      function(error) {
+        // handle errors here
+        console.log(error.statusText);
+      }
+    );
     Blog.getFeedAsync("d3cthg28", 1).then(
       function(response) {
         // promise was fullfilled (regardless of outcome)
@@ -225,6 +236,47 @@ angular.module('starter.controllers', [])
     $scope.closeAbout = function() {
       $scope.modal.hide();
     }
+  });
+})
+
+// We need to figure out a way to pass the entire blog object via the router,
+// rather than fetching all of blogs.json and doing id filtering on it.
+.controller('SoundsCtrl', function($scope, $stateParams, $filter, $ionicSwipeCardDelegate, $ionicModal, $ionicLoading, Sounds){
+
+  $scope.show = function() {
+    $ionicLoading.show({
+      template: 'Loading...'
+    });
+  };
+
+  $scope.$on('$ionicView.enter', function(e) {
+
+    var cardTypes = [];
+
+    Sounds.getSoundsAsync().then(
+      function(result) {
+        // promise was fullfilled (regardless of outcome)
+        // checks for information will be peformed here
+        cardTypes = result;
+        $scope.cards = Array.prototype.slice.call(cardTypes, 0, 0);
+      },
+      function(error) {
+        // handle errors here
+        console.log(error.statusText);
+      }
+    );
+
+    $scope.cardSwiped = function(index) {
+      $scope.addCard();
+    };
+    $scope.cardDestroyed = function(index) {
+      $scope.cards.splice(index, 1);
+    };
+    $scope.addCard = function() {
+      var newCard = cardTypes[Math.floor(Math.random() * cardTypes.length)];
+      newCard.id =  Math.floor(Math.random() * (cardTypes.length - 1)) + 1;
+      $scope.cards.push(angular.extend({}, newCard));
+    };
   });
 })
 

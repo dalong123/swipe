@@ -9,8 +9,9 @@
         </div>
       </swipe-card>
 
-      <swipe-card ng-repeat="card in cards" on-card-swipe="cardSwiped($index)" on-destroy="cardDestroyed($index)">
-        <div class="item">
+      <swipe-card ng-repeat="card in cards" on-card-swipe="cardSwiped($index)"
+                  on-destroy="cardDestroyed($index)">
+        <div class="item fade-component">
           <!-- <img src="mcfly.jpg"> -->
           <h2>{{card.index}}<span><p style="float: right;">{{card.date}}</p></span></h2>
         </div>

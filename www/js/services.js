@@ -17,6 +17,24 @@ angular.module('starter.services', [])
   }
 }])
 
+.factory('Sounds', function($http, $q) {
+  return {
+    getSoundsAsync: function() {
+      var deferred = $q.defer();
+      return $http.get('sounds.json')
+        .then(function(response) {
+          // promise is fulfilled
+          deferred.resolve(response.data);
+          return deferred.promise;
+        }, function(response) {
+          // the following line rejects the promise
+          deferred.reject(response);
+          return deferred.promise;
+        });
+    }
+  }
+})
+
 /**
  *
  */

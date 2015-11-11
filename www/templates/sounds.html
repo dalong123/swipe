@@ -1,0 +1,48 @@
+<ion-view view-title="Soundz">
+  <ion-content class="ferns-bg" no-scroll>
+
+    <swipe-cards ng-controller="CardCtrl">
+      <swipe-card class="padding-top" on-card-swipe="cardSwiped()">
+        <div class="item fade-component" style="text-align:center;">
+          <h2 class="padding-bottom">Swipe down to start</h2>
+          <ion-spinner class="padding-top" icon="ripple"></ion-spinner>
+        </div>
+      </swipe-card>
+
+      <swipe-card ng-repeat="card in cards" on-card-swipe="cardSwiped($index)"
+                  on-destroy="cardDestroyed($index)">
+
+        <div class="item item-body sound-embed">
+          <div plangular="{{card.url}}" class="flex flex-center">
+            <div class="mr2">
+              <img ng-src="{{track.artwork_url}}" alt="{{track.title}}" style="min-width: 50px;"/>
+            </div>
+            <div class="flex-auto">
+              <h3 class="m0">{{track.user.username}}</h3>
+              <!-- Adding the .caps class to the following h2 produces nice
+              results. I think if we touch them up a bit we're golden -->
+              <h2 class="h4 m0">{{track.title}}</h2>
+              <div class="flex flex-center">
+                <button ng-click="playPause()"
+                  title="Play/Pause"
+                  class="flex-none h4 mr2 button button-clear button-grow rounded">
+                  <svg ng-if="player.playing !== track.src" class="icon geomicon" data-icon="play" viewBox="0 0 32 32" width="32" height="32" style="fill:currentcolor"><path d="M4 4 L28 16 L4 28 z "></path></svg>
+                  <svg ng-if="player.playing === track.src" class="icon geomicon" data-icon="pause" viewBox="0 0 32 32" width="32" height="32" style="fill:currentcolor"><path d="M4 4 H12 V28 H4 z M20 4 H28 V28 H20 z "></path></svg>
+                </button>
+                <div class="flex-auto">
+                  <progress
+                    class="progress"
+                    ng-click="seek($event)"
+                    ng-value="currentTime / duration || 0">
+                    {{ currentTime / duration }}
+                  </progress>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </swipe-card>
+    </swipe-cards>
+  </ion-content>
+</ion-view>
