@@ -243,12 +243,6 @@ angular.module('starter.controllers', [])
 // rather than fetching all of blogs.json and doing id filtering on it.
 .controller('SoundsCtrl', function($scope, $stateParams, $filter, $ionicSwipeCardDelegate, $ionicModal, $ionicLoading, Sounds){
 
-  $scope.show = function() {
-    $ionicLoading.show({
-      template: 'Loading...'
-    });
-  };
-
   $scope.$on('$ionicView.enter', function(e) {
 
     var cardTypes = [];

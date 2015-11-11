@@ -2,30 +2,32 @@
   <ion-content class="ferns-bg">
     <div class="list card fade-component">
       <div ng-repeat="sound in sounds" class="item item-text-wrap">
-        <div plangular="{{sound.url}}" class="p2 mb3 flex flex-center bg-darken-2 rounded ng-scope">
-          <div class="mr2">
+        <div plangular="{{sound.url}}" class="row">
+          <div class="col">
             <img ng-src="{{track.artwork_url}}" alt="{{track.title}}" style="min-width: 50px;"/>
           </div>
-          <div class="flex-auto">
-            <h3 class="m0">{{track.user.username}}</h3>
+          <div class="col col-67">
+            <h3 >{{track.user.username}}</h3>
             <!-- Adding the .caps class to the following h2 produces nice
             results. I think if we touch them up a bit we're golden -->
-            <h2 class="h4 m0">{{track.title}}</h2>
-            <div class="flex flex-center">
+            <h2>{{track.title}}</h2>
+            <div class="row">
+              <div class="col col-25">
               <button ng-click="playPause()"
                 title="Play/Pause"
                 class="flex-none h4 mr2 button button-clear">
                 <svg ng-if="player.playing !== track.src" class="icon geomicon" data-icon="play" viewBox="0 0 32 32" width="32" height="32" style="fill:currentcolor"><path d="M4 4 L28 16 L4 28 z "></path></svg>
                 <svg ng-if="player.playing === track.src" class="icon geomicon" data-icon="pause" viewBox="0 0 32 32" width="32" height="32" style="fill:currentcolor"><path d="M4 4 H12 V28 H4 z M20 4 H28 V28 H20 z "></path></svg>
               </button>
-              <div class="flex-auto">
-                <progress
-                  class="progress"
-                  ng-click="seek($event)"
-                  ng-value="currentTime / duration || 0">
-                  {{ currentTime / duration }}
-                </progress>
-              </div>
+            </div>
+            <div class="col">
+              <progress
+                class="progress"
+                ng-click="seek($event)"
+                ng-value="currentTime / duration || 0">
+                {{ currentTime / duration }}
+              </progress>
+            </div>
             </div>
           </div>
         </div>

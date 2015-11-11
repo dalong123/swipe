@@ -13,24 +13,35 @@
 
         <div class="item item-body sound-embed">
           <div plangular="{{card.url}}">
-            <div class="row">
-              <div class="col">
+            <div class="row padding-bottom">
+              <div class="col padding-top">
                 <img alt="{{track.title}}" ng-src="{{track.artwork_url}}" style="min-width: 50px;"/>
               </div>
-              <div class="col col-67 padding-left">
-                <h2 class="m0">{{track.user.username}}</h2>
+              <div class="col col-75 padding-left">
+                <h2><b>{{track.title}}</b></h2>
                 <!-- Adding the .caps class to the following h2 produces nice
-              results. I think if we touch them up a bit we're golden -->
-                <h2 class="m0">{{track.title}}</h2>
+                     results. I think if we touch them up a bit we're golden -->
+                <h2>
+                  {{track.user.username}}
+                  <span style="float: right;">
+                    <a ng-href="{{track.permalink_url}}" target="_blank">
+                      <img src="/img/soundcloud.png" style="max-width: 40px;" />
+                    </a>
+                  </span>
+                </h2>
               </div>
             </div>
             <div class="row padding-top">
               <div class="col">
-                <button class="flex-none h4 mr2 button button-clear button-grow rounded" ng-click="playPause()" title="Play/Pause">
-                  <svg class="icon geomicon" data-icon="play" height="32" ng-if="player.playing !== track.src" style="fill:currentcolor" viewBox="0 0 32 32" width="32">
+                <button class="button button-clear" ng-click="playPause()" title="Play/Pause">
+                  <svg class="icon geomicon" data-icon="play" height="32"
+                       ng-if="player.playing !== track.src" style="fill:currentcolor"
+                       viewBox="0 0 32 32" width="32">
                     <path d="M4 4 L28 16 L4 28 z "></path>
                   </svg>
-                  <svg class="icon geomicon" data-icon="pause" height="32" ng-if="player.playing === track.src" style="fill:currentcolor" viewBox="0 0 32 32" width="32">
+                  <svg class="icon geomicon" data-icon="pause" height="32"
+                       ng-if="player.playing === track.src" style="fill:currentcolor"
+                       viewBox="0 0 32 32" width="32">
                     <path d="M4 4 H12 V28 H4 z M20 4 H28 V28 H20 z "></path>
                   </svg>
                 </button>
