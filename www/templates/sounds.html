@@ -9,40 +9,42 @@
         </div>
       </swipe-card>
 
-      <swipe-card ng-repeat="card in cards" on-card-swipe="cardSwiped($index)"
-                  on-destroy="cardDestroyed($index)">
+      <swipe-card ng-repeat="card in cards" on-card-swipe="cardSwiped($index)" on-destroy="cardDestroyed($index)">
 
         <div class="item item-body sound-embed">
-          <div plangular="{{card.url}}" class="flex flex-center">
-            <div class="mr2">
-              <img ng-src="{{track.artwork_url}}" alt="{{track.title}}" style="min-width: 50px;"/>
-            </div>
-            <div class="flex-auto">
-              <h3 class="m0">{{track.user.username}}</h3>
-              <!-- Adding the .caps class to the following h2 produces nice
-              results. I think if we touch them up a bit we're golden -->
-              <h2 class="h4 m0">{{track.title}}</h2>
-              <div class="flex flex-center">
-                <button ng-click="playPause()"
-                  title="Play/Pause"
-                  class="flex-none h4 mr2 button button-clear button-grow rounded">
-                  <svg ng-if="player.playing !== track.src" class="icon geomicon" data-icon="play" viewBox="0 0 32 32" width="32" height="32" style="fill:currentcolor"><path d="M4 4 L28 16 L4 28 z "></path></svg>
-                  <svg ng-if="player.playing === track.src" class="icon geomicon" data-icon="pause" viewBox="0 0 32 32" width="32" height="32" style="fill:currentcolor"><path d="M4 4 H12 V28 H4 z M20 4 H28 V28 H20 z "></path></svg>
-                </button>
-                <div class="flex-auto">
-                  <progress
-                    class="progress"
-                    ng-click="seek($event)"
-                    ng-value="currentTime / duration || 0">
-                    {{ currentTime / duration }}
-                  </progress>
-                </div>
+          <div plangular="{{card.url}}">
+            <div class="row">
+              <div class="col">
+                <img alt="{{track.title}}" ng-src="{{track.artwork_url}}" style="min-width: 50px;"/>
               </div>
+              <div class="col col-67 padding-left">
+                <h2 class="m0">{{track.user.username}}</h2>
+                <!-- Adding the .caps class to the following h2 produces nice
+              results. I think if we touch them up a bit we're golden -->
+                <h2 class="m0">{{track.title}}</h2>
+              </div>
+            </div>
+            <div class="row padding-top">
+              <div class="col">
+                <button class="flex-none h4 mr2 button button-clear button-grow rounded" ng-click="playPause()" title="Play/Pause">
+                  <svg class="icon geomicon" data-icon="play" height="32" ng-if="player.playing !== track.src" style="fill:currentcolor" viewBox="0 0 32 32" width="32">
+                    <path d="M4 4 L28 16 L4 28 z "></path>
+                  </svg>
+                  <svg class="icon geomicon" data-icon="pause" height="32" ng-if="player.playing === track.src" style="fill:currentcolor" viewBox="0 0 32 32" width="32">
+                    <path d="M4 4 H12 V28 H4 z M20 4 H28 V28 H20 z "></path>
+                  </svg>
+                </button>
+              </div>
+              <div class="col col-80">
+                <progress class="progress" ng-click="seek($event)" ng-value="currentTime / duration || 0">
+                {{ currentTime / duration }}
+              </progress>
             </div>
           </div>
         </div>
+      </div>
 
-      </swipe-card>
-    </swipe-cards>
-  </ion-content>
+    </swipe-card>
+  </swipe-cards>
+</ion-content>
 </ion-view>
