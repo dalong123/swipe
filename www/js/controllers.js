@@ -68,9 +68,18 @@ angular.module('starter.controllers', [])
 
 })
 
-.controller('HomeCtrl', function($scope, $q, Sounds, Blog) {
+.controller('HomeCtrl', function($scope, $q, $ionicLoading, Sounds, Blog) {
 
   $scope.$on('$ionicView.enter', function(e) {
+
+    $ionicLoading.show({
+      content: 'Loading',
+      animation: 'fade-in',
+      showBackdrop: true,
+      maxWidth: 200,
+      showDelay: 0
+    });
+
     $scope.date = new Date();
     // Make calls to the API/Blog services as necessary and initialize all
     // view-centric variables
@@ -89,6 +98,7 @@ angular.module('starter.controllers', [])
       function(response) {
         // promise was fullfilled (regardless of outcome)
         $scope.blogs = response;
+        $ionicLoading.hide();
       },
       function(error) {
         // handle errors here
@@ -102,12 +112,21 @@ angular.module('starter.controllers', [])
 /**
  *
  */
-.controller('BlogsCtrl', function($scope, $q, Blog, LocalStorage) {
+.controller('BlogsCtrl', function($scope, $q, $ionicLoading, Blog, LocalStorage) {
 
   // This is the ionic-specific funtion used to target the view's entry. As a
   // result of template caching, this controller is only called when one of its
   // views is rendered
   $scope.$on('$ionicView.enter', function(e) {
+
+    $ionicLoading.show({
+      content: 'Loading',
+      animation: 'fade-in',
+      showBackdrop: true,
+      maxWidth: 200,
+      showDelay: 0
+    });
+
     // Make calls to the API/Blog services as necessary and initialize all
     // view-centric variables
     var blogsLocalStore = LocalStorage.getObject('blogs');
@@ -115,6 +134,7 @@ angular.module('starter.controllers', [])
     if(!angular.equals({}, blogsLocalStore))
     {
       $scope.blogs = blogsLocalStore;
+      $ionicLoading.hide();
     }
     else {
       Blog.getBlogsAsync().then(
@@ -123,6 +143,7 @@ angular.module('starter.controllers', [])
           // checks for information will be peformed here
           $scope.blogs = result;
           LocalStorage.setObject('blogs', result);
+          $ionicLoading.hide();
         },
         function(error) {
           // handle errors here
@@ -144,13 +165,15 @@ angular.module('starter.controllers', [])
     $scope.modal = modal;
   });
 
-  $scope.show = function() {
-    $ionicLoading.show({
-      template: 'Loading...'
-    });
-  };
-
   $scope.$on('$ionicView.enter', function(e) {
+
+    $ionicLoading.show({
+      content: 'Loading',
+      animation: 'fade-in',
+      showBackdrop: true,
+      maxWidth: 200,
+      showDelay: 0
+    });
 
     var blogId = $stateParams.blogId;
     var cardTypes = [];
@@ -169,6 +192,7 @@ angular.module('starter.controllers', [])
       }
       cardTypes = LocalStorage.getObject('blogs');
       $scope.cards = Array.prototype.slice.call(cardTypes, 0, 0);
+      $ionicLoading.hide();
     }
     else
     {
@@ -182,9 +206,7 @@ angular.module('starter.controllers', [])
             // promise was fullfilled (regardless of outcome)
             cardTypes = res;
             $scope.cards = Array.prototype.slice.call(cardTypes, 0, 0);
-            $scope.hide = function(){
-              $ionicLoading.hide();
-            };
+            $ionicLoading.hide();
           },
           function(error) {
             // handle errors here
@@ -202,6 +224,7 @@ angular.module('starter.controllers', [])
                 // promise was fullfilled (regardless of outcome)
                 cardTypes = res;
                 $scope.cards = Array.prototype.slice.call(cardTypes, 0, 0);
+                $ionicLoading.hide();
               },
               function(error) {
                 // handle errors here
@@ -239,11 +262,18 @@ angular.module('starter.controllers', [])
   });
 })
 
-// We need to figure out a way to pass the entire blog object via the router,
-// rather than fetching all of blogs.json and doing id filtering on it.
+
 .controller('SoundsCtrl', function($scope, $stateParams, $filter, $ionicSwipeCardDelegate, $ionicModal, $ionicLoading, Sounds){
 
   $scope.$on('$ionicView.enter', function(e) {
+
+    $ionicLoading.show({
+      content: 'Loading',
+      animation: 'fade-in',
+      showBackdrop: true,
+      maxWidth: 200,
+      showDelay: 0
+    });
 
     var cardTypes = [];
 
@@ -253,6 +283,7 @@ angular.module('starter.controllers', [])
         // checks for information will be peformed here
         cardTypes = result;
         $scope.cards = Array.prototype.slice.call(cardTypes, 0, 0);
+        $ionicLoading.hide();
       },
       function(error) {
         // handle errors here
