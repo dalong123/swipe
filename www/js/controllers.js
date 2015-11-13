@@ -190,6 +190,8 @@ angular.module('starter.controllers', [])
 
     blogId = $stateParams.blogId;
 
+    $scope.currentIndex = 0;
+
     // take in the route param for the specific view (IT SHOULD BE A NUMBER)
     if(blogId === 'all'){
       // Build out our blog object for the all blogs view. We need to apply scope
@@ -259,9 +261,13 @@ angular.module('starter.controllers', [])
       $scope.cards.splice(index, 1);
     };
     $scope.addCard = function() {
-      var newCard = cardTypes[Math.floor(Math.random() * cardTypes.length)];
-      newCard.id =  Math.floor(Math.random() * (cardTypes.length - 1)) + 1;
+      var newCard = cardTypes[$scope.currentIndex];
+      newCard.id =  $scope.currentIndex;
       $scope.cards.push(angular.extend({}, newCard));
+      $scope.currentIndex++;
+      if($scope.currentIndex == cardTypes.length)
+      $scope.currentIndex=0;
+      console.log($scope.currentIndex + " is the index");
     };
     // Open the login modal
     $scope.showAbout = function() {
