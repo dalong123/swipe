@@ -190,6 +190,7 @@ angular.module('starter.controllers', [])
 
     blogId = $stateParams.blogId;
 
+    // the current index of the card being displayed to the user
     $scope.currentIndex = 0;
 
     // take in the route param for the specific view (IT SHOULD BE A NUMBER)
@@ -265,9 +266,9 @@ angular.module('starter.controllers', [])
       newCard.id =  $scope.currentIndex;
       $scope.cards.push(angular.extend({}, newCard));
       $scope.currentIndex++;
-      if($scope.currentIndex == cardTypes.length)
-      $scope.currentIndex=0;
-      console.log($scope.currentIndex + " is the index");
+      if($scope.currentIndex == cardTypes.length) {
+        $scope.currentIndex = 0;
+      }
     };
     // Open the login modal
     $scope.showAbout = function() {
@@ -295,6 +296,9 @@ angular.module('starter.controllers', [])
       maxWidth: 200,
       showDelay: 0
     });
+    
+    // the current index of the card being displayed to the user
+    $scope.currentIndex = 0;
 
     Sounds.getSoundsAsync().then(
       function(result) {
@@ -317,9 +321,13 @@ angular.module('starter.controllers', [])
       $scope.cards.splice(index, 1);
     };
     $scope.addCard = function() {
-      var newCard = cardTypes[Math.floor(Math.random() * cardTypes.length)];
-      newCard.id =  Math.floor(Math.random() * (cardTypes.length - 1)) + 1;
+      var newCard = cardTypes[$scope.currentIndex];
+      newCard.id =  $scope.currentIndex;
       $scope.cards.push(angular.extend({}, newCard));
+      $scope.currentIndex++;
+      if($scope.currentIndex == cardTypes.length) {
+        $scope.currentIndex = 0;
+      }
     };
   });
 })
