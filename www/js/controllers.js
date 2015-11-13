@@ -1,7 +1,7 @@
 angular.module('starter.controllers', [])
 
 /**
-* 	With the new view caching in Ionic, Controllers are only called
+* 	With view caching in Ionic, Controllers are only called
 *   when they are recreated or on app start, instead of every page change.
 *   To listen for when this page is active (for example, to refresh data),
 *   listen for the $ionicView.enter event:
@@ -68,12 +68,20 @@ angular.module('starter.controllers', [])
 
 })
 
+/**
+ * [controller description]
+ * @method controller
+ * @param  {[type]}   'HomeCtrl'       [description]
+ * @param  {[type]}   function($scope, $q,           $ionicLoading, Sounds, Blog [description]
+ * @return {[type]}                    [description]
+ */
 .controller('HomeCtrl', function($scope, $q, $ionicLoading, Sounds, Blog) {
 
   $scope.$on('$ionicView.enter', function(e) {
 
     $ionicLoading.show({
       content: 'Loading',
+      template: '<ion-spinner class="padding-top" icon="ripple"></ion-spinner>',
       animation: 'fade-in',
       showBackdrop: true,
       maxWidth: 200,
@@ -121,6 +129,7 @@ angular.module('starter.controllers', [])
 
     $ionicLoading.show({
       content: 'Loading',
+      template: '<ion-spinner class="padding-top" icon="ripple"></ion-spinner>',
       animation: 'fade-in',
       showBackdrop: true,
       maxWidth: 200,
@@ -169,6 +178,7 @@ angular.module('starter.controllers', [])
 
     $ionicLoading.show({
       content: 'Loading',
+      template: '<ion-spinner class="padding-top" icon="ripple"></ion-spinner>',
       animation: 'fade-in',
       showBackdrop: true,
       maxWidth: 200,
@@ -269,6 +279,7 @@ angular.module('starter.controllers', [])
 
     $ionicLoading.show({
       content: 'Loading',
+      template: '<ion-spinner class="padding-top" icon="ripple"></ion-spinner>',
       animation: 'fade-in',
       showBackdrop: true,
       maxWidth: 200,

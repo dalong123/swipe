@@ -4,7 +4,8 @@
     <swipe-cards ng-controller="CardCtrl">
       <swipe-card class="padding-top" on-card-swipe="cardSwiped()">
         <div class="item fade-component" style="text-align:center;">
-          <h2 class="padding-bottom">Swipe down to start</h2>
+          <h2 class="padding-bottom">{{blog.title}}</h2>
+          <img class="full-image" ng-src="{{blog.image}}">
           <ion-spinner class="padding-top" icon="ripple"></ion-spinner>
         </div>
       </swipe-card>
