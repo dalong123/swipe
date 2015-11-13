@@ -27,10 +27,6 @@ h1, h2, h3, h4, .title, .menu-right .item-content {
   border: none;
 }
 
-.swipe-cards {
-
-}
-
 .ferns-bg {
   background: url(../img/ferns.jpeg) no-repeat center center fixed;
   -webkit-background-size: cover;

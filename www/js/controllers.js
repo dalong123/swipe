@@ -81,7 +81,7 @@ angular.module('starter.controllers', [])
 
     $ionicLoading.show({
       content: 'Loading',
-      template: '<ion-spinner class="padding-top" icon="ripple"></ion-spinner>',
+      template: '<ion-spinner icon="ripple"></ion-spinner>',
       animation: 'fade-in',
       showBackdrop: true,
       maxWidth: 200,
@@ -129,7 +129,7 @@ angular.module('starter.controllers', [])
 
     $ionicLoading.show({
       content: 'Loading',
-      template: '<ion-spinner class="padding-top" icon="ripple"></ion-spinner>',
+      template: '<ion-spinner icon="ripple"></ion-spinner>',
       animation: 'fade-in',
       showBackdrop: true,
       maxWidth: 200,
@@ -178,7 +178,7 @@ angular.module('starter.controllers', [])
 
     $ionicLoading.show({
       content: 'Loading',
-      template: '<ion-spinner class="padding-top" icon="ripple"></ion-spinner>',
+      template: '<ion-spinner icon="ripple"></ion-spinner>',
       animation: 'fade-in',
       showBackdrop: true,
       maxWidth: 200,
@@ -279,7 +279,7 @@ angular.module('starter.controllers', [])
 
     $ionicLoading.show({
       content: 'Loading',
-      template: '<ion-spinner class="padding-top" icon="ripple"></ion-spinner>',
+      template: '<ion-spinner icon="ripple"></ion-spinner>',
       animation: 'fade-in',
       showBackdrop: true,
       maxWidth: 200,
