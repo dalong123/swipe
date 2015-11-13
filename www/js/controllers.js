@@ -167,6 +167,9 @@ angular.module('starter.controllers', [])
 // rather than fetching all of blogs.json and doing id filtering on it.
 .controller('BlogCtrl', function($scope, $stateParams, $filter, $ionicSwipeCardDelegate, $ionicModal, $ionicLoading, Blog, LocalStorage){
 
+  var blogId = '';
+  var cardTypes = [];
+
   // Create the login modal that we will use later
   $ionicModal.fromTemplateUrl('templates/post-modal.html', {
     scope: $scope
@@ -185,8 +188,7 @@ angular.module('starter.controllers', [])
       showDelay: 0
     });
 
-    var blogId = $stateParams.blogId;
-    var cardTypes = [];
+    blogId = $stateParams.blogId;
 
     // take in the route param for the specific view (IT SHOULD BE A NUMBER)
     if(blogId === 'all'){
@@ -275,6 +277,8 @@ angular.module('starter.controllers', [])
 
 .controller('SoundsCtrl', function($scope, $stateParams, $filter, $ionicSwipeCardDelegate, $ionicModal, $ionicLoading, Sounds){
 
+  var cardTypes = [];
+
   $scope.$on('$ionicView.enter', function(e) {
 
     $ionicLoading.show({
@@ -285,8 +289,6 @@ angular.module('starter.controllers', [])
       maxWidth: 200,
       showDelay: 0
     });
-
-    var cardTypes = [];
 
     Sounds.getSoundsAsync().then(
       function(result) {
