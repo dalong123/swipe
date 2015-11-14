@@ -7,9 +7,13 @@ h1, h2, h3, h4, .title, .menu-right .item-content {
   font-family: 'PT Sans', sans-serif;
   font-weight: 600;
 }
+.blogs-title {
+  font-size: 1.3em;
+  margin-bottom: 0px;
+}
 .caps {
   text-transform: uppercase;
-  letter-spacing: .1em
+  letter-spacing: .05em
 }
 .spinner svg {
   width: 100px;

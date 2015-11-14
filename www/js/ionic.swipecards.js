@@ -1,5 +1,7 @@
 (function(ionic) {
 
+  var swipeOffset = 25;
+
   // Get transform origin poly
   var d = document.createElement('div');
   var transformKeys = ['webkitTransformOrigin', 'transform-origin', '-webkit-transform-origin', 'webkit-transform-origin',
@@ -175,7 +177,7 @@
     transitionOut: function() {
       var self = this;
 
-      if(this.y < 0) {
+      if(this.y < swipeOffset) {
         this.el.style[TRANSITION] = '-webkit-transform 0.2s ease-in-out';
         this.el.style[ionic.CSS.TRANSFORM] = 'translate3d(' + this.x + ',' + (this.startY) + 'px, 0)';
         setTimeout(function() {

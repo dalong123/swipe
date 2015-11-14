@@ -12,7 +12,6 @@ angular.module('starter.controllers', [])
 *   view is being rendered. The call to the service should also be the very
 *   first thing each controller does if it is pulling down data from a service.
 */
-
 .controller('AppCtrl', function($scope, $ionicModal, $timeout) {
 
   // Form data for the login modal
@@ -47,6 +46,13 @@ angular.module('starter.controllers', [])
   };
 })
 
+ /**
+  * [controller description]
+  * @method controller
+  * @param  {[type]}   'ModalCtrl'      [description]
+  * @param  {[type]}   function($scope, $ionicModal   [description]
+  * @return {[type]}                    [description]
+  */
 .controller('ModalCtrl', function($scope, $ionicModal) {
 
   $ionicModal.fromTemplateUrl('templates/post-modal.html', {
@@ -95,7 +101,7 @@ angular.module('starter.controllers', [])
       function(result) {
         // promise was fullfilled (regardless of outcome)
         // checks for information will be peformed here
-        $scope.sounds = result;
+        $scope.sounds = result.sounds;
       },
       function(error) {
         // handle errors here
@@ -118,7 +124,11 @@ angular.module('starter.controllers', [])
 })
 
 /**
- *
+ * [controller description]
+ * @method controller
+ * @param  {[type]}   'BlogsCtrl'      [description]
+ * @param  {[type]}   function($scope, $q,           $ionicLoading, Blog, LocalStorage [description]
+ * @return {[type]}                    [description]
  */
 .controller('BlogsCtrl', function($scope, $q, $ionicLoading, Blog, LocalStorage) {
 
@@ -165,6 +175,13 @@ angular.module('starter.controllers', [])
 
 // We need to figure out a way to pass the entire blog object via the router,
 // rather than fetching all of blogs.json and doing id filtering on it.
+/**
+ * [controller description]
+ * @method controller
+ * @param  {[type]}   'BlogCtrl'       [description]
+ * @param  {[type]}   function($scope, $stateParams, $filter, $ionicSwipeCardDelegate, $ionicModal, $ionicLoading, Blog, LocalStorage [description]
+ * @return {[type]}                    [description]
+ */
 .controller('BlogCtrl', function($scope, $stateParams, $filter, $ionicSwipeCardDelegate, $ionicModal, $ionicLoading, Blog, LocalStorage){
 
   var blogId = '';
@@ -280,7 +297,13 @@ angular.module('starter.controllers', [])
   });
 })
 
-
+/**
+ * [controller description]
+ * @method controller
+ * @param  {[type]}   'SoundsCtrl'     [description]
+ * @param  {[type]}   function($scope, $stateParams, $filter, $ionicSwipeCardDelegate, $ionicModal, $ionicLoading, Sounds [description]
+ * @return {[type]}                    [description]
+ */
 .controller('SoundsCtrl', function($scope, $stateParams, $filter, $ionicSwipeCardDelegate, $ionicModal, $ionicLoading, Sounds){
 
   var cardTypes = [];
@@ -303,7 +326,7 @@ angular.module('starter.controllers', [])
       function(result) {
         // promise was fullfilled (regardless of outcome)
         // checks for information will be peformed here
-        cardTypes = result;
+        cardTypes = result.sounds;
         $scope.cards = Array.prototype.slice.call(cardTypes, 0, 0);
         $ionicLoading.hide();
       },
@@ -330,6 +353,13 @@ angular.module('starter.controllers', [])
   });
 })
 
+/**
+ * [controller description]
+ * @method controller
+ * @param  {[type]}   'CardCtrl'       [description]
+ * @param  {[type]}   function($scope, $ionicSwipeCardDelegate [description]
+ * @return {[type]}                    [description]
+ */
 .controller('CardCtrl', function($scope, $ionicSwipeCardDelegate) {
   $scope.goAway = function() {
     var card = $ionicSwipeCardDelegate.getSwipeableCard($scope);
