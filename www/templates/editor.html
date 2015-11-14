@@ -1,0 +1,61 @@
+<ion-view view-title="{{editor.name}}" cache-view="false">
+  <ion-content class="ferns-bg" no-scroll>
+
+    <swipe-cards ng-controller="CardCtrl">
+      <swipe-card class="padding-top" on-card-swipe="cardSwiped()">
+        <div class="item" style="text-align:center;">
+          <h2 class="padding-bottom">{{editor.name}}</h2>
+          <ion-spinner class="padding-top" icon="ripple"></ion-spinner>
+        </div>
+      </swipe-card>
+
+      <swipe-card ng-repeat="card in cards" on-card-swipe="cardSwiped($index)" on-destroy="cardDestroyed($index)">
+        <div plangular="{{card.url}}">
+        <div class="item item-body sound-embed">
+
+            <div ng-if="!track" style="text-align: center;">
+              <ion-spinner icon="ripple"></ion-spinner>
+            </div>
+            <div ng-if="track">
+              <div class="row padding-bottom">
+                <div class="col padding-top">
+                  <img alt="{{track.title}}" ng-src="{{track.artwork_url}}" style="min-width: 50px;"/>
+                </div>
+                <div class="col col-70">
+                  <h2 class="caps padding-left" style="margin-top: 5px;">
+                    <b>{{track.title}}</b>
+                  </h2>
+                  <h2 class="padding-left">
+                    {{track.user.username}}
+                    <span style="float: right;">
+                      <a ng-href="{{track.permalink_url}}" target="_blank">
+                        <img src="/img/soundcloud.png" style="max-width: 40px;"/>
+                      </a>
+                    </span>
+                  </h2>
+                </div>
+              </div>
+          </div>
+
+      </div>
+      <div class="item">
+        <div class="row">
+          <div class="col">
+            <button class="button button-clear" ng-click="playPause()" title="Play/Pause">
+              <i ng-if="player.playing !== track.src" data-icon="play" class="icon ion-ios-play"></i>
+              <i ng-if="player.playing === track.src" data-icon="pause" class="icon ion-ios-pause"></i>
+            </button>
+          </div>
+          <div class="col-80">
+            <progress class="progress" ng-click="seek($event)" ng-value="currentTime / duration || 0" style="margin-top:20px;">
+              {{ currentTime / duration }}
+            </progress>
+            <small>{{ currentTime | hhmmss }} | {{ duration | hhmmss }}</small>
+          </div>
+        </div>
+      </div>
+      </div>
+    </swipe-card>
+  </swipe-cards>
+</ion-content>
+</ion-view>

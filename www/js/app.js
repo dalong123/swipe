@@ -95,6 +95,26 @@ angular.module('starter', ['ionic', 'starter.services', 'starter.controllers', '
     }
   })
 
+  .state('app.editors', {
+    url: '/editors',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/editors.html',
+        controller: 'EditorsCtrl'
+      }
+    }
+  })
+
+  .state('app.editor', {
+    url: '/editors/:editorId',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/editor.html',
+        controller:  'EditorCtrl'
+      }
+    }
+  })
+
   .state('app.genres', {
     url: '/genres',
     views: {
