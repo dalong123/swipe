@@ -263,7 +263,6 @@ angular.module('starter.controllers', [])
     };
     $scope.addCard = function() {
       var newCard = cardTypes[$scope.currentIndex];
-      newCard.id =  $scope.currentIndex;
       $scope.cards.push(angular.extend({}, newCard));
       $scope.currentIndex++;
       if($scope.currentIndex == cardTypes.length) {
@@ -296,7 +295,7 @@ angular.module('starter.controllers', [])
       maxWidth: 200,
       showDelay: 0
     });
-    
+
     // the current index of the card being displayed to the user
     $scope.currentIndex = 0;
 
@@ -322,7 +321,6 @@ angular.module('starter.controllers', [])
     };
     $scope.addCard = function() {
       var newCard = cardTypes[$scope.currentIndex];
-      newCard.id =  $scope.currentIndex;
       $scope.cards.push(angular.extend({}, newCard));
       $scope.currentIndex++;
       if($scope.currentIndex == cardTypes.length) {

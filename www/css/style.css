@@ -1,32 +1,30 @@
 @import url(//fonts.googleapis.com/css?family=Source+Sans+Pro:400,300,400italic,600);
 @import url(//fonts.googleapis.com/css?family=PT+Sans:700);
-
 body {
   font-family: 'Source Sans Pro', sans-serif;
 }
-
 h1, h2, h3, h4, .title, .menu-right .item-content {
   font-family: 'PT Sans', sans-serif;
   font-weight: 600;
 }
-
+.caps {
+  text-transform: uppercase;
+  letter-spacing: .1em
+}
 .spinner svg {
   width: 100px;
   height: 100px;
   stroke: #444;
   fill: #444;
 }
-
 .pane {
   /*background-color: #333;*/
 }
-
 .bar.bar-transparent {
   background-color: transparent;
   background-image: none;
   border: none;
 }
-
 .ferns-bg {
   background: url(../img/ferns.jpeg) no-repeat center center fixed;
   -webkit-background-size: cover;
@@ -34,89 +32,75 @@ h1, h2, h3, h4, .title, .menu-right .item-content {
   -o-background-size: cover;
   background-size: cover;
 }
-
 .fade-component {
-  background: rgba(255,255,255, 0.7) !important;
+  background: rgba(255, 255, 255, 0.7) !important;
 }
-
 .fade-component .card {
-  background: rgba(255,255,255, 0.7) !important;
+  background: rgba(255, 255, 255, 0.7) !important;
 }
-
 .fade-component .item {
-  background: rgba(255,255,255, 0.7) !important;
+  background: rgba(255, 255, 255, 0.7) !important;
 }
-
 .fade-component .item-content {
-  background: rgba(255,255,255, 0.7) !important;
+  background: rgba(255, 255, 255, 0.7) !important;
 }
-
 .swipe-card .item {
-  background: rgba(255,255,255, 0.7) !important;
+  background: rgba(255, 255, 255, 0.7) !important;
 }
-
 .first-card .item {
-  background: rgba(255,255,255, 0.7) !important;
+  background: rgba(255, 255, 255, 0.7) !important;
 }
-
 .scroll-content > .scroll {
   height: 100%;
 }
 .scroll-content > .scroll > iframe {
   min-height: 100%;
 }
-
 .progress {
-    display: block;
-    width: 100%;
-    height: .5625rem;
-    margin: .5rem 0;
-    background-color: rgba(0,0,0,.0625);
-    border: 0;
-    border-radius: 10000px;
-    overflow: hidden;
-    -webkit-appearance: none;
-    cursor: pointer
+  display: block;
+  width: 100%;
+  height: .5625rem;
+  margin: .5rem 0;
+  background-color: rgba(0, 0, 0, .0625);
+  border: 0;
+  border-radius: 10000px;
+  overflow: hidden;
+  -webkit-appearance: none;
+  cursor: pointer
 }
-
 .progress::-webkit-progress-bar {
-    -webkit-appearance: none;
-    background-color: rgba(0,0,0,.0625)
+  -webkit-appearance: none;
+  background-color: rgba(0, 0, 0, .0625)
 }
-
 .progress::-webkit-progress-value {
-    -webkit-appearance: none;
-    background-color: currentColor
+  -webkit-appearance: none;
+  background-color: currentColor
 }
-
 .progress::-moz-progress-bar {
-    background-color: currentColor
+  background-color: currentColor
 }
-
 swipe-card {
   display: none;
   width: 100%;
   position: fixed;
-  -webkit-transform: scale(1,1);
+  -webkit-transform: scale(1, 1);
   box-sizing: border-box;
   overflow: hidden;
   -webkit-animation-fill-mode: forwards;
 }
-
 @-webkit-keyframes bounceIn {
   0% {
-    -webkit-transform: scale(0,0);
+    -webkit-transform: scale(0, 0);
   }
   70% {
-    -webkit-transform: scale(1.2,1.2);
+    -webkit-transform: scale(1.2, 1.2);
   }
   100% {
-    -webkit-transform: scale(1,1);
+    -webkit-transform: scale(1, 1);
   }
 }
-
 swipe-card.pop-in-start {
-  -webkit-transform: scale(0,0);
+  -webkit-transform: scale(0, 0);
 }
 swipe-card.pop-in {
   -webkit-animation: bounceIn 0.4s ease-out;
