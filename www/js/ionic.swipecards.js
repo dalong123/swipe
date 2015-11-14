@@ -266,7 +266,7 @@
   .directive('swipeCard', ['$timeout', function($timeout) {
     return {
       restrict: 'E',
-      template: '<div class="swipe-card list card" ng-transclude></div>',
+      template: '<div class="swipe-card list card fade-component" ng-transclude></div>',
       require: '^swipeCards',
       transclude: true,
       scope: {

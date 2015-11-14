@@ -84,12 +84,12 @@ h1, h2, h3, h4, .title, .menu-right .item-content {
 }
 .col-70 {
   -webkit-box-flex: 0;
--webkit-flex: 0 0 70%;
--moz-box-flex: 0;
--moz-flex: 0 0 70%;
--ms-flex: 0 0 70%;
-flex: 0 0 70%;
-max-width: 70%;
+  -webkit-flex: 0 0 70%;
+  -moz-box-flex: 0;
+  -moz-flex: 0 0 70%;
+  -ms-flex: 0 0 70%;
+  flex: 0 0 70%;
+  max-width: 70%;
 }
 swipe-card {
   display: none;
