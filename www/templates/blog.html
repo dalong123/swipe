@@ -27,7 +27,12 @@
           <div ng-if="card.image.src != null">
             <img class="full-image" ng-src="{{card.image.src}}">
           </div>
-          <p>{{card.description}}</p>
+          <div ng-if="card.description.text == null" class="padding">
+            <p>{{card.description}}</p>
+          </div>
+          <div ng-if="card.description.text != null">
+            <p>{{card.description.text}}</p>
+          </div>
         </div>
 
         <a ng-controller="ModalCtrl" on-tap="openModal();" ng-model="$scope.cards" class="item item-icon-right">

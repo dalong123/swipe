@@ -3,6 +3,9 @@
     <div class="list card fade-component">
       <div ng-repeat="sound in sounds" class="item item-text-wrap">
         <div plangular="{{sound.url}}" class="row">
+          <div ng-if="!track" style="text-align: center;">
+            <ion-spinner icon="ripple"></ion-spinner>
+          </div>
           <div class="col">
             <img ng-src="{{track.artwork_url}}" alt="{{track.title}}" style="min-width: 50px;"/>
           </div>
