@@ -66,6 +66,33 @@ h1, h2, h3, h4, .title, .menu-right .item-content {
   min-height: 100%;
 }
 
+.progress {
+    display: block;
+    width: 100%;
+    height: .5625rem;
+    margin: .5rem 0;
+    background-color: rgba(0,0,0,.0625);
+    border: 0;
+    border-radius: 10000px;
+    overflow: hidden;
+    -webkit-appearance: none;
+    cursor: pointer
+}
+
+.progress::-webkit-progress-bar {
+    -webkit-appearance: none;
+    background-color: rgba(0,0,0,.0625)
+}
+
+.progress::-webkit-progress-value {
+    -webkit-appearance: none;
+    background-color: currentColor
+}
+
+.progress::-moz-progress-bar {
+    background-color: currentColor
+}
+
 swipe-card {
   display: none;
   width: 100%;
