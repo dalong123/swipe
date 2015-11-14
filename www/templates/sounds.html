@@ -10,8 +10,9 @@
       </swipe-card>
 
       <swipe-card ng-repeat="card in cards" on-card-swipe="cardSwiped($index)" on-destroy="cardDestroyed($index)">
+        <div plangular="{{card.url}}">
         <div class="item item-body sound-embed">
-          <div plangular="{{card.url}}">
+
             <div ng-if="!track" style="text-align: center;">
               <ion-spinner icon="ripple"></ion-spinner>
             </div>
@@ -34,23 +35,25 @@
                   </h2>
                 </div>
               </div>
-              <div class="row padding-top">
-                <div class="col">
-                  <button class="button button-clear padding-left" ng-click="playPause()" title="Play/Pause">
-                    <i ng-if="player.playing !== track.src" data-icon="play" class="icon ion-ios-play"></i>
-                    <i ng-if="player.playing === track.src" data-icon="pause" class="icon ion-ios-pause"></i>
-                  </button>
-                  <small>{{ currentTime | hhmmss }} | {{ duration | hhmmss }}</small>
-                </div>
-                <div class="col col-80">
-                  <img alt="{{track.title}}" ng-src="{{track.waveform_url}}" class="full-image" />
-                  <progress class="progress" ng-click="seek($event)" ng-value="currentTime / duration || 0" style="margin-top:20px;">
-                  {{ currentTime / duration }}
-                </progress>
-              </div>
-            </div>
+          </div>
+
+      </div>
+      <div class="item">
+        <div class="row">
+          <div class="col">
+            <button class="button button-clear padding-left" ng-click="playPause()" title="Play/Pause">
+              <i ng-if="player.playing !== track.src" data-icon="play" class="icon ion-ios-play"></i>
+              <i ng-if="player.playing === track.src" data-icon="pause" class="icon ion-ios-pause"></i>
+            </button>
+          </div>
+          <div class="col-80">
+            <progress class="progress" ng-click="seek($event)" ng-value="currentTime / duration || 0" style="margin-top:20px;">
+              {{ currentTime / duration }}
+            </progress>
+            <small>{{ currentTime | hhmmss }} | {{ duration | hhmmss }}</small>
           </div>
         </div>
+      </div>
       </div>
     </swipe-card>
   </swipe-cards>

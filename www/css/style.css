@@ -79,6 +79,9 @@ h1, h2, h3, h4, .title, .menu-right .item-content {
 .progress::-moz-progress-bar {
   background-color: currentColor
 }
+.button.icon:before {
+  min-height: 45px;
+}
 swipe-card {
   display: none;
   width: 100%;
