@@ -1,4 +1,4 @@
-<ion-view view-title="Soundz">
+<ion-view view-title="Soundz" cache-view="false">
   <ion-content class="ferns-bg" no-scroll>
 
     <swipe-cards ng-controller="CardCtrl">
@@ -21,7 +21,7 @@
                 <div class="col padding-top">
                   <img alt="{{track.title}}" ng-src="{{track.artwork_url}}" style="min-width: 50px;"/>
                 </div>
-                <div class="col col-75 padding-left">
+                <div class="col col-70 padding-left">
                   <h2 class="caps" style="margin-top: 2px;">
                     <b>{{track.title}}</b>
                   </h2>
@@ -41,7 +41,7 @@
       <div class="item">
         <div class="row">
           <div class="col">
-            <button class="button button-clear padding-left" ng-click="playPause()" title="Play/Pause">
+            <button class="button button-clear" ng-click="playPause()" title="Play/Pause">
               <i ng-if="player.playing !== track.src" data-icon="play" class="icon ion-ios-play"></i>
               <i ng-if="player.playing === track.src" data-icon="pause" class="icon ion-ios-pause"></i>
             </button>
