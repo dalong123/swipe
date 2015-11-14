@@ -95,6 +95,26 @@ angular.module('starter', ['ionic', 'starter.services', 'starter.controllers', '
     }
   })
 
+  .state('app.genres', {
+    url: '/genres',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/genres.html',
+        controller: 'GenresCtrl'
+      }
+    }
+  })
+
+  .state('app.genre', {
+    url: '/genres/:genreId',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/genre.html',
+        controller:  'GenreCtrl'
+      }
+    }
+  })
+
   .state('app.blogs', {
     url: '/blogs',
     views: {
@@ -105,7 +125,7 @@ angular.module('starter', ['ionic', 'starter.services', 'starter.controllers', '
     }
   })
 
-  .state('app.single', {
+  .state('app.blog', {
     url: '/blogs/:blogId',
     views: {
       'menuContent': {

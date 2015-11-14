@@ -81,7 +81,7 @@ angular.module('starter.controllers', [])
  * @param  {[type]}   function($scope, $q,           $ionicLoading, Sounds, Blog [description]
  * @return {[type]}                    [description]
  */
-.controller('HomeCtrl', function($scope, $q, $ionicLoading, Sounds, Blog) {
+.controller('HomeCtrl', function($scope, $ionicLoading, Sounds, Blog) {
 
   $scope.$on('$ionicView.enter', function(e) {
 
@@ -130,7 +130,7 @@ angular.module('starter.controllers', [])
  * @param  {[type]}   function($scope, $q,           $ionicLoading, Blog, LocalStorage [description]
  * @return {[type]}                    [description]
  */
-.controller('BlogsCtrl', function($scope, $q, $ionicLoading, Blog, LocalStorage) {
+.controller('BlogsCtrl', function($scope, $ionicLoading, Blog, LocalStorage) {
 
   // This is the ionic-specific funtion used to target the view's entry. As a
   // result of template caching, this controller is only called when one of its
@@ -304,7 +304,7 @@ angular.module('starter.controllers', [])
  * @param  {[type]}   function($scope, $stateParams, $filter, $ionicSwipeCardDelegate, $ionicModal, $ionicLoading, Sounds [description]
  * @return {[type]}                    [description]
  */
-.controller('SoundsCtrl', function($scope, $stateParams, $filter, $ionicSwipeCardDelegate, $ionicModal, $ionicLoading, Sounds){
+.controller('SoundsCtrl', function($scope, $ionicSwipeCardDelegate, $ionicModal, $ionicLoading, Sounds){
 
   var cardTypes = [];
 
@@ -327,6 +327,100 @@ angular.module('starter.controllers', [])
         // promise was fullfilled (regardless of outcome)
         // checks for information will be peformed here
         cardTypes = result.sounds;
+        $scope.cards = Array.prototype.slice.call(cardTypes, 0, 0);
+        $ionicLoading.hide();
+      },
+      function(error) {
+        // handle errors here
+        console.log(error.statusText);
+      }
+    );
+
+    $scope.cardSwiped = function(index) {
+      $scope.addCard();
+    };
+    $scope.cardDestroyed = function(index) {
+      $scope.cards.splice(index, 1);
+    };
+    $scope.addCard = function() {
+      var newCard = cardTypes[$scope.currentIndex];
+      $scope.cards.push(angular.extend({}, newCard));
+      $scope.currentIndex++;
+      if($scope.currentIndex == cardTypes.length) {
+        $scope.currentIndex = 0;
+      }
+    };
+  });
+})
+
+/**
+ * [controller description]
+ * @method controller
+ * @param  {[type]}   'SoundsCtrl'     [description]
+ * @param  {[type]}   function($scope, $stateParams, $filter, $ionicSwipeCardDelegate, $ionicModal, $ionicLoading, Sounds [description]
+ * @return {[type]}                    [description]
+ */
+.controller('GenresCtrl', function($scope, $ionicLoading, Sounds){
+
+  $scope.$on('$ionicView.enter', function(e) {
+
+    $ionicLoading.show({
+      content: 'Loading',
+      template: '<ion-spinner icon="ripple"></ion-spinner>',
+      animation: 'fade-in',
+      showBackdrop: true,
+      maxWidth: 200,
+      showDelay: 0
+    });
+
+    Sounds.getSoundsAsync().then(
+      function(result) {
+        // promise was fullfilled (regardless of outcome)
+        // checks for information will be peformed here
+        $scope.genres = result.genres;
+        $ionicLoading.hide();
+      },
+      function(error) {
+        // handle errors here
+        console.log(error.statusText);
+      }
+    );
+  });
+})
+
+/**
+ * [controller description]
+ * @method controller
+ * @param  {[type]}   'SoundsCtrl'     [description]
+ * @param  {[type]}   function($scope, $stateParams, $filter, $ionicSwipeCardDelegate, $ionicModal, $ionicLoading, Sounds [description]
+ * @return {[type]}                    [description]
+ */
+.controller('GenreCtrl', function($scope, $stateParams, $filter, $ionicSwipeCardDelegate, $ionicModal, $ionicLoading, Sounds){
+
+  var cardTypes = [];
+
+  $scope.$on('$ionicView.enter', function(e) {
+
+    $ionicLoading.show({
+      content: 'Loading',
+      template: '<ion-spinner icon="ripple"></ion-spinner>',
+      animation: 'fade-in',
+      showBackdrop: true,
+      maxWidth: 200,
+      showDelay: 0
+    });
+
+    var genreId = $stateParams.genreId;
+
+    // the current index of the card being displayed to the user
+    $scope.currentIndex = 0;
+
+    Sounds.getSoundsAsync().then(
+      function(result) {
+        // promise was fullfilled (regardless of outcome)
+        // checks for information will be peformed here
+        $scope.genre = $filter('filter')(result.genres, {id:genreId})[0];
+        cardTypes = $scope.genre.songs;
         $scope.cards = Array.prototype.slice.call(cardTypes, 0, 0);
         $ionicLoading.hide();
       },
