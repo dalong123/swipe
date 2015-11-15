@@ -24,7 +24,7 @@
   ],
   "editors": [
     {
-      "name": "Phil",
+      "name": "Editor 1",
       "id": "1",
       "songs": [
         {
@@ -51,7 +51,7 @@
       ]
     },
     {
-      "name": "Steve",
+      "name": "Editor 2",
       "id": "2",
       "songs": [
         {

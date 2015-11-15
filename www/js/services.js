@@ -128,7 +128,7 @@ angular.module('starter.services', [])
     getFeedAsync: function(kimonoId, isOnDemand) {
 
       var deferred = $q.defer();
-      var URL = 'http://localhost:8888/api/getfeed/' + kimonoId;
+      var URL = 'http://localhost:8888/api/blogs/getfeed/' + kimonoId;
 
       return $http.get(URL)
         .then(function(response) {
