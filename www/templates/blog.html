@@ -19,7 +19,8 @@
 
         <div class="item item-body">
           <h2 class="padding-bottom">
-            <a ng-controller="ModalCtrl" on-tap="openModal();" ng-model="$scope.cards">{{card.title.text}}</a>
+            <a ng-controller="ModalCtrl" on-tap="openModal();" ng-model="$scope.cards" ng-if="card.title.text!=null">{{card.title.text}}</a>
+            <a ng-controller="ModalCtrl" on-tap="openModal();" ng-model="$scope.cards" ng-if="card.title.text==null">{{card.title}}</a>
           </h2>
           <div ng-if="card.image.src == null" class="padding">
             <img class="full-image" ng-src="{{blog.image}}">
