@@ -1,117 +1,109 @@
 <ion-view view-title="Swipe">
   <ion-content class="ferns-bg">
     <div class="list card fade-component">
-      <div ng-repeat="sound in sounds" class="item item-text-wrap">
-        <div plangular="{{sound.url}}" class="row">
+      <div class="item item-text-wrap" ng-repeat="sound in sounds">
+        <div class="row" plangular="{{sound.url}}">
           <div ng-if="!track" style="text-align: center;">
             <ion-spinner icon="ripple"></ion-spinner>
           </div>
           <div class="col">
-            <img ng-src="{{track.artwork_url}}" alt="{{track.title}}" style="min-width: 50px;"/>
+            <img alt="{{track.title}}" ng-src="{{track.artwork_url}}" style="min-width: 50px;"/>
           </div>
           <div class="col col-67">
-            <h3 >{{track.user.username}}</h3>
-            <!-- Adding the .caps class to the following h2 produces nice
-            results. I think if we touch them up a bit we're golden -->
             <h2>{{track.title}}</h2>
+            <h3 class="padding-top">{{track.user.username}}</h3>
             <div class="row">
               <div class="col col-25">
-              <button ng-click="playPause()"
-                title="Play/Pause"
-                class="flex-none h4 mr2 button button-clear">
-                <svg ng-if="player.playing !== track.src" class="icon geomicon" data-icon="play" viewBox="0 0 32 32" width="32" height="32" style="fill:currentcolor"><path d="M4 4 L28 16 L4 28 z "></path></svg>
-                <svg ng-if="player.playing === track.src" class="icon geomicon" data-icon="pause" viewBox="0 0 32 32" width="32" height="32" style="fill:currentcolor"><path d="M4 4 H12 V28 H4 z M20 4 H28 V28 H20 z "></path></svg>
-              </button>
-            </div>
-            <div class="col">
-              <progress
-                class="progress"
-                ng-click="seek($event)"
-                ng-value="currentTime / duration || 0">
+                <button class="button button-clear" ng-click="playPause()" title="Play/Pause">
+                  <i class="icon ion-ios-play" data-icon="play" ng-if="player.playing !== track.src"></i>
+                  <i class="icon ion-ios-pause" data-icon="pause" ng-if="player.playing === track.src"></i>
+                </button>
+              </div>
+              <div class="col">
+                <progress class="progress" ng-click="seek($event)" ng-value="currentTime / duration || 0">
                 {{ currentTime / duration }}
               </progress>
-            </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-    <div class="list card fade-component">
-      <div class="item">
-        <!-- <img src="mcfly.jpg"> -->
-        <h2>Today's Top Posts<span><p style="float: right;">{{date | date:'MMM. dd, yyyy'}}</p></span></h2>
-      </div>
-      <a ng-repeat="blog in blogs" href="{{blog.title.href}}" class="item item-text-wrap" target="_blank">
-        <p>
-          {{blog.title.text}}
-        </p>
-      </a>
-      <a href="#/app/blogs/all" class="item item-icon-right">
-        See more posts
-        <i class="icon ion-ios-arrow-right padding-right"></i>
-      </a>
+  </div>
+  <div class="list card fade-component">
+    <div class="item">
+      <!-- <img src="mcfly.jpg"> -->
+      <h2>Today's Top Posts
+        <span>
+          <p style="float: right;">{{date | date:'MMM. dd, yyyy'}}</p>
+        </span>
+      </h2>
     </div>
+    <a class="item item-text-wrap" href="{{blog.title.href}}" ng-repeat="blog in blogs" target="_blank">
+      <p>
+        {{blog.title.text}}
+      </p>
+    </a>
+    <a class="item item-icon-right" href="#/app/blogs/all">
+      See more posts
+      <i class="icon ion-ios-arrow-right padding-right"></i>
+    </a>
+  </div>
 
-    <div class="list card fade-component">
-      <div class="item">
-        <h2>Top Blogs</h2>
-      </div>
-      <a class="item item-avatar item-button-right" href="#/app/blogs/1">
-        <img src="https://pbs.twimg.com/profile_images/1682109813/PandP_BIG.jpg">
-        <h2 class="padding-top">Pigeons & Planes</h2>
-        <button class="button button-icon icon ion-ios-arrow-right padding-top">
-        </button>
-      </a>
-      <a class="item item-avatar item-button-right" href="#/app/blogs/2">
-        <img src="http://factmag-images.s3.amazonaws.com/wp-content/uploads/2015/06/soulection-616x440.jpg">
-        <h2 class="padding-top">Soulection</h2>
-        <button class="button button-icon icon ion-ios-arrow-right padding-top">
-        </button>
-      </a>
-      <a class="item item-avatar item-button-right" href="#/app/blogs/3">
-        <img src="http://thegearedlife.com/wp-content/uploads/2013/10/the-hype-machine.jpg">
-        <h2 class="padding-top">HypeM</h2>
-        <button class="button button-icon icon ion-ios-arrow-right padding-top">
-        </button>
-      </a>
-      <a class="item item-avatar item-button-right" href="#/app/blogs/4">
-        <img src="http://highwheelrecords.com/highwheelrecords/wp-content/uploads/2014/05/stereogum-logo.jpeg">
-        <h2 class="padding-top">Stereogum</h2>
-        <button class="button button-icon icon ion-ios-arrow-right padding-top">
-        </button>
-      </a>
-      <a class="item item-avatar item-button-right" href="#/app/blogs/5">
-        <img src="http://www.awkwordrap.com/wp-content/uploads/2012/03/earmilk1.jpg">
-        <h2 class="padding-top">Earmilk</h2>
-        <button class="button button-icon icon ion-ios-arrow-right padding-top">
-        </button>
-      </a>
-      <a href="#/app/blogs" class="item item-icon-right">
-        See all blogs
-        <i class="icon ion-ios-arrow-right padding-right"></i>
-      </a>
+  <div class="list card fade-component">
+    <div class="item">
+      <h2>Top Blogs</h2>
     </div>
+    <a class="item item-avatar item-button-right" href="#/app/blogs/1">
+      <img src="https://pbs.twimg.com/profile_images/1682109813/PandP_BIG.jpg">
+      <h2 class="padding-top">Pigeons & Planes</h2>
+      <button class="button button-icon icon ion-ios-arrow-right padding-top"></button>
+    </a>
+    <a class="item item-avatar item-button-right" href="#/app/blogs/2">
+      <img src="http://factmag-images.s3.amazonaws.com/wp-content/uploads/2015/06/soulection-616x440.jpg">
+      <h2 class="padding-top">Soulection</h2>
+      <button class="button button-icon icon ion-ios-arrow-right padding-top"></button>
+    </a>
+    <a class="item item-avatar item-button-right" href="#/app/blogs/3">
+      <img src="http://thegearedlife.com/wp-content/uploads/2013/10/the-hype-machine.jpg">
+      <h2 class="padding-top">HypeM</h2>
+      <button class="button button-icon icon ion-ios-arrow-right padding-top"></button>
+    </a>
+    <a class="item item-avatar item-button-right" href="#/app/blogs/4">
+      <img src="http://highwheelrecords.com/highwheelrecords/wp-content/uploads/2014/05/stereogum-logo.jpeg">
+      <h2 class="padding-top">Stereogum</h2>
+      <button class="button button-icon icon ion-ios-arrow-right padding-top"></button>
+    </a>
+    <a class="item item-avatar item-button-right" href="#/app/blogs/5">
+      <img src="http://www.awkwordrap.com/wp-content/uploads/2012/03/earmilk1.jpg">
+      <h2 class="padding-top">Earmilk</h2>
+      <button class="button button-icon icon ion-ios-arrow-right padding-top"></button>
+    </a>
+    <a class="item item-icon-right" href="#/app/blogs">
+      See all blogs
+      <i class="icon ion-ios-arrow-right padding-right"></i>
+    </a>
+  </div>
 
-    <div class="list card fade-component">
-      <div class="item item-divider">
-        Section 2
-      </div>
-      <a href="#" class="item item-icon-left">
-        <i class="icon ion-home"></i>
-        Section 2 Item 1
-      </a>
-      <a href="#" class="item item-icon-left">
-        <i class="icon ion-ios-telephone"></i>
-        Section 2 Item 2
-      </a>
-      <a href="#" class="item item-icon-left">
-        <i class="icon ion-wifi"></i>
-        Section 2 Item 3
-      </a>
-      <a href="#" class="item item-icon-left">
-        <i class="icon ion-card"></i>
-        Section 2 Item 4
-      </a>
+  <div class="list card fade-component">
+    <div class="item item-divider">
+      Section 2
     </div>
-  </ion-content>
+    <a class="item item-icon-left" href="#">
+      <i class="icon ion-home"></i>
+      Section 2 Item 1
+    </a>
+    <a class="item item-icon-left" href="#">
+      <i class="icon ion-ios-telephone"></i>
+      Section 2 Item 2
+    </a>
+    <a class="item item-icon-left" href="#">
+      <i class="icon ion-wifi"></i>
+      Section 2 Item 3
+    </a>
+    <a class="item item-icon-left" href="#">
+      <i class="icon ion-card"></i>
+      Section 2 Item 4
+    </a>
+  </div>
+</ion-content>
 </ion-view>

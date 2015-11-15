@@ -7,10 +7,6 @@ angular.module('starter.controllers', [])
 *   listen for the $ionicView.enter event:
 *   $scope.$on('$ionicView.enter', function(e) {
 *   });
-*   We should tuck every call to a service inside the above function. This
-*   guarantees that the only time we're pulling down data are when the applicable
-*   view is being rendered. The call to the service should also be the very
-*   first thing each controller does if it is pulling down data from a service.
 */
 .controller('AppCtrl', function($scope, $ionicModal, $timeout) {
 

@@ -7,6 +7,17 @@ h1, h2, h3, h4, .title, .menu-right .item-content {
   font-family: 'PT Sans', sans-serif;
   font-weight: 600;
 }
+
+/*
+  The following style sets the font to the system default for each modern OS:
+  It's a very easy performance win, but I'd like to avoid it if possible because
+  then we'd be subject to the look of the app changing if Apple were to move away
+  from San Fransisco.
+  body {
+    font-family: -apple-system, ".SFNSText-Regular", "San Francisco", "Roboto",
+                  "Segoe UI", "Helvetica Neue", "Lucida Grande", sans-serif;
+  }
+ */
 .blogs-title {
   font-size: 1.3em;
   margin-bottom: 0px;

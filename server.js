@@ -9,6 +9,7 @@ var morgan     = require('morgan'); 			// used to see requests
 var mongoose   = require('mongoose');
 var config 	   = require('./config');
 var path 	   	 = require('path');
+var docs			 = require("express-mongoose-docs");
 
 // APP CONFIGURATION ==================
 // ====================================
@@ -40,6 +41,9 @@ app.use(express.static(__dirname + '/www'));
 // API ROUTES ------------------------
 var apiRoutes = require('./app/routes/api')(app, express);
 app.use('/api', apiRoutes);
+
+// Generate documentation for the API via
+docs(app, mongoose); // 2nd param is optional
 
 // MAIN CATCHALL ROUTE ---------------
 // SEND USERS TO FRONTEND ------------
