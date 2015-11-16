@@ -68,6 +68,8 @@ var blogApi		= require('./app/routes/blogApi')(app, express);
 app.use('/api', blogApi);
 var genreApi		= require('./app/routes/genreApi')(app, express);
 app.use('/api', genreApi);
+var curatorApi		= require('./app/routes/curatorApi')(app, express);
+app.use('/api', curatorApi);
 /*=============================================================================
 END API SETUP
 =============================================================================*/

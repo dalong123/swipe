@@ -1,21 +1,17 @@
 var mongoose     = require('mongoose');
 var Schema       = mongoose.Schema;
 
-// Blog schema
-var BlogSchema = new Schema({
-	title: String,
-	image: String,
-	url: String,
-	description: String,
-	kimonoId: String,
-	isOnDemand: Boolean,
-	onDemandVal: String,
+// genre schema
+var CuratorSchema = new Schema({
+	name: String,
+	icon: String,
+	songs: [{ url: String }],
 	createdAt: Date,
   updatedAt: Date
 });
 
 // on every save, add the date
-BlogSchema.pre('save', function(next) {
+CuratorSchema.pre('save', function(next) {
   // get the current date
   var currentDate = new Date();
 
@@ -29,4 +25,4 @@ BlogSchema.pre('save', function(next) {
   next();
 });
 
-module.exports = mongoose.model('Blog', BlogSchema);
+module.exports = mongoose.model('Curator', CuratorSchema);

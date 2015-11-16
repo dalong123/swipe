@@ -38,7 +38,7 @@ exports.getBlogs = function(req, res) {
 // Create endpoint /api/blogs/:blog_id for GET
 exports.getBlog = function(req, res) {
   // Use the Blog model to find a specific blog
-  Blog.find({ _id: req.params.blog_id }, function(err, blog) {
+  Blog.findById(req.params.blog_id, function(err, blog) {
     if (err)
       res.send(err);
 
@@ -49,7 +49,7 @@ exports.getBlog = function(req, res) {
 // Create endpoint /api/blogs/:blog_id for PUT
 exports.putBlog = function(req, res) {
   // Use the Blog model to find a specific blog
-  Blog.update({ _id: req.params.blog_id }, { quantity: req.body.quantity }, function(err, num, raw) {
+  Blog.findByIdAndUpdate(req.params.blog_id, { quantity: req.body.quantity }, function(err, num, raw) {
     if (err)
       res.send(err);
 
@@ -60,7 +60,7 @@ exports.putBlog = function(req, res) {
 // Create endpoint /api/blogs/:blog_id for DELETE
 exports.deleteBlog = function(req, res) {
   // Use the Blog model to find a specific blog and remove it
-  Blog.remove({ _id: req.params.blog_id }, function(err) {
+  Blog.findByIdAndRemove(req.params.blog_id, function(err) {
     if (err)
       res.send(err);
 
