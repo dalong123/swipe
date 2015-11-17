@@ -242,10 +242,10 @@ angular.module('starter.controllers', [])
           }
         );
       } else {
-        Blog.getBlogsAsync().then(
+        Blog.getBlogAsync(blogId).then(
           function(result) {
             // promise was fullfilled (regardless of outcome)
-            $scope.blog = $filter('filter')(result, {id:blogId})[0];
+            $scope.blog = result;
             LocalStorage.setObject('blog' + blogId, $scope.blog);
             Blog.getFeedAsync($scope.blog.kimonoId, 1).then(
               function(res) {

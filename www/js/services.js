@@ -106,7 +106,27 @@ angular.module('starter.services', [])
     getBlogsAsync: function() {
 
       var deferred = $q.defer();
-      return $http.get('blogs.json')
+      return $http.get('http://localhost:8888/api/blogs')
+        .then(function(response) {
+          // promise is fulfilled
+          deferred.resolve(response.data);
+          return deferred.promise;
+        }, function(response) {
+          // the following line rejects the promise
+          deferred.reject(response);
+          return deferred.promise;
+        });
+    },
+
+    /**
+     * [function description]
+     * @method function
+     * @return {[type]} [description]
+     */
+    getBlogAsync: function(blogId) {
+
+      var deferred = $q.defer();
+      return $http.get('http://localhost:8888/api/blogs/' + blogId)
         .then(function(response) {
           // promise is fulfilled
           deferred.resolve(response.data);
