@@ -1,4 +1,4 @@
-angular.module('starter.controllers', [])
+angular.module('swipe.controllers', [])
 
 /**
 * 	With view caching in Ionic, Controllers are only called
@@ -126,7 +126,7 @@ angular.module('starter.controllers', [])
  * @param  {[type]}   function($scope, $q,           $ionicLoading, Blog, LocalStorage [description]
  * @return {[type]}                    [description]
  */
-.controller('BlogsCtrl', function($scope, $ionicLoading, Blog, LocalStorage) {
+.controller('BlogsCtrl', function($scope, $ionicLoading, DataStore) {
 
   // This is the ionic-specific funtion used to target the view's entry. As a
   // result of template caching, this controller is only called when one of its
@@ -142,30 +142,19 @@ angular.module('starter.controllers', [])
       showDelay: 0
     });
 
-    // Make calls to the API/Blog services as necessary and initialize all
-    // view-centric variables
-    var blogsLocalStore = LocalStorage.getObject('blogs');
+    DataStore.getItemsAsync('blogs').then(
+      function(result) {
+        // promise was fullfilled (regardless of outcome)
+        // checks for information will be peformed here
+        $scope.blogs = result;
+        $ionicLoading.hide();
+      },
+      function(error) {
+        // handle errors here
+        console.log(error.statusText);
+      }
+    );
 
-    if(!angular.equals({}, blogsLocalStore))
-    {
-      $scope.blogs = blogsLocalStore;
-      $ionicLoading.hide();
-    }
-    else {
-      Blog.getBlogsAsync().then(
-        function(result) {
-          // promise was fullfilled (regardless of outcome)
-          // checks for information will be peformed here
-          $scope.blogs = result;
-          LocalStorage.setObject('blogs', result);
-          $ionicLoading.hide();
-        },
-        function(error) {
-          // handle errors here
-          console.log(error.statusText);
-        }
-      );
-    }
   });
 })
 
@@ -178,7 +167,7 @@ angular.module('starter.controllers', [])
  * @param  {[type]}   function($scope, $stateParams, $filter, $ionicSwipeCardDelegate, $ionicModal, $ionicLoading, Blog, LocalStorage [description]
  * @return {[type]}                    [description]
  */
-.controller('BlogCtrl', function($scope, $stateParams, $filter, $ionicSwipeCardDelegate, $ionicModal, $ionicLoading, Blog, LocalStorage){
+.controller('BlogCtrl', function($scope, $stateParams, $ionicSwipeCardDelegate, $ionicModal, $ionicLoading, DataStore, Blog){
 
   var blogId = '';
   var cardTypes = [];
@@ -224,48 +213,28 @@ angular.module('starter.controllers', [])
     }
     else
     {
-      var blogLocalStore = LocalStorage.getObject('blog' + blogId);
-
-      if(!angular.equals({}, blogLocalStore))
-      {
-        $scope.blog = blogLocalStore;
-        Blog.getFeedAsync($scope.blog.kimonoId, 1).then(
-          function(res) {
-            // promise was fullfilled (regardless of outcome)
-            cardTypes = res;
-            $scope.cards = Array.prototype.slice.call(cardTypes, 0, 0);
-            $ionicLoading.hide();
-          },
-          function(error) {
-            // handle errors here
-            console.log(error.statusText);
-          }
-        );
-      } else {
-        Blog.getBlogAsync(blogId).then(
-          function(result) {
-            // promise was fullfilled (regardless of outcome)
-            $scope.blog = result;
-            LocalStorage.setObject('blog' + blogId, $scope.blog);
-            Blog.getFeedAsync($scope.blog.kimonoId, 1).then(
-              function(res) {
-                // promise was fullfilled (regardless of outcome)
-                cardTypes = res;
-                $scope.cards = Array.prototype.slice.call(cardTypes, 0, 0);
-                $ionicLoading.hide();
-              },
-              function(error) {
-                // handle errors here
-                console.log(error.statusText);
-              }
-            );
-          },
-          function(error) {
-            // handle errors here
-            console.log(error.statusText);
-          }
-        );
-      }
+      DataStore.getItemByIDAsync(blogId, 'blogs').then(
+        function(result) {
+          // promise was fullfilled (regardless of outcome)
+          $scope.blog = result;
+          Blog.getFeedAsync($scope.blog.kimonoId, 1).then(
+            function(res) {
+              // promise was fullfilled (regardless of outcome)
+              cardTypes = res;
+              $scope.cards = Array.prototype.slice.call(cardTypes, 0, 0);
+              $ionicLoading.hide();
+            },
+            function(error) {
+              // handle errors here
+              console.log(error.statusText);
+            }
+          );
+        },
+        function(error) {
+          // handle errors here
+          console.log(error.statusText);
+        }
+      );
     }
 
     $scope.cardSwiped = function(index) {
@@ -356,7 +325,7 @@ angular.module('starter.controllers', [])
  * @param  {[type]}   function($scope, $stateParams, $filter, $ionicSwipeCardDelegate, $ionicModal, $ionicLoading, Sounds [description]
  * @return {[type]}                    [description]
  */
-.controller('EditorsCtrl', function($scope, $ionicLoading, Sounds){
+.controller('EditorsCtrl', function($scope, $ionicLoading, DataStore){
 
   $scope.$on('$ionicView.enter', function(e) {
 
@@ -369,11 +338,11 @@ angular.module('starter.controllers', [])
       showDelay: 0
     });
 
-    Sounds.getSoundsAsync().then(
+    DataStore.getItemsAsync('curators').then(
       function(result) {
         // promise was fullfilled (regardless of outcome)
         // checks for information will be peformed here
-        $scope.editors = result.editors;
+        $scope.editors = result;
         $ionicLoading.hide();
       },
       function(error) {
@@ -391,7 +360,7 @@ angular.module('starter.controllers', [])
  * @param  {[type]}   function($scope, $stateParams, $filter, $ionicSwipeCardDelegate, $ionicModal, $ionicLoading, Sounds [description]
  * @return {[type]}                    [description]
  */
-.controller('EditorCtrl', function($scope, $stateParams, $filter, $ionicSwipeCardDelegate, $ionicModal, $ionicLoading, Sounds){
+.controller('EditorCtrl', function($scope, $stateParams, $ionicSwipeCardDelegate, $ionicModal, $ionicLoading, DataStore){
 
   var cardTypes = [];
 
@@ -411,11 +380,11 @@ angular.module('starter.controllers', [])
     // the current index of the card being displayed to the user
     $scope.currentIndex = 0;
 
-    Sounds.getSoundsAsync().then(
+    DataStore.getItemByIDAsync(editorId, 'curators').then(
       function(result) {
         // promise was fullfilled (regardless of outcome)
         // checks for information will be peformed here
-        $scope.editor = $filter('filter')(result.editors, {id:editorId})[0];
+        $scope.editor = result;
         cardTypes = $scope.editor.songs;
         $scope.cards = Array.prototype.slice.call(cardTypes, 0, 0);
         $ionicLoading.hide();
@@ -450,7 +419,7 @@ angular.module('starter.controllers', [])
  * @param  {[type]}   function($scope, $stateParams, $filter, $ionicSwipeCardDelegate, $ionicModal, $ionicLoading, Sounds [description]
  * @return {[type]}                    [description]
  */
-.controller('GenresCtrl', function($scope, $ionicLoading, Sounds){
+.controller('GenresCtrl', function($scope, $ionicLoading, DataStore){
 
   $scope.$on('$ionicView.enter', function(e) {
 
@@ -463,11 +432,11 @@ angular.module('starter.controllers', [])
       showDelay: 0
     });
 
-    Sounds.getSoundsAsync().then(
+    DataStore.getItemsAsync('genres').then(
       function(result) {
         // promise was fullfilled (regardless of outcome)
         // checks for information will be peformed here
-        $scope.genres = result.genres;
+        $scope.genres = result;
         $ionicLoading.hide();
       },
       function(error) {
@@ -485,7 +454,7 @@ angular.module('starter.controllers', [])
  * @param  {[type]}   function($scope, $stateParams, $filter, $ionicSwipeCardDelegate, $ionicModal, $ionicLoading, Sounds [description]
  * @return {[type]}                    [description]
  */
-.controller('GenreCtrl', function($scope, $stateParams, $filter, $ionicSwipeCardDelegate, $ionicModal, $ionicLoading, Sounds){
+.controller('GenreCtrl', function($scope, $stateParams, $ionicSwipeCardDelegate, $ionicModal, $ionicLoading, DataStore){
 
   var cardTypes = [];
 
@@ -505,11 +474,11 @@ angular.module('starter.controllers', [])
     // the current index of the card being displayed to the user
     $scope.currentIndex = 0;
 
-    Sounds.getSoundsAsync().then(
+    DataStore.getItemByIDAsync(genreId, 'genres').then(
       function(result) {
         // promise was fullfilled (regardless of outcome)
         // checks for information will be peformed here
-        $scope.genre = $filter('filter')(result.genres, {id:genreId})[0];
+        $scope.genre = result
         cardTypes = $scope.genre.songs;
         $scope.cards = Array.prototype.slice.call(cardTypes, 0, 0);
         $ionicLoading.hide();

@@ -1,4 +1,4 @@
-angular.module('starter.services', [])
+angular.module('swipe.services', [])
 
 /**
  * [factory description]
@@ -12,45 +12,18 @@ angular.module('starter.services', [])
 
   return {
 
-    /**
-     * [function description]
-     * @method function
-     * @param  {[type]} key   [description]
-     * @param  {[type]} value [description]
-     * @return {[type]}       [description]
-     */
     set: function(key, value) {
       $window.localStorage[key] = value;
     },
 
-    /**
-     * [function description]
-     * @method function
-     * @param  {[type]} key          [description]
-     * @param  {[type]} defaultValue [description]
-     * @return {[type]}              [description]
-     */
     get: function(key, defaultValue) {
       return $window.localStorage[key] || defaultValue;
     },
 
-    /**
-     * [function description]
-     * @method function
-     * @param  {[type]} key   [description]
-     * @param  {[type]} value [description]
-     * @return {[type]}       [description]
-     */
     setObject: function(key, value) {
       $window.localStorage[key] = JSON.stringify(value);
     },
 
-    /**
-     * [function description]
-     * @method function
-     * @param  {[type]} key [description]
-     * @return {[type]}     [description]
-     */
     getObject: function(key) {
       return JSON.parse($window.localStorage[key] || '{}');
     }
@@ -101,46 +74,6 @@ angular.module('starter.services', [])
     /**
      * [function description]
      * @method function
-     * @return {[type]} [description]
-     */
-    getBlogsAsync: function() {
-
-      var deferred = $q.defer();
-      return $http.get('http://localhost:8888/api/blogs')
-        .then(function(response) {
-          // promise is fulfilled
-          deferred.resolve(response.data);
-          return deferred.promise;
-        }, function(response) {
-          // the following line rejects the promise
-          deferred.reject(response);
-          return deferred.promise;
-        });
-    },
-
-    /**
-     * [function description]
-     * @method function
-     * @return {[type]} [description]
-     */
-    getBlogAsync: function(blogId) {
-
-      var deferred = $q.defer();
-      return $http.get('http://localhost:8888/api/blogs/' + blogId)
-        .then(function(response) {
-          // promise is fulfilled
-          deferred.resolve(response.data);
-          return deferred.promise;
-        }, function(response) {
-          // the following line rejects the promise
-          deferred.reject(response);
-          return deferred.promise;
-        });
-    },
-
-    /**
-     * [function description]
-     * @method function
      * @param  {String}  kimonoId   [The blog's unique kimonoID]
      * @param  {Boolean} isOnDemand [description]
      * @return {[type]}             [description]
@@ -153,6 +86,69 @@ angular.module('starter.services', [])
       return $http.get(URL)
         .then(function(response) {
           // promise is fulfilled
+          deferred.resolve(response.data);
+          return deferred.promise;
+        }, function(response) {
+          // the following line rejects the promise
+          deferred.reject(response);
+          return deferred.promise;
+        });
+    }
+  }
+})
+
+.factory('ApiFactory', function($http){
+  return {
+
+    performGET: function(itemTypeEnum) {
+      return $http.get('http://localhost:8888/api/' + itemTypeEnum)
+    },
+
+    performItemGET: function(itemId, itemTypeEnum) {
+      return $http.get('http://localhost:8888/api/' + itemTypeEnum + '/' + itemId)
+    }
+
+  }
+})
+
+.factory('DataStore', function($http, $q, LocalStorage, ApiFactory){
+
+  return {
+
+    // This fucntion returns the results of a call to the api/blogs, api/genres, etc. route
+    getItemsAsync: function(itemTypeEnum) {
+
+      var itemObject = LocalStorage.getObject(itemTypeEnum);
+
+      var deferred = $q.defer();
+
+      // if(!angular.equals({}, itemObject))
+
+      return ApiFactory.performGET(itemTypeEnum)
+        .then(function(response) {
+          // promise is fulfilled
+          LocalStorage.setObject(itemTypeEnum, response.data);
+          deferred.resolve(response.data);
+          return deferred.promise;
+        }, function(response) {
+          // the following line rejects the promise
+          deferred.reject(response);
+          return deferred.promise;
+        });
+
+    },
+
+    // This fucntion returns the results of a call to the api/blogs/id, api/genres/id, etc. route
+    getItemByIDAsync: function(itemId, itemTypeEnum) {
+
+      var itemObject = LocalStorage.getObject(itemId);
+
+      var deferred = $q.defer();
+
+      return ApiFactory.performItemGET(itemId, itemTypeEnum)
+        .then(function(response) {
+          // promise is fulfilled
+          LocalStorage.setObject(itemId, response.data);
           deferred.resolve(response.data);
           return deferred.promise;
         }, function(response) {

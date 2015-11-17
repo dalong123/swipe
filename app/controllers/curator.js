@@ -10,7 +10,7 @@ exports.postCurators = function(req, res) {
   curator.name = req.body.name;
   curator.description = req.body.description;
   curator.icon = req.body.icon;
-  curator.sounds = req.body.sounds;
+  curator.songs = req.body.songs;
 
   // Save the curator and check for errors
   curator.save(function(err) {

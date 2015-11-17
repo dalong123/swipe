@@ -1,4 +1,4 @@
-angular.module('starter', ['ionic', 'starter.services', 'starter.controllers', 'ionic.contrib.ui.cards', 'plangular'])
+angular.module('swipe', ['ionic', 'swipe.services', 'swipe.controllers', 'ionic.contrib.ui.cards', 'plangular'])
 
 /**
  * Still not entirely sure what this does, though I haven't looked into it much
