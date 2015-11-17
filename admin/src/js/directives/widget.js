@@ -3,7 +3,7 @@
  */
 
 angular
-    .module('RDash')
+    .module('SwipeAdmin')
     .directive('rdWidget', rdWidget);
 
 function rdWidget() {

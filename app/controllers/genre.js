@@ -6,8 +6,11 @@ exports.postGenres = function(req, res) {
   // Create a new instance of the genre model
   var genre = new Genre();
 
+  console.log(req.body.name);
+
   // Set the genre properties that came from the POST data
   genre.name = req.body.name;
+  genre.description = req.body.description;
   genre.icon = req.body.icon;
   genre.sounds = req.body.sounds;
 

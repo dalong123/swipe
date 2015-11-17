@@ -1,9 +1,9 @@
 'use strict';
 
 /**
- * Route configuration for the RDash module.
+ * Route configuration for the SwipeAdmin module.
  */
-angular.module('RDash').config(['$stateProvider', '$urlRouterProvider',
+angular.module('SwipeAdmin').config(['$stateProvider', '$urlRouterProvider',
     function($stateProvider, $urlRouterProvider) {
 
         // For unmatched routes
@@ -14,6 +14,11 @@ angular.module('RDash').config(['$stateProvider', '$urlRouterProvider',
             .state('index', {
                 url: '/',
                 templateUrl: 'templates/dashboard.html'
+            })
+            .state('genres', {
+                url: '/genres',
+                templateUrl: 'templates/genres.html',
+                controller: 'GenresCtrl'
             })
             .state('tables', {
                 url: '/tables',

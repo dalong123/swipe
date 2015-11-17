@@ -59,6 +59,8 @@ END MONGODB SETUP
 // used for requests that our frontend will make
 app.use(express.static(__dirname + '/www'));
 
+app.use(express.static(__dirname + '/admin/dist'));
+
 /*=============================================================================
 START API SETUP
 =============================================================================*/
@@ -73,6 +75,10 @@ app.use('/api', curatorApi);
 /*=============================================================================
 END API SETUP
 =============================================================================*/
+
+app.get('/admin', function(req, res) {
+	res.sendFile(path.join(__dirname + '/admin/dist/index.html'));
+});
 
 // Generate documentation for the API via
 docs(app, mongoose); // 2nd param is optional

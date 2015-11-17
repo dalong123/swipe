@@ -1,7 +1,6 @@
 // Load required packages
 var Blog = require('../models/blog');
 
-
 //THIS CAN BE USED AS MIDDLEWARE TO CHECK IF THE USER IS LOGGED IN. THIS EXAMPLE
 //RELIES ON SESSION, MOST LIKELY PROVIDED BY PASSPORT, BUT IT CAN EASILY BE PORTED
 //TO SUPPORT JWT.
@@ -23,12 +22,12 @@ exports.postBlogs = function(req, res) {
 
   // Set the blog properties that came from the POST data
   blog.title = req.body.title;
-  blog.imgage = req.body.image;
+  blog.image = req.body.image;
   blog.url = req.body.url;
-  blog.description = req.description;
-  blog.kimonoId = req.kimonoId;
-  blog.isOnDemand = req.isOnDemand;
-  blog.onDemandVal = blog.onDemandVal;
+  blog.description = req.body.description;
+  blog.kimonoId = req.body.kimonoId;
+  blog.isOnDemand = req.body.isOnDemand;
+  blog.onDemandVal = req.body.onDemandVal;
 
   // Save the blog and check for errors
   blog.save(function(err) {

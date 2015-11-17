@@ -8,6 +8,7 @@ exports.postCurators = function(req, res) {
 
   // Set the curator properties that came from the POST data
   curator.name = req.body.name;
+  curator.description = req.body.description;
   curator.icon = req.body.icon;
   curator.sounds = req.body.sounds;
 
