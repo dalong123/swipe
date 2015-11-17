@@ -1,6 +1,21 @@
 // Load required packages
 var Blog = require('../models/blog');
 
+
+//THIS CAN BE USED AS MIDDLEWARE TO CHECK IF THE USER IS LOGGED IN. THIS EXAMPLE
+//RELIES ON SESSION, MOST LIKELY PROVIDED BY PASSPORT, BUT IT CAN EASILY BE PORTED
+//TO SUPPORT JWT.
+//EXAMPLE USAGE: app.post('/api/users', checkAdmin, db, routes.users.add);
+exports.checkAdmin = function(request, response, next) {
+  if (request.session && request.session.auth && request.session.userId && request.session.admin) {
+    console.info('Access ADMIN: ' + request.session.userId);
+    return next();
+  } else {
+    next('User is not an administrator.');
+  }
+};
+
+
 // Create endpoint /api/blogs for POST
 exports.postBlogs = function(req, res) {
   // Create a new instance of the blog model
