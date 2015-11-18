@@ -20,6 +20,11 @@ angular.module('SwipeAdmin').config(['$stateProvider', '$urlRouterProvider',
                 templateUrl: 'templates/genres.html',
                 controller: 'GenresCtrl'
             })
+            .state('blogs', {
+                url: '/blogs',
+                templateUrl: 'templates/blogs.html',
+                controller: 'BlogsCtrl'
+            })
             .state('tables', {
                 url: '/tables',
                 templateUrl: 'templates/tables.html'
