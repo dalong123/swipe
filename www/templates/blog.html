@@ -22,11 +22,11 @@
             <a ng-controller="ModalCtrl" on-tap="openModal();" ng-model="$scope.cards" ng-if="card.title.text!=null">{{card.title.text}}</a>
             <a ng-controller="ModalCtrl" on-tap="openModal();" ng-model="$scope.cards" ng-if="card.title.text==null">{{card.title}}</a>
           </h2>
-          <div ng-if="card.image.src == null" class="padding">
-            <img class="full-image" ng-src="{{blog.image}}">
+          <div ng-if="card.image.src == null" class="padding text-center">
+            <img class="full-image" ng-src="{{blog.image}}" style="max-width: 400px;">
           </div>
-          <div ng-if="card.image.src != null">
-            <img class="full-image" ng-src="{{card.image.src}}">
+          <div ng-if="card.image.src != null" class=" text-center">
+            <img class="full-image" ng-src="{{card.image.src}}" style="max-width: 400px;">
           </div>
           <div ng-if="card.description.text == null" class="padding">
             <p>{{card.description}}</p>
