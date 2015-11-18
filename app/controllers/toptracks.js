@@ -38,7 +38,7 @@ exports.getTopTracks = function(req, res) {
 // Create endpoint /api/toptracks/:toptracks_id for PUT
 exports.putTopTracks = function(req, res) {
   // Use the toptracks model to find a specific toptracks
-  TopTracks.findAndUpdate( {}, {
+  TopTracks.findOneAndUpdate( { name: 'Top Tracks'}, {
     name: req.body.name,
     description: req.body.description,
     icon: req.body.icon,
