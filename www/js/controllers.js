@@ -77,7 +77,7 @@ angular.module('swipe.controllers', [])
  * @param  {[type]}   function($scope, $q,           $ionicLoading, Sounds, Blog [description]
  * @return {[type]}                    [description]
  */
-.controller('HomeCtrl', function($scope, $ionicLoading, DataStore, Blog) {
+.controller('HomeCtrl', function($scope, $ionicLoading, DataStore) {
 
   $scope.$on('$ionicView.enter', function(e) {
 
@@ -106,7 +106,7 @@ angular.module('swipe.controllers', [])
         console.log(error.statusText);
       }
     );
-    Blog.getFeedAsync("d3cthg28", 1).then(
+    DataStore.getBlogFeedAsync("d3cthg28", 1).then(
       function(response) {
         // promise was fullfilled (regardless of outcome)
         $scope.blogs = response;
@@ -169,7 +169,7 @@ angular.module('swipe.controllers', [])
  * @param  {[type]}   function($scope, $stateParams, $filter, $ionicSwipeCardDelegate, $ionicModal, $ionicLoading, Blog, LocalStorage [description]
  * @return {[type]}                    [description]
  */
-.controller('BlogCtrl', function($scope, $stateParams, $ionicSwipeCardDelegate, $ionicModal, $ionicLoading, DataStore, Blog) {
+.controller('BlogCtrl', function($scope, $stateParams, $ionicSwipeCardDelegate, $ionicModal, $ionicLoading, DataStore) {
 
   var blogId = '';
   var cardTypes = [];
@@ -217,7 +217,7 @@ angular.module('swipe.controllers', [])
         function(result) {
           // promise was fullfilled (regardless of outcome)
           $scope.blog = result;
-          Blog.getFeedAsync($scope.blog.kimonoId, 1).then(
+          DataStore.getBlogFeedAsync(result.kimonoId, result.isOnDemand).then(
             function(res) {
               // promise was fullfilled (regardless of outcome)
               cardTypes = res;

@@ -30,39 +30,6 @@ angular.module('swipe.services', [])
   }
 }])
 
-/**
- *
- */
-.factory('Blog', function($http, $q) {
-
-  return {
-
-    /**
-     * [function description]
-     * @method function
-     * @param  {String}  kimonoId   [The blog's unique kimonoID]
-     * @param  {Boolean} isOnDemand [description]
-     * @return {[type]}             [description]
-     */
-    getFeedAsync: function(kimonoId, isOnDemand) {
-
-      var deferred = $q.defer();
-      var URL = 'http://localhost:8888/api/blogs/getfeed/' + kimonoId;
-
-      return $http.get(URL)
-        .then(function(response) {
-          // promise is fulfilled
-          deferred.resolve(response.data);
-          return deferred.promise;
-        }, function(response) {
-          // the following line rejects the promise
-          deferred.reject(response);
-          return deferred.promise;
-        });
-    }
-  }
-})
-
 .factory('ApiFactory', function($http) {
   return {
 
@@ -115,6 +82,30 @@ angular.module('swipe.services', [])
         .then(function(response) {
           // promise is fulfilled
           LocalStorage.setObject(itemId, response.data);
+          deferred.resolve(response.data);
+          return deferred.promise;
+        }, function(response) {
+          // the following line rejects the promise
+          deferred.reject(response);
+          return deferred.promise;
+        });
+    },
+
+    /**
+     * [function description]
+     * @method function
+     * @param  {String}  kimonoId   [The blog's unique kimonoID]
+     * @param  {Boolean} isOnDemand [description]
+     * @return {[type]}             [description]
+     */
+    getBlogFeedAsync: function(kimonoId, isOnDemand) {
+
+      var deferred = $q.defer();
+      var URL = 'http://localhost:8888/api/blogs/getfeed/' + kimonoId;
+
+      return $http.get(URL)
+        .then(function(response) {
+          // promise is fulfilled
           deferred.resolve(response.data);
           return deferred.promise;
         }, function(response) {
