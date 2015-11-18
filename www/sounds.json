@@ -22,9 +22,9 @@
       "url": "https://soundcloud.com/keyshiacoleofficial/keyshia-cole-dont-waste-my-time-ft-young-thug-produced-by-london-on-da-track"
     }
   ],
-  "editors": [
+  "curators": [
     {
-      "name": "Editor 1",
+      "name": "Curator 1",
       "id": "1",
       "songs": [
         {
@@ -51,7 +51,7 @@
       ]
     },
     {
-      "name": "Editor 2",
+      "name": "Curator 2",
       "id": "2",
       "songs": [
         {
@@ -78,7 +78,7 @@
       ]
     },
     {
-      "name": "Editor 3",
+      "name": "Curator 3",
       "id": "3",
       "songs": [
         {
@@ -105,7 +105,7 @@
       ]
     },
     {
-      "name": "Editor 4",
+      "name": "Curator 4",
       "id": "4",
       "songs": [
         {
@@ -132,7 +132,7 @@
       ]
     },
     {
-      "name": "Editor 5",
+      "name": "Curator 5",
       "id": "5",
       "songs": [
         {

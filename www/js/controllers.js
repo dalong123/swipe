@@ -325,7 +325,7 @@ angular.module('swipe.controllers', [])
  * @param  {[type]}   function($scope, $stateParams, $filter, $ionicSwipeCardDelegate, $ionicModal, $ionicLoading, Sounds [description]
  * @return {[type]}                    [description]
  */
-.controller('EditorsCtrl', function($scope, $ionicLoading, DataStore){
+.controller('CuratorsCtrl', function($scope, $ionicLoading, DataStore){
 
   $scope.$on('$ionicView.enter', function(e) {
 
@@ -342,7 +342,7 @@ angular.module('swipe.controllers', [])
       function(result) {
         // promise was fullfilled (regardless of outcome)
         // checks for information will be peformed here
-        $scope.editors = result;
+        $scope.curators = result;
         $ionicLoading.hide();
       },
       function(error) {
@@ -360,7 +360,7 @@ angular.module('swipe.controllers', [])
  * @param  {[type]}   function($scope, $stateParams, $filter, $ionicSwipeCardDelegate, $ionicModal, $ionicLoading, Sounds [description]
  * @return {[type]}                    [description]
  */
-.controller('EditorCtrl', function($scope, $stateParams, $ionicSwipeCardDelegate, $ionicModal, $ionicLoading, DataStore){
+.controller('CuratorCtrl', function($scope, $stateParams, $ionicSwipeCardDelegate, $ionicModal, $ionicLoading, DataStore){
 
   var cardTypes = [];
 
@@ -375,17 +375,17 @@ angular.module('swipe.controllers', [])
       showDelay: 0
     });
 
-    var editorId = $stateParams.editorId;
+    var curatorId = $stateParams.curatorId;
 
     // the current index of the card being displayed to the user
     $scope.currentIndex = 0;
 
-    DataStore.getItemByIDAsync(editorId, 'curators').then(
+    DataStore.getItemByIDAsync(curatorId, 'curators').then(
       function(result) {
         // promise was fullfilled (regardless of outcome)
         // checks for information will be peformed here
-        $scope.editor = result;
-        cardTypes = $scope.editor.songs;
+        $scope.curator = result;
+        cardTypes = $scope.curator.songs;
         $scope.cards = Array.prototype.slice.call(cardTypes, 0, 0);
         $ionicLoading.hide();
       },
