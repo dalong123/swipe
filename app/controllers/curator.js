@@ -46,7 +46,11 @@ exports.getCurator = function(req, res) {
 // Create endpoint /api/curators/:curator_id for PUT
 exports.putCurator = function(req, res) {
   // Use the curator model to find a specific curator
-  Curator.findByIdAndUpdate(req.params.curator_id, { songs: req.body.songs }, function(err, num, raw) {
+  Curator.findByIdAndUpdate(req.params.curator_id, { name: req.body.name,
+                                                     description: req.body.description,
+                                                     icon: req.body.icon,
+                                                     songs: req.body.songs
+                                                   }, function(err, num, raw) {
     if (err)
       res.send(err);
 

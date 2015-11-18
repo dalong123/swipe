@@ -8,6 +8,7 @@ var bodyParser = require('body-parser'); 	// get body-parser
 var morgan     = require('morgan'); 			// used to see requests
 var mongoose   = require('mongoose');
 var uriUtil 	 = require('mongodb-uri');
+var moment		 = require('moment');
 var config 	   = require('./config');
 var path 	   	 = require('path');
 var docs			 = require("express-mongoose-docs");

@@ -4,7 +4,7 @@
       <ion-item class="item item-thumbnail-left item-text-wrap fade-component" ng-repeat="genre in genres" href="#/app/genres/{{genre._id}}" class="item-avatar">
         <!-- <img ng-src="{{blog.image}}" /> -->
         <h1 class="blogs-title">{{genre.name}}</h1>
-        <!-- <p>{{blog.title}}</p> -->
+        <p>{{genre.description}}</p>
       </ion-item>
     </ion-list>
   </ion-content>

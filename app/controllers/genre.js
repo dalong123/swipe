@@ -46,7 +46,11 @@ exports.getGenre = function(req, res) {
 // Create endpoint /api/genres/:genre_id for PUT
 exports.putGenre = function(req, res) {
   // Use the genre model to find a specific genre
-  Genre.findByIdAndUpdate(req.params.genre_id, { songs: req.body.songs }, function(err, num, raw) {
+  Genre.findByIdAndUpdate(req.params.genre_id, { name: req.body.name,
+                                                 description: req.body.description,
+                                                 icon: req.body.icon,
+                                                 songs: req.body.songs
+                                               }, function(err, num, raw) {
     if (err)
       res.send(err);
 
