@@ -87,6 +87,8 @@ var genreApi = require('./app/routes/genreApi')(app, express);
 app.use('/api', genreApi);
 var curatorApi = require('./app/routes/curatorApi')(app, express);
 app.use('/api', curatorApi);
+var topTracksApi = require('./app/routes/topTracksApi')(app, express);
+app.use('/api', topTracksApi);
 /*=============================================================================
 END API SETUP
 =============================================================================*/

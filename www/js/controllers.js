@@ -77,7 +77,7 @@ angular.module('swipe.controllers', [])
  * @param  {[type]}   function($scope, $q,           $ionicLoading, Sounds, Blog [description]
  * @return {[type]}                    [description]
  */
-.controller('HomeCtrl', function($scope, $ionicLoading, Sounds, Blog) {
+.controller('HomeCtrl', function($scope, $ionicLoading, DataStore, Blog) {
 
   $scope.$on('$ionicView.enter', function(e) {
 
@@ -93,11 +93,13 @@ angular.module('swipe.controllers', [])
     $scope.date = new Date();
     // Make calls to the API/Blog services as necessary and initialize all
     // view-centric variables
-    Sounds.getSoundsAsync().then(
+    DataStore.getItemsAsync('toptracks').then(
       function(result) {
         // promise was fullfilled (regardless of outcome)
         // checks for information will be peformed here
-        $scope.sounds = result.sounds;
+        var topSongsObj = result[0];
+        $scope.sounds = topSongsObj.songs;
+        $ionicLoading.hide();
       },
       function(error) {
         // handle errors here
@@ -267,7 +269,7 @@ angular.module('swipe.controllers', [])
  * @param  {[type]}   function($scope, $stateParams, $filter, $ionicSwipeCardDelegate, $ionicModal, $ionicLoading, Sounds [description]
  * @return {[type]}                    [description]
  */
-.controller('SoundsCtrl', function($scope, $ionicSwipeCardDelegate, $ionicModal, $ionicLoading, Sounds) {
+.controller('SoundsCtrl', function($scope, $ionicSwipeCardDelegate, $ionicModal, $ionicLoading, DataStore) {
 
   var cardTypes = [];
 
@@ -285,11 +287,12 @@ angular.module('swipe.controllers', [])
     // the current index of the card being displayed to the user
     $scope.currentIndex = 0;
 
-    Sounds.getSoundsAsync().then(
+    DataStore.getItemsAsync('toptracks').then(
       function(result) {
         // promise was fullfilled (regardless of outcome)
         // checks for information will be peformed here
-        cardTypes = result.sounds;
+        var topSongsObj = result[0];
+        cardTypes = topSongsObj.songs;
         $scope.cards = Array.prototype.slice.call(cardTypes, 0, 0);
         $ionicLoading.hide();
       },

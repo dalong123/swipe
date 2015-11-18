@@ -31,40 +31,6 @@ angular.module('swipe.services', [])
 }])
 
 /**
- * [factory description]
- * @method factory
- * @param  {[type]} 'Sounds'        [description]
- * @param  {[type]} function($http, $q            [description]
- * @return {[type]}                 [description]
- */
-.factory('Sounds', function($http, $q) {
-
-  return {
-
-    /**
-     * [function description]
-     * @method function
-     * @return {[type]} [description]
-     */
-    getSoundsAsync: function() {
-
-      var deferred = $q.defer();
-
-      return $http.get('sounds.json')
-        .then(function(response) {
-          // promise is fulfilled
-          deferred.resolve(response.data);
-          return deferred.promise;
-        }, function(response) {
-          // the following line rejects the promise
-          deferred.reject(response);
-          return deferred.promise;
-        });
-    }
-  }
-})
-
-/**
  *
  */
 .factory('Blog', function($http, $q) {
