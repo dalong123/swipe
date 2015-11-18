@@ -1,9 +1,9 @@
 <ion-view view-title="Curators">
   <ion-content class="ferns-bg">
     <ion-list>
-      <ion-item class="item item-thumbnail-left item-text-wrap fade-component" ng-repeat="curator in curators" href="#/app/curators/{{curator._id}}" class="item-avatar">
-        <!-- <img ng-src="{{blog.image}}" /> -->
-        <h1 class="blogs-title">{{curator.name}}</h1>
+      <ion-item class="item item-avatar item-text-wrap fade-component" ng-repeat="curator in curators" href="#/app/curators/{{curator._id}}" class="item-avatar">
+        <img src="/img/ionic.png" />
+        <h2 class="blogs-title">{{curator.name}}</h2>
         <p>{{curator.description}}</p>
       </ion-item>
     </ion-list>

@@ -11,15 +11,22 @@
           </div>
           <div class="col col-67">
             <h2>{{track.title}}</h2>
-            <h3 class="padding-top">{{track.user.username}}</h3>
+            <h3 class="padding-top">
+              {{track.user.username}}
+              <span class="padding-right" style="float: right;">
+                <a ng-href="{{track.permalink_url}}" target="_blank">
+                  <img src="/img/soundcloud.png" style="max-width: 30px;"/>
+                </a>
+              </span>
+            </h3>
             <div class="row">
-              <div class="col col-25">
+              <div class="col col-25" style="padding-top: 0px;">
                 <button class="button button-clear" ng-click="playPause()" title="Play/Pause">
                   <i class="icon ion-ios-play" data-icon="play" ng-if="player.playing !== track.src"></i>
                   <i class="icon ion-ios-pause" data-icon="pause" ng-if="player.playing === track.src"></i>
                 </button>
               </div>
-              <div class="col">
+              <div class="col padding-top">
                 <progress class="progress" ng-click="seek($event)" ng-value="currentTime / duration || 0">
                 {{ currentTime / duration }}
               </progress>
