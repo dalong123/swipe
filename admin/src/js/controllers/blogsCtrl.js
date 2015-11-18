@@ -11,15 +11,15 @@ function BlogsCtrl($scope, BlogService){
   });
 
   $scope.AddBlog = function(){
-    BlogService.CreateBlog($scope.blog).then(function(result
+    BlogService.CreateBlog($scope.blog).then(function(result){
       $scope.blog = {};
-      alert("Added Blog!");
+      alert("Added!");
     });
   }
 
   $scope.UpdateBlog = function(blog){
     BlogService.UpdateBlog(blog._id).then(function(result){
-      alert("Updated Blog!");
+      alert("Updated!");
     });
   }
 };
