@@ -17,7 +17,10 @@ exports.postCurators = function(req, res) {
     if (err)
       res.send(err);
 
-    res.json({ message: 'Curator added!', data: curator });
+    res.json({
+      message: 'Curator added!',
+      data: curator
+    });
   });
 };
 
@@ -46,15 +49,18 @@ exports.getCurator = function(req, res) {
 // Create endpoint /api/curators/:curator_id for PUT
 exports.putCurator = function(req, res) {
   // Use the curator model to find a specific curator
-  Curator.findByIdAndUpdate(req.params.curator_id, { name: req.body.name,
-                                                     description: req.body.description,
-                                                     icon: req.body.icon,
-                                                     songs: req.body.songs
-                                                   }, function(err, num, raw) {
+  Curator.findByIdAndUpdate(req.params.curator_id, {
+    name: req.body.name,
+    description: req.body.description,
+    icon: req.body.icon,
+    songs: req.body.songs
+  }, function(err, num, raw) {
     if (err)
       res.send(err);
 
-    res.json({ message: num + ' updated' });
+    res.json({
+      message: num + ' updated'
+    });
   });
 };
 
@@ -65,6 +71,8 @@ exports.deleteCurator = function(req, res) {
     if (err)
       res.send(err);
 
-    res.json({ message: 'Curator deleted!' });
+    res.json({
+      message: 'Curator deleted!'
+    });
   });
 };

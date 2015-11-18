@@ -29,14 +29,14 @@ angular.module('swipe', ['ionic', 'swipe.services', 'swipe.controllers', 'ionic.
 /**
  * Needed for routing to work with iFrames
  */
-.config(function ($compileProvider){
+.config(function($compileProvider) {
   $compileProvider.aHrefSanitizationWhitelist(/^\s*(https?|ftp|mailto|file|tel):/);
 })
 
 /**
  * Setup safe CORS functionality
  */
-.config(function($httpProvider){
+.config(function($httpProvider) {
   $httpProvider.defaults.useXDomain = true;
   delete $httpProvider.defaults.headers.common['X-Requested-With'];
 })
@@ -45,11 +45,11 @@ angular.module('swipe', ['ionic', 'swipe.services', 'swipe.controllers', 'ionic.
  * Whitelisting all domains to allow iframe to view them. Should we use a safer
  * way?
  */
-.config(function($sceDelegateProvider){
+.config(function($sceDelegateProvider) {
   $sceDelegateProvider.resourceUrlWhitelist(['**', 'self']);
 })
 
-.config(function(plangularConfigProvider){
+.config(function(plangularConfigProvider) {
   plangularConfigProvider.clientId = '87b01554e0e9467dca5c7646da65965a';
 })
 
@@ -59,7 +59,7 @@ angular.module('swipe', ['ionic', 'swipe.services', 'swipe.controllers', 'ionic.
 .config(function($stateProvider, $urlRouterProvider) {
   $stateProvider
 
-  .state('app', {
+    .state('app', {
     url: '/app',
     abstract: true,
     templateUrl: 'templates/menu.html',
@@ -110,7 +110,7 @@ angular.module('swipe', ['ionic', 'swipe.services', 'swipe.controllers', 'ionic.
     views: {
       'menuContent': {
         templateUrl: 'templates/curator.html',
-        controller:  'CuratorCtrl'
+        controller: 'CuratorCtrl'
       }
     }
   })
@@ -130,7 +130,7 @@ angular.module('swipe', ['ionic', 'swipe.services', 'swipe.controllers', 'ionic.
     views: {
       'menuContent': {
         templateUrl: 'templates/genre.html',
-        controller:  'GenreCtrl'
+        controller: 'GenreCtrl'
       }
     }
   })
@@ -150,7 +150,7 @@ angular.module('swipe', ['ionic', 'swipe.services', 'swipe.controllers', 'ionic.
     views: {
       'menuContent': {
         templateUrl: 'templates/blog.html',
-        controller:  'BlogCtrl'
+        controller: 'BlogCtrl'
       }
     }
   });

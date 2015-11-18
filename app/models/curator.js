@@ -1,13 +1,15 @@
-var mongoose     = require('mongoose');
-var Schema       = mongoose.Schema;
+var mongoose = require('mongoose');
+var Schema = mongoose.Schema;
 
 // genre schema
 var CuratorSchema = new Schema({
-	name: String,
-	description: String,
-	icon: String,
-	songs: [{ url: String }],
-	createdAt: Date,
+  name: String,
+  description: String,
+  icon: String,
+  songs: [{
+    url: String
+  }],
+  createdAt: Date,
   updatedAt: Date
 });
 

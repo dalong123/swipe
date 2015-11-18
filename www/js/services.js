@@ -67,7 +67,7 @@ angular.module('swipe.services', [])
 /**
  *
  */
-.factory('Blog', function($http, $q, $filter) {
+.factory('Blog', function($http, $q) {
 
   return {
 
@@ -97,7 +97,7 @@ angular.module('swipe.services', [])
   }
 })
 
-.factory('ApiFactory', function($http){
+.factory('ApiFactory', function($http) {
   return {
 
     performGET: function(itemTypeEnum) {
@@ -111,7 +111,7 @@ angular.module('swipe.services', [])
   }
 })
 
-.factory('DataStore', function($http, $q, LocalStorage, ApiFactory){
+.factory('DataStore', function($http, $q, LocalStorage, ApiFactory) {
 
   return {
 

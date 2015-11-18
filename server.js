@@ -2,29 +2,31 @@
 // ======================================
 
 // CALL THE PACKAGES --------------------
-var express    = require('express');			// call express
-var app        = express(); 							// define our app using express
-var bodyParser = require('body-parser'); 	// get body-parser
-var morgan     = require('morgan'); 			// used to see requests
-var mongoose   = require('mongoose');
-var uriUtil 	 = require('mongodb-uri');
-var moment		 = require('moment');
-var config 	   = require('./config');
-var path 	   	 = require('path');
-var docs			 = require("express-mongoose-docs");
+var express = require('express'); // call express
+var app = express(); // define our app using express
+var bodyParser = require('body-parser'); // get body-parser
+var morgan = require('morgan'); // used to see requests
+var mongoose = require('mongoose');
+var uriUtil = require('mongodb-uri');
+var moment = require('moment');
+var config = require('./config');
+var path = require('path');
+var docs = require("express-mongoose-docs");
 
 // APP CONFIGURATION ==================
 // ====================================
 // use body parser so we can grab information from POST requests
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.urlencoded({
+  extended: true
+}));
 app.use(bodyParser.json());
 
 // configure our app to handle CORS requests
 app.use(function(req, res, next) {
-	res.setHeader('Access-Control-Allow-Origin', '*');
-	res.setHeader('Access-Control-Allow-Methods', 'GET, POST');
-	res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type, Authorization');
-	next();
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST');
+  res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type, Authorization');
+  next();
 });
 
 // log all requests to the console
@@ -39,8 +41,20 @@ START MONGODB SETUP
  * to a 30 second connection timeout because it allows for plenty of time
  * in most operating environments.
  */
-var options = { server: { socketOptions: { keepAlive: 1, connectTimeoutMS: 30000 } },
-                replset: { socketOptions: { keepAlive: 1, connectTimeoutMS : 30000 } } };
+var options = {
+  server: {
+    socketOptions: {
+      keepAlive: 1,
+      connectTimeoutMS: 30000
+    }
+  },
+  replset: {
+    socketOptions: {
+      keepAlive: 1,
+      connectTimeoutMS: 30000
+    }
+  }
+};
 
 /*
  * Mongoose uses a different connection string format than MongoDB's standard.
@@ -67,18 +81,18 @@ START API SETUP
 =============================================================================*/
 var apiRoutes = require('./app/routes/api')(app, express);
 app.use('/api', apiRoutes);
-var blogApi		= require('./app/routes/blogApi')(app, express);
+var blogApi = require('./app/routes/blogApi')(app, express);
 app.use('/api', blogApi);
-var genreApi		= require('./app/routes/genreApi')(app, express);
+var genreApi = require('./app/routes/genreApi')(app, express);
 app.use('/api', genreApi);
-var curatorApi		= require('./app/routes/curatorApi')(app, express);
+var curatorApi = require('./app/routes/curatorApi')(app, express);
 app.use('/api', curatorApi);
 /*=============================================================================
 END API SETUP
 =============================================================================*/
 
 app.get('/admin', function(req, res) {
-	res.sendFile(path.join(__dirname + '/admin/dist/index.html'));
+  res.sendFile(path.join(__dirname + '/admin/dist/index.html'));
 });
 
 // Generate documentation for the API via
@@ -88,7 +102,7 @@ docs(app, mongoose); // 2nd param is optional
 // SEND USERS TO FRONTEND ------------
 // has to be registered after API ROUTES
 app.get('*', function(req, res) {
-	res.sendFile(path.join(__dirname + '/www/index.html'));
+  res.sendFile(path.join(__dirname + '/www/index.html'));
 });
 
 // START THE SERVER

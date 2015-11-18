@@ -34,7 +34,10 @@ exports.postBlogs = function(req, res) {
     if (err)
       res.send(err);
 
-    res.json({ message: 'Blog added!', data: blog });
+    res.json({
+      message: 'Blog added!',
+      data: blog
+    });
   });
 };
 
@@ -63,18 +66,21 @@ exports.getBlog = function(req, res) {
 // Create endpoint /api/blogs/:blog_id for PUT
 exports.putBlog = function(req, res) {
   // Use the Blog model to find a specific blog
-  Blog.findByIdAndUpdate(req.params.blog_id, { title: req.body.title,
-                                               image: req.body.image,
-                                               url: req.body.url,
-                                               description: req.body.description,
-                                               kimonoId: req.body.kimonoId,
-                                               isOnDemand: req.body.isOnDemand,
-                                               onDemandVal: req.body.onDemandVal
-                                             }, function(err, num, raw) {
+  Blog.findByIdAndUpdate(req.params.blog_id, {
+    title: req.body.title,
+    image: req.body.image,
+    url: req.body.url,
+    description: req.body.description,
+    kimonoId: req.body.kimonoId,
+    isOnDemand: req.body.isOnDemand,
+    onDemandVal: req.body.onDemandVal
+  }, function(err, num, raw) {
     if (err)
       res.send(err);
 
-    res.json({ message: num + ' updated' });
+    res.json({
+      message: num + ' updated'
+    });
   });
 };
 
@@ -85,6 +91,8 @@ exports.deleteBlog = function(req, res) {
     if (err)
       res.send(err);
 
-    res.json({ message: 'Blog deleted!' });
+    res.json({
+      message: 'Blog deleted!'
+    });
   });
 };

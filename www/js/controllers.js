@@ -1,13 +1,13 @@
 angular.module('swipe.controllers', [])
 
 /**
-* 	With view caching in Ionic, Controllers are only called
-*   when they are recreated or on app start, instead of every page change.
-*   To listen for when this page is active (for example, to refresh data),
-*   listen for the $ionicView.enter event:
-*   $scope.$on('$ionicView.enter', function(e) {
-*   });
-*/
+ * 	With view caching in Ionic, Controllers are only called
+ *   when they are recreated or on app start, instead of every page change.
+ *   To listen for when this page is active (for example, to refresh data),
+ *   listen for the $ionicView.enter event:
+ *   $scope.$on('$ionicView.enter', function(e) {
+ *   });
+ */
 .controller('AppCtrl', function($scope, $ionicModal, $timeout) {
 
   // Form data for the login modal
@@ -42,13 +42,13 @@ angular.module('swipe.controllers', [])
   };
 })
 
- /**
-  * [controller description]
-  * @method controller
-  * @param  {[type]}   'ModalCtrl'      [description]
-  * @param  {[type]}   function($scope, $ionicModal   [description]
-  * @return {[type]}                    [description]
-  */
+/**
+ * [controller description]
+ * @method controller
+ * @param  {[type]}   'ModalCtrl'      [description]
+ * @param  {[type]}   function($scope, $ionicModal   [description]
+ * @return {[type]}                    [description]
+ */
 .controller('ModalCtrl', function($scope, $ionicModal) {
 
   $ionicModal.fromTemplateUrl('templates/post-modal.html', {
@@ -167,7 +167,7 @@ angular.module('swipe.controllers', [])
  * @param  {[type]}   function($scope, $stateParams, $filter, $ionicSwipeCardDelegate, $ionicModal, $ionicLoading, Blog, LocalStorage [description]
  * @return {[type]}                    [description]
  */
-.controller('BlogCtrl', function($scope, $stateParams, $ionicSwipeCardDelegate, $ionicModal, $ionicLoading, DataStore, Blog){
+.controller('BlogCtrl', function($scope, $stateParams, $ionicSwipeCardDelegate, $ionicModal, $ionicLoading, DataStore, Blog) {
 
   var blogId = '';
   var cardTypes = [];
@@ -196,7 +196,7 @@ angular.module('swipe.controllers', [])
     $scope.currentIndex = 0;
 
     // take in the route param for the specific view (IT SHOULD BE A NUMBER)
-    if(blogId === 'all'){
+    if (blogId === 'all') {
       // Build out our blog object for the all blogs view. We need to apply scope
       // variables for everything used in the view
       $scope.blog = {
@@ -210,9 +210,7 @@ angular.module('swipe.controllers', [])
       cardTypes = LocalStorage.getObject('blogs');
       $scope.cards = Array.prototype.slice.call(cardTypes, 0, 0);
       $ionicLoading.hide();
-    }
-    else
-    {
+    } else {
       DataStore.getItemByIDAsync(blogId, 'blogs').then(
         function(result) {
           // promise was fullfilled (regardless of outcome)
@@ -247,7 +245,7 @@ angular.module('swipe.controllers', [])
       var newCard = cardTypes[$scope.currentIndex];
       $scope.cards.push(angular.extend({}, newCard));
       $scope.currentIndex++;
-      if($scope.currentIndex == cardTypes.length) {
+      if ($scope.currentIndex == cardTypes.length) {
         $scope.currentIndex = 0;
       }
     };
@@ -269,7 +267,7 @@ angular.module('swipe.controllers', [])
  * @param  {[type]}   function($scope, $stateParams, $filter, $ionicSwipeCardDelegate, $ionicModal, $ionicLoading, Sounds [description]
  * @return {[type]}                    [description]
  */
-.controller('SoundsCtrl', function($scope, $ionicSwipeCardDelegate, $ionicModal, $ionicLoading, Sounds){
+.controller('SoundsCtrl', function($scope, $ionicSwipeCardDelegate, $ionicModal, $ionicLoading, Sounds) {
 
   var cardTypes = [];
 
@@ -311,7 +309,7 @@ angular.module('swipe.controllers', [])
       var newCard = cardTypes[$scope.currentIndex];
       $scope.cards.push(angular.extend({}, newCard));
       $scope.currentIndex++;
-      if($scope.currentIndex == cardTypes.length) {
+      if ($scope.currentIndex == cardTypes.length) {
         $scope.currentIndex = 0;
       }
     };
@@ -325,7 +323,7 @@ angular.module('swipe.controllers', [])
  * @param  {[type]}   function($scope, $stateParams, $filter, $ionicSwipeCardDelegate, $ionicModal, $ionicLoading, Sounds [description]
  * @return {[type]}                    [description]
  */
-.controller('CuratorsCtrl', function($scope, $ionicLoading, DataStore){
+.controller('CuratorsCtrl', function($scope, $ionicLoading, DataStore) {
 
   $scope.$on('$ionicView.enter', function(e) {
 
@@ -360,7 +358,7 @@ angular.module('swipe.controllers', [])
  * @param  {[type]}   function($scope, $stateParams, $filter, $ionicSwipeCardDelegate, $ionicModal, $ionicLoading, Sounds [description]
  * @return {[type]}                    [description]
  */
-.controller('CuratorCtrl', function($scope, $stateParams, $ionicSwipeCardDelegate, $ionicModal, $ionicLoading, DataStore){
+.controller('CuratorCtrl', function($scope, $stateParams, $ionicSwipeCardDelegate, $ionicModal, $ionicLoading, DataStore) {
 
   var cardTypes = [];
 
@@ -405,7 +403,7 @@ angular.module('swipe.controllers', [])
       var newCard = cardTypes[$scope.currentIndex];
       $scope.cards.push(angular.extend({}, newCard));
       $scope.currentIndex++;
-      if($scope.currentIndex == cardTypes.length) {
+      if ($scope.currentIndex == cardTypes.length) {
         $scope.currentIndex = 0;
       }
     };
@@ -419,7 +417,7 @@ angular.module('swipe.controllers', [])
  * @param  {[type]}   function($scope, $stateParams, $filter, $ionicSwipeCardDelegate, $ionicModal, $ionicLoading, Sounds [description]
  * @return {[type]}                    [description]
  */
-.controller('GenresCtrl', function($scope, $ionicLoading, DataStore){
+.controller('GenresCtrl', function($scope, $ionicLoading, DataStore) {
 
   $scope.$on('$ionicView.enter', function(e) {
 
@@ -454,7 +452,7 @@ angular.module('swipe.controllers', [])
  * @param  {[type]}   function($scope, $stateParams, $filter, $ionicSwipeCardDelegate, $ionicModal, $ionicLoading, Sounds [description]
  * @return {[type]}                    [description]
  */
-.controller('GenreCtrl', function($scope, $stateParams, $ionicSwipeCardDelegate, $ionicModal, $ionicLoading, DataStore){
+.controller('GenreCtrl', function($scope, $stateParams, $ionicSwipeCardDelegate, $ionicModal, $ionicLoading, DataStore) {
 
   var cardTypes = [];
 
@@ -499,7 +497,7 @@ angular.module('swipe.controllers', [])
       var newCard = cardTypes[$scope.currentIndex];
       $scope.cards.push(angular.extend({}, newCard));
       $scope.currentIndex++;
-      if($scope.currentIndex == cardTypes.length) {
+      if ($scope.currentIndex == cardTypes.length) {
         $scope.currentIndex = 0;
       }
     };

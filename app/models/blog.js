@@ -1,16 +1,16 @@
-var mongoose     = require('mongoose');
-var Schema       = mongoose.Schema;
+var mongoose = require('mongoose');
+var Schema = mongoose.Schema;
 
 // Blog schema
 var BlogSchema = new Schema({
-	title: String,
-	image: String,
-	url: String,
-	description: String,
-	kimonoId: String,
-	isOnDemand: Boolean,
-	onDemandVal: String,
-	createdAt: Date,
+  title: String,
+  image: String,
+  url: String,
+  description: String,
+  kimonoId: String,
+  isOnDemand: Boolean,
+  onDemandVal: String,
+  createdAt: Date,
   updatedAt: Date
 });
 
