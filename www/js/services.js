@@ -34,11 +34,11 @@ angular.module('swipe.services', [])
   return {
 
     performGET: function(itemTypeEnum) {
-      return $http.get('/api/' + itemTypeEnum)
+      return $http.get('http://localhost:8888/api/' + itemTypeEnum)
     },
 
     performItemGET: function(itemId, itemTypeEnum) {
-      return $http.get('/api/' + itemTypeEnum + '/' + itemId)
+      return $http.get('http://localhost:8888/api/' + itemTypeEnum + '/' + itemId)
     }
 
   }
@@ -101,7 +101,7 @@ angular.module('swipe.services', [])
     getBlogFeedAsync: function(kimonoId, isOnDemand) {
 
       var deferred = $q.defer();
-      var URL = '/api/blogs/getfeed/' + kimonoId;
+      var URL = 'http://localhost:8888/api/blogs/getfeed/' + kimonoId;
 
       return $http.get(URL)
         .then(function(response) {

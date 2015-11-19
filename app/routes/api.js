@@ -1,4 +1,5 @@
 var bodyParser = require('body-parser');
+var cors = require('cors');
 var User = require('../models/user');
 var Blog = require('../models/blog');
 var Genre = require('../models/genre');
@@ -15,7 +16,7 @@ module.exports = function(app, express) {
 
   // test route to make sure everything is working
   // accessed at GET http://localhost:8080/api
-  router.get('/', function(req, res) {
+  router.get('/', cors(), function(req, res) {
     res.json({
       message: 'Hello.'
     });

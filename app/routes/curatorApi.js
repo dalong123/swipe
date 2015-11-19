@@ -1,4 +1,5 @@
 var bodyParser = require('body-parser');
+var cors = require('cors');
 var curatorController = require('../controllers/curator');
 var jwt = require('jsonwebtoken');
 var config = require('../../config');
@@ -13,13 +14,13 @@ module.exports = function(app, express) {
 
   // Create endpoint handlers for /curators
   router.route('/curators')
-    .post(curatorController.postCurators)
-    .get(curatorController.getCurators);
+    .post(cors(), curatorController.postCurators)
+    .get(cors(), curatorController.getCurators);
 
   // Create endpoint handlers for /curators/:curator_id
   router.route('/curators/:curator_id')
-    .get(curatorController.getCurator)
-    .put(curatorController.putCurator)
+    .get(cors(), curatorController.getCurator)
+    .put(cors(), curatorController.putCurator)
     .delete(curatorController.deleteCurator);
 
   return router;

@@ -3,6 +3,7 @@
 
 // CALL THE PACKAGES --------------------
 var express = require('express'); // call express
+var cors = require('cors');
 var app = express(); // define our app using express
 var bodyParser = require('body-parser'); // get body-parser
 var morgan = require('morgan'); // used to see requests
@@ -22,12 +23,8 @@ app.use(bodyParser.urlencoded({
 app.use(bodyParser.json());
 
 // configure our app to handle CORS requests
-app.use(function(req, res, next) {
-  res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT');
-  res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type, Authorization');
-  next();
-});
+app.use(cors());
+app.options('*', cors());
 
 // log all requests to the console
 app.use(morgan('dev'));
