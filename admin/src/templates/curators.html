@@ -1,6 +1,45 @@
 <div class="row">
   <div class="col-sm-12">
     <h1>Curators</h1>
+    <select ng-options="curator as curator.name for curator in currentCurators" ng-model="currentCurator">
+      {{currentCurator.title}}
+    </select>
+    <!--<div ng-repeat="currentBlog in currentBlogs">-->
+    <div class ="row">
+        <div class="col-sm-2">
+                    <label class="label-right">Curator Title</label>
+        </div>
+        <div class="col-sm-4">
+          <input type="text"  ng-model="currentCurator.name" class="form-control input-xs">
+        </div>
+    </div>
+    <div class ="row">
+        <div class="col-sm-2">
+                    <label class="label-right">Curator Image URL</label>
+        </div>
+        <div class="col-sm-4">
+          <input type="text"  ng-model="currentCurator.icon" class="form-control input-xs">
+        </div>
+    </div>
+    <div class ="row">
+        <div class="col-sm-2">
+                  <label class="label-right">Curator Description</label>
+        </div>
+        <div class="col-sm-4">
+          <input type="text"  ng-model="currentCurator.description" class="form-control input-xs">
+        </div>
+    </div>
+    <div class ="row">
+        <div class="col-sm-2">
+                    <label class="label-right">Song URL</label>
+        </div>
+        <div class="col-sm-4">
+          <input type="text"  ng-model="currentCurator.newSongs" class="form-control input-xs">
+        </div>
+    </div>
+
+    <button type="button" class="btn btn-default" ng-click="UpdateCurator();">Update Curator</button>
+    <h3>Add Curator</h3>
         <div class ="row">
             <div class="col-sm-2">
                         <label class="label-right">Curator Title</label>
@@ -34,6 +73,6 @@
             </div>
         </div>
 
-        <button type="button" class="btn btn-default" ng-click="AddCurator();">Curator Blog</button>
+        <button type="button" class="btn btn-default" ng-click="AddCurator();">Add Curator</button>
       </div>
     </div>

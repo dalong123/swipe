@@ -4,11 +4,11 @@ CuratorCtrl.$inject = ['$scope','CuratorService'];
 
 function CuratorCtrl($scope, CuratorService){
 
-  $scope.curators = [];
+  $scope.currentCurators = [];
   $scope.curator = {};
   $scope.curator.songs = [];
 
-  $scope.curators = CuratorService.curators.query();
+  $scope.currentCurators = CuratorService.curators.query();
 
   $scope.AddCurator = function(){
 
@@ -22,6 +22,10 @@ function CuratorCtrl($scope, CuratorService){
                       // failure
                       alert("Error");
                    });
+
+  };
+
+  $scope.UpdateCurator = function($scope.currentCurator){
 
   };
 
