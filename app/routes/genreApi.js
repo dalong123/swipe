@@ -14,14 +14,14 @@ module.exports = function(app, express) {
 
   // Create endpoint handlers for /genres
   router.route('/genres')
-    .post(cors(), genreController.postGenres)
-    .get(cors(), genreController.getGenres);
+    .post(genreController.postGenres)
+    .get(genreController.getGenres);
 
   // Create endpoint handlers for /genres/:genre_id
   router.route('/genres/:genre_id')
-    .get(cors(), genreController.getGenre)
-    .put(cors(), genreController.putGenre)
-    .delete(cors(), genreController.deleteGenre);
+    .get(genreController.getGenre)
+    .put(genreController.putGenre)
+    .delete(genreController.deleteGenre);
 
   return router;
 };

@@ -16,14 +16,14 @@ module.exports = function(app, express) {
 
   // Create endpoint handlers for /blogs
   router.route('/blogs')
-    .post(cors(), blogController.postBlogs)
-    .get(cors(), blogController.getBlogs);
+    .post(blogController.postBlogs)
+    .get(blogController.getBlogs);
 
   // Create endpoint handlers for /blogs/:blog_id
   router.route('/blogs/:blog_id')
-    .get(cors(), blogController.getBlog)
-    .put(cors(), blogController.putBlog)
-    .delete(cors(), blogController.deleteBlog);
+    .get(blogController.getBlog)
+    .put(blogController.putBlog)
+    .delete(blogController.deleteBlog);
 
   /**
    * GET route for a single Kimono feed

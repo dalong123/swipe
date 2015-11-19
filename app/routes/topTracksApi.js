@@ -14,9 +14,9 @@ module.exports = function(app, express) {
 
   // Create endpoint handlers for /toptracks
   router.route('/toptracks')
-    .post(cors(), toptracksController.postTopTracks)
-    .get(cors(), toptracksController.getTopTracks)
-    .put(cors(), toptracksController.putTopTracks);
+    .post(toptracksController.postTopTracks)
+    .get(toptracksController.getTopTracks)
+    .put(toptracksController.putTopTracks);
 
   return router;
 };

@@ -14,14 +14,14 @@ module.exports = function(app, express) {
 
   // Create endpoint handlers for /curators
   router.route('/curators')
-    .post(cors(), curatorController.postCurators)
-    .get(cors(), curatorController.getCurators);
+    .post(curatorController.postCurators)
+    .get(curatorController.getCurators);
 
   // Create endpoint handlers for /curators/:curator_id
   router.route('/curators/:curator_id')
-    .get(cors(), curatorController.getCurator)
-    .put(cors(), curatorController.putCurator)
-    .delete(cors(), curatorController.deleteCurator);
+    .get(curatorController.getCurator)
+    .put(curatorController.putCurator)
+    .delete(curatorController.deleteCurator);
 
   return router;
 };
