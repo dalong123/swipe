@@ -23,8 +23,8 @@ app.use(bodyParser.urlencoded({
 app.use(bodyParser.json());
 
 // configure our app to handle CORS requests
-app.use(cors());
-app.options('*', cors());
+app.use(cors({credentials: true, origin: true}));
+//app.options('*', cors());
 
 // log all requests to the console
 app.use(morgan('dev'));
