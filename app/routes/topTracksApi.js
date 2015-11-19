@@ -1,4 +1,5 @@
 var bodyParser = require('body-parser');
+var cors = require('cors');
 var toptracksController = require('../controllers/toptracks');
 var jwt = require('jsonwebtoken');
 var config = require('../../config');
@@ -13,8 +14,8 @@ module.exports = function(app, express) {
 
   // Create endpoint handlers for /toptracks
   router.route('/toptracks')
-    .post(toptracksController.postTopTracks)
-    .get(toptracksController.getTopTracks)
+    .post(cors(), toptracksController.postTopTracks)
+    .get(cors(), toptracksController.getTopTracks)
     .put(toptracksController.putTopTracks);
 
   return router;

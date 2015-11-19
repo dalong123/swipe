@@ -3,6 +3,7 @@ angular.module('SwipeAdmin').factory('BlogService', BlogService);
 BlogService.$inject = ['$q', '$http', '$resource'];
 
 function BlogService($q,$http,$resource){
+  
   var BlogService = {
           //arrays
 

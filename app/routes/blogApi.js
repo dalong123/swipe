@@ -1,4 +1,5 @@
 var bodyParser = require('body-parser');
+var cors = require('cors');
 var blogController = require('../controllers/blog');
 var jwt = require('jsonwebtoken');
 var config = require('../../config');
@@ -15,13 +16,13 @@ module.exports = function(app, express) {
 
   // Create endpoint handlers for /blogs
   router.route('/blogs')
-    .post(blogController.postBlogs)
-    .get(blogController.getBlogs);
+    .post(cors(), blogController.postBlogs)
+    .get(cors(), blogController.getBlogs);
 
   // Create endpoint handlers for /blogs/:blog_id
   router.route('/blogs/:blog_id')
-    .get(blogController.getBlog)
-    .put(blogController.putBlog)
+    .get(cors(), blogController.getBlog)
+    .put(cors(), blogController.putBlog)
     .delete(blogController.deleteBlog);
 
   /**

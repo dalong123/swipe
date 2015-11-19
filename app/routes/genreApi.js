@@ -1,4 +1,5 @@
 var bodyParser = require('body-parser');
+var cors = require('cors');
 var genreController = require('../controllers/genre');
 var jwt = require('jsonwebtoken');
 var config = require('../../config');
@@ -13,12 +14,12 @@ module.exports = function(app, express) {
 
   // Create endpoint handlers for /genres
   router.route('/genres')
-    .post(genreController.postGenres)
-    .get(genreController.getGenres);
+    .post(cors(), genreController.postGenres)
+    .get(cors(), genreController.getGenres);
 
   // Create endpoint handlers for /genres/:genre_id
   router.route('/genres/:genre_id')
-    .get(genreController.getGenre)
+    .get(cors(), genreController.getGenre)
     .put(genreController.putGenre)
     .delete(genreController.deleteGenre);
 
