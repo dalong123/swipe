@@ -1,6 +1,6 @@
 (function(ionic) {
 
-  var swipeOffset = 25;
+  var swipeOffset = 40;
 
   // Get transform origin poly
   var d = document.createElement('div');
