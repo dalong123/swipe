@@ -21,7 +21,7 @@ module.exports = function(app, express) {
   router.route('/curators/:curator_id')
     .get(cors(), curatorController.getCurator)
     .put(cors(), curatorController.putCurator)
-    .delete(curatorController.deleteCurator);
+    .delete(cors(), curatorController.deleteCurator);
 
   return router;
 };

@@ -20,8 +20,8 @@ module.exports = function(app, express) {
   // Create endpoint handlers for /genres/:genre_id
   router.route('/genres/:genre_id')
     .get(cors(), genreController.getGenre)
-    .put(genreController.putGenre)
-    .delete(genreController.deleteGenre);
+    .put(cors(), genreController.putGenre)
+    .delete(cors(), genreController.deleteGenre);
 
   return router;
 };

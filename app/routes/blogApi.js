@@ -23,7 +23,7 @@ module.exports = function(app, express) {
   router.route('/blogs/:blog_id')
     .get(cors(), blogController.getBlog)
     .put(cors(), blogController.putBlog)
-    .delete(blogController.deleteBlog);
+    .delete(cors(), blogController.deleteBlog);
 
   /**
    * GET route for a single Kimono feed

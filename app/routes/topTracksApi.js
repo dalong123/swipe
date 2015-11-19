@@ -16,7 +16,7 @@ module.exports = function(app, express) {
   router.route('/toptracks')
     .post(cors(), toptracksController.postTopTracks)
     .get(cors(), toptracksController.getTopTracks)
-    .put(toptracksController.putTopTracks);
+    .put(cors(), toptracksController.putTopTracks);
 
   return router;
 };
