@@ -9,6 +9,7 @@
     <uib-tab heading="Long Justified">Long Labeled Justified content</uib-tab>
   </uib-tabset>-->
 
+
     <ul class="nav nav-tabs">
       <li class="active"><a data-target="#addBlog" data-toggle="tab">Add Blog</a></li>
       <li><a data-target="#deleteBlog" data-toggle="tab">Delete Blog</a></li>
@@ -80,7 +81,10 @@
 
 			  <div class="tab-pane" id="deleteBlog">Delete Blog</div>
 			  <div class="tab-pane active" id="updateBlog">
-          <div ng-repeat="currentBlog in currentBlogs">
+          <select ng-options="blog as blog.title for blog in currentBlogs" ng-model="currentBlog">
+            {{currentBlog.title}}
+          </select>
+          <!--<div ng-repeat="currentBlog in currentBlogs">-->
             <div class ="row">
                 <div class="col-sm-2">
                             <label class="label-right">Blog Title</label>
@@ -138,7 +142,7 @@
                 </div>
             </div>
             <button type="button" class="btn btn-default" ng-click="UpdateBlog(currentBlog);">Update Blog</button>
-          </div>
+          <!--</div>-->
         </div>
 
 			</div>
