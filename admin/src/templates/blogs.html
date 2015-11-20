@@ -1,9 +1,15 @@
 <div class="row">
   <div class="col-sm-12">
-    <h1>Blawgs</h1>
+    <h1>Blogs</h1>
 
-    <div ng-repeat="currentBlog in currentBlogs" >
-      <a href="#/editBlog/{{currentBlog._id}}">{{currentBlog.title}}</a>
-    </div>
+    <ul class="list-group">
+      <li class="list-group-item" ng-repeat="blog in blogs">
+        <span class="badge">
+          <a href="#/blogs/{{blog._id}}" style="color: #ffffff;">Edit</a>
+        </span>
+        {{blog.title}}
+      </li>
+    </ul>
+
   </div>
 </div>
