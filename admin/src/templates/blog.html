@@ -2,7 +2,7 @@
   <div class="col-sm-12">
     <h1>{{blog.title}}</h1>
 
-    <form ng-model="$scope.blog">
+    <form ng-model="$scope.blog" unsaved-warning-form>
       <div class="form-group">
         <label for="title">Title</label>
         <input class="form-control" id="title" ng-model="blog.title" type="text">
