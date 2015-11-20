@@ -25,6 +25,11 @@ angular.module('SwipeAdmin').config(['$stateProvider', '$urlRouterProvider',
                 templateUrl: 'templates/blogs.html',
                 controller: 'BlogsCtrl'
             })
+            .state('blog', {
+                url: '/blogs/:blogId',
+                templateUrl: 'templates/blog.html',
+                controller: 'BlogCtrl'
+            })
             .state('curators', {
                 url: '/curators',
                 templateUrl: 'templates/curators.html',
