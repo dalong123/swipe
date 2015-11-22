@@ -1,0 +1,45 @@
+<div class="row">
+  <div class="col-sm-12">
+    <h1>{{curator.name}}</h1>
+
+    <form ng-model="$scope.curator" unsaved-warning-form>
+      <div class="form-group">
+        <label for="title">Name</label>
+        <input class="form-control" id="title" ng-model="curator.name" type="text">
+      </div>
+      <div class="form-group">
+        <label for="description">Description</label>
+        <textarea class="form-control" id="description" ng-model="curator.description" type="text"></textarea>
+      </div>
+      <div class="form-group">
+        <label for="image">Image</label>
+        <input class="form-control" id="image" ng-model="curator.icon" type="text">
+      </div>
+      <div class="form-group" ng-repeat="song in curator.songs">
+        <div class="col-md-8">
+        <label for="url">URL</label>
+        <input class="form-control" id="url" ng-model="song.url" type="text">
+      </div>
+        <div class="col-md-4">
+          <button class="btn btn-danger" type="button" ng-click="RemoveSong($index)">Remove</button>
+        </div>
+      </div>
+      <div class="form-group">
+      <div class="col-md-8">
+      <label for="url">URL</label>
+      <input class="form-control" id="url" ng-model="newSong.url" type="text">
+    </div>
+      <div class="col-md-4">
+        <button class="btn btn-success" type="button" ng-click="AddSong(newSong)">Add</button>
+      </div>
+    </div>
+    </form>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-sm-12">
+      <button type="submit" class="btn btn-default" ng-click="SaveCurator();">Save</button>
+      <button class="btn btn-danger" type="button" ng-click="DeleteCurator()">Delete Curator</button>
+  </div>
+</div>

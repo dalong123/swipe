@@ -4,7 +4,10 @@ CuratorService.$inject = ['$resource'];
 
 function CuratorService($resource){
     return {
-        curators: $resource('http://localhost:8888/api/curators'),
-        curator: $resource('/curators/:curator_id')
+        Curators: $resource('http://localhost:8888/api/curators'),
+        Curator: $resource('http://localhost:8888/api/curators/:curator_id', null,
+        {
+            'update': { method:'PUT' }
+        })
   }
 };

@@ -20,6 +20,11 @@ angular.module('SwipeAdmin').config(['$stateProvider', '$urlRouterProvider',
                 templateUrl: 'templates/genres.html',
                 controller: 'GenresCtrl'
             })
+            .state('genre', {
+                url: '/genres/:genreId',
+                templateUrl: 'templates/genre.html',
+                controller: 'GenreCtrl'
+            })
             .state('blogs', {
                 url: '/blogs',
                 templateUrl: 'templates/blogs.html',
@@ -33,6 +38,11 @@ angular.module('SwipeAdmin').config(['$stateProvider', '$urlRouterProvider',
             .state('curators', {
                 url: '/curators',
                 templateUrl: 'templates/curators.html',
+                controller: 'CuratorsCtrl'
+            })
+            .state('curator', {
+                url: '/curators/:curatorId',
+                templateUrl: 'templates/curator.html',
                 controller: 'CuratorCtrl'
             })
             .state('tables', {

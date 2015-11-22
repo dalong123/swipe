@@ -1,12 +1,9 @@
-/**
- * Master Controller
- */
+angular.module('SwipeAdmin').controller('GenresCtrl', GenresCtrl);
 
-angular.module('SwipeAdmin')
-    .controller('GenresCtrl', ['$scope', GenreService, GenresCtrl]);
+GenresCtrl.$inject = ['$scope','GenreService'];
 
-function GenresCtrl($scope, GenreService) {
+function GenresCtrl($scope, GenreService){
 
-  $scope.users = GenreService.query();
+  $scope.genres = GenreService.Genres.query();
 
-}
+};

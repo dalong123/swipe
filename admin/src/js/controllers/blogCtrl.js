@@ -26,7 +26,16 @@ function BlogCtrl($scope, $stateParams, BlogService) {
   $scope.DeleteBlog = function() {
     var confirmDelete = confirm("Are you sure you want to delete this? You won't be able to get it back!");
     if (confirmDelete === true) {
-      $scope.blog.$delete();
+      BlogService.Blog.delete({
+        blog_id: $scope.blog._id
+        },null,
+        function(data) {
+          alert("Blog Deleted!");
+        },
+        function(e) {
+          // failure
+          alert("Error");
+        });
     }
   }
 

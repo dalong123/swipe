@@ -1,34 +1,17 @@
-angular.module('SwipeAdmin')
-.factory('GenreService', ['$scope', '$resource', GenreService]);
-function GenreService() {
-  // create a new object
-	var GenreService = {};
+angular.module('SwipeAdmin').factory('GenreService', GenreService);
 
-	// get a single user
-	GenreService.get = function(id) {
-		return $http.get('localhost:8888/api/genres/' + id);
-	};
+GenreService.$inject = ['$resource'];
 
-	// get all users
-	GenreService.all = function() {
-		return $http.get('localhost:8888/api/genres/');
-	};
+function GenreService($resource){
 
-	// create a user
-	GenreService.create = function(userData) {
-		return $http.post('localhost:8888/api/genres/', userData);
-	};
+  return{
 
-	// update a user
-	GenreService.update = function(id, userData) {
-		return $http.put('localhost:8888/api/genres/' + id, userData);
-	};
-
-	// delete a user
-	GenreService.delete = function(id) {
-		return $http.delete('localhost:8888/api/genres/' + id);
-	};
-
-	// return our entire GenreService object
-	return GenreService;
-}
+    // This should be named blog, as it returns a single blog object
+    Genre: $resource('http://localhost:8888/api/genres/:genre_id', null,
+    {
+        'update': { method:'PUT' }
+    }),
+    // This should be named blogs, as it returns an array of blog objects
+    Genres: $resource('http://localhost:8888/api/genres')
+  }
+};
