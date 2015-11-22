@@ -13,5 +13,4 @@ function TopTracksService($resource){
         'update': { method:'PUT' }
     })
   }
-  }
 };
