@@ -41,7 +41,7 @@ function CuratorCtrl($scope, $stateParams, CuratorService) {
         curator_id: $scope.curator._id
         },null,
         function(data) {
-          alert("Blog Deleted!");
+          alert("Curator Deleted!");
         },
         function(e) {
           // failure
