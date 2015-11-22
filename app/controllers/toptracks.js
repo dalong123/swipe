@@ -50,9 +50,6 @@ exports.getTopTracksById = function(req, res) {
 exports.putTopTracks = function(req, res) {
   // Use the toptracks model to find a specific toptracks
   TopTracks.findByIdAndUpdate(req.params.toptracks_id, {
-    name: req.body.name,
-    description: req.body.description,
-    icon: req.body.icon,
     songs: req.body.songs
   }, function(err, num, raw) {
     if (err)
