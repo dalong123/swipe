@@ -1,7 +1,9 @@
-<div class="row">
-  <div class="col-sm-12">
-    <h1>Add Blog</h1>
+<div class="modal-header">
+  <h4 class="modal-title">Add Blog</h4>
+</div>
 
+<div class="row" style="padding-top: 15px;">
+  <div class="col-sm-12">
     <form ng-model="$scope.blog" unsaved-warning-form>
       <div class="form-group">
         <label for="title">Title</label>
@@ -33,14 +35,11 @@
         <label for="onDemandVal">Kimono On-Demand Value</label>
         <input class="form-control" id="onDemandVal" ng-model="blog.onDemandVal" type="text">
       </div>
-
     </form>
   </div>
 </div>
 
-<div class="row">
-  <div class="col-sm-12">
-      <button type="submit" class="btn btn-primary" ng-click="SaveBlog();">Save</button>
-      <button class="btn btn-default" ng-click="Close()">Close</button>
-  </div>
+<div class="modal-footer">
+  <button type="submit" class="btn btn-success" ng-click="SaveBlog();">Save Blog</button>
+  <button class="btn btn-default" ng-click="Close()">Cancel</button>
 </div>

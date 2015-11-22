@@ -1,7 +1,9 @@
-<div class="row">
-  <div class="col-sm-12">
-    <h1>Add Curator</h1>
+<div class="modal-header">
+  <h4 class="modal-title">Add Channel</h4>
+</div>
 
+<div class="row" style="padding-top: 15px;">
+  <div class="col-sm-12">
     <form ng-model="$scope.curator" unsaved-warning-form>
       <div class="form-group">
         <label for="title">Name</label>
@@ -15,31 +17,28 @@
         <label for="image">Image</label>
         <input class="form-control" id="image" ng-model="curator.icon" type="text">
       </div>
+      <label>Songs</label>
       <div class="form-group" ng-repeat="song in curator.songs track by $index">
-        <div class="col-md-8">
-        <label for="url">URL</label>
-        <input class="form-control" id="url" ng-model="song.url" type="text">
-      </div>
-        <div class="col-md-4">
-          <button class="btn btn-danger" type="button" ng-click="RemoveSong($index)">Remove</button>
+        <div class="input-group">
+          <input class="form-control" id="url" ng-model="song.url" type="text">
+          <span class="input-group-btn">
+            <button class="btn btn-danger" ng-click="RemoveSong($index)" type="button">Remove</button>
+          </span>
         </div>
       </div>
       <div class="form-group">
-      <div class="col-md-8">
-      <label for="url">URL</label>
-      <input class="form-control" id="url" ng-model="newSong.url" type="text">
-    </div>
-      <div class="col-md-4">
-        <button class="btn btn-primary" type="button" ng-click="AddSong(newSong)">Add</button>
+        <div class="input-group">
+          <input class="form-control" ng-model="newSong.url" type="text" placeholder="url">
+          <span class="input-group-btn">
+            <button class="btn btn-success" ng-click="AddSong(newSong)" type="button">Add</button>
+          </div>
+        </div>
       </div>
-    </div>
     </form>
   </div>
 </div>
 
-<div class="row">
-  <div class="col-sm-12">
-      <button class="btn btn-primary" type="button" ng-click="SaveCurator();">Save</button>
-      <button class="btn btn-default" type="button" ng-click="Close()">Close</button>
-  </div>
+<div class="modal-footer">
+  <button class="btn btn-success" ng-click="SaveCurator();" type="button">Save Channel</button>
+  <button class="btn btn-default" ng-click="Close()" type="button">Cancel</button>
 </div>
