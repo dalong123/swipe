@@ -6,11 +6,25 @@ function GenreCtrl($scope, $stateParams, GenreService) {
 
   var genreId = $stateParams.genreId;
 
+  $scope.genre = [];
+
   $scope.genre = GenreService.Genre.get({
     genre_id: genreId
   });
 
-  $scope.SaveGenre= function() {
+  $scope.AddSong = function(song) {
+    $scope.genre.songs.push(song);
+    $scope.newSong = {};
+  }
+
+  $scope.RemoveSong = function(songIndex) {
+    var confirmDelete = confirm("Are you sure you want to delete this? You won't be able to get it back!");
+    if (confirmDelete === true) {
+      $scope.genre.songs.splice(songIndex, 1);
+    }
+  }
+
+  $scope.SaveGenre = function() {
     GenreService.Genre.update({
         genre_id: $scope.genre._id
       }, $scope.genre,
@@ -27,8 +41,8 @@ function GenreCtrl($scope, $stateParams, GenreService) {
     var confirmDelete = confirm("Are you sure you want to delete this? You won't be able to get it back!");
     if (confirmDelete === true) {
       GenreService.Genre.delete({
-        genre_id: $scope.genre._id
-        },null,
+          genre_id: $scope.genre._id
+        }, null,
         function(data) {
           alert("Genre Deleted!");
         },
@@ -38,5 +52,4 @@ function GenreCtrl($scope, $stateParams, GenreService) {
         });
     }
   }
-
 };

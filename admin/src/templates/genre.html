@@ -1,45 +1,42 @@
 <div class="row">
   <div class="col-sm-12">
     <h1>{{genre.name}}</h1>
-
     <form ng-model="$scope.genre" unsaved-warning-form>
       <div class="form-group">
         <label for="title">Name</label>
-        <input class="form-control" id="title" ng-model="genre.name" type="text">
+        <input class="form-control" id="title" ng-model="genre.name" type="text" resettable>
       </div>
       <div class="form-group">
         <label for="description">Description</label>
-        <textarea class="form-control" id="description" ng-model="genre.description" type="text"></textarea>
+        <textarea class="form-control" id="description" ng-model="genre.description" type="text" resettable></textarea>
       </div>
       <div class="form-group">
         <label for="image">Image</label>
-        <input class="form-control" id="image" ng-model="genre.icon" type="text">
+        <input class="form-control" id="image" ng-model="genre.icon" type="text" resettable>
       </div>
-      <div class="form-group" ng-repeat="song in genre.songs">
-        <div class="col-md-8">
-        <label for="url">URL</label>
-        <input class="form-control" id="url" ng-model="song.url" type="text">
-      </div>
-        <div class="col-md-4">
-          <button class="btn btn-danger" type="button" ng-click="RemoveSong($index)">Remove</button>
+
+      <div class="form-group">
+        <label for="url">Songs</label>
+        <div class="input-group" style="padding-bottom: 15px;">
+          <input class="form-control" id="url" ng-model="newSong.url" type="text" placeholder="Add a new song" resettable>
+          <span class="input-group-btn">
+            <button class="btn btn-success" ng-click="AddSong(newSong)" type="button">Add</button>
+          </span>
+        </div>
+        <div class="input-group" ng-repeat="song in genre.songs" style="padding-bottom: 15px;">
+          <input class="form-control" ng-model="song.url" type="text" resettable>
+          <span class="input-group-btn">
+            <button class="btn btn-danger" ng-click="RemoveSong($index)" type="button">Remove</button>
+          </div>
         </div>
       </div>
-      <div class="form-group">
-      <div class="col-md-8">
-      <label for="url">URL</label>
-      <input class="form-control" id="url" ng-model="newSong.url" type="text">
-    </div>
-      <div class="col-md-4">
-        <button class="btn btn-success" type="button" ng-click="AddSong(newSong)">Add</button>
-      </div>
-    </div>
     </form>
   </div>
 </div>
 
 <div class="row">
   <div class="col-sm-12">
-      <button type="submit" class="btn btn-default" ng-click="SaveGenre();">Save</button>
-      <button class="btn btn-danger" type="button" ng-click="DeleteGenre()">Delete Genre</button>
+    <button class="btn btn-default" ng-click="SaveGenre();" type="submit">Save</button>
+    <button class="btn btn-danger" ng-click="DeleteGenre()" type="button">Delete Genre</button>
   </div>
 </div>
