@@ -14,8 +14,11 @@ module.exports = function(app, express) {
 
   // Create endpoint handlers for /toptracks
   router.route('/toptracks')
-    .post(toptracksController.postTopTracks)
-    .get(toptracksController.getTopTracks)
+    .get(toptracksController.getTopTracks);
+
+  // Create endpoint handlers for /genres/:genre_id
+  router.route('/toptracks/:toptracks_id')
+    .get(toptracksController.getTopTracksById)
     .put(toptracksController.putTopTracks);
 
   return router;

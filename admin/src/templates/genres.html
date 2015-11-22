@@ -3,7 +3,7 @@
     <h1>Genres</h1>
 
     <div class="list-group">
-      <a class="list-group-item" href="#/genres/{{genre._id}}" ng-repeat="genre in genres">
+      <a class="list-group-item" ng-repeat="genre in genres" href="#/genres/{{genre._id}}">
         <h4 class="list-group-item-heading">{{genre.name}}</h4>
         <p class="list-group-item-text">
           {{genre.description}}

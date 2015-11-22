@@ -35,10 +35,21 @@ exports.getTopTracks = function(req, res) {
   });
 };
 
+// Create endpoint /api/toptracks/:toptracks_id for GET
+exports.getTopTracksById = function(req, res) {
+  // Use the toptracks model to find a specific toptracks
+  TopTracks.findById(req.params.toptracks_id, function(err, toptracks) {
+    if (err)
+      res.send(err);
+
+    res.json(toptracks);
+  });
+};
+
 // Create endpoint /api/toptracks/:toptracks_id for PUT
 exports.putTopTracks = function(req, res) {
   // Use the toptracks model to find a specific toptracks
-  TopTracks.findOneAndUpdate( { name: 'Top Tracks'}, {
+  TopTracks.findByIdAndUpdate(req.params.toptracks_id, {
     name: req.body.name,
     description: req.body.description,
     icon: req.body.icon,
@@ -49,6 +60,19 @@ exports.putTopTracks = function(req, res) {
 
     res.json({
       message: num + ' updated'
+    });
+  });
+};
+
+// Create endpoint /api/toptracks/:toptracks_id for DELETE
+exports.deleteTopTracks = function(req, res) {
+  // Use the toptracks model to find a specific toptracks and remove it
+  TopTracks.findByIdAndRemove(req.params.toptracks_id, function(err) {
+    if (err)
+      res.send(err);
+
+    res.json({
+      message: 'TopTracks deleted!'
     });
   });
 };
