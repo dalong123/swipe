@@ -4,11 +4,10 @@ AddCuratorCtrl.$inject = ['$scope', '$modalInstance', 'CuratorService'];
 
 function AddCuratorCtrl($scope, $modalInstance, CuratorService) {
 
+  $scope.curator = {};
+  $scope.curator.songs = [];
 
   $scope.AddSong = function(song){
-    if($scope.curator.songs == null){
-      $scope.curator.songs = [];
-    }
     $scope.curator.songs.push(song);
     $scope.newSong = {};
   }
