@@ -1,8 +1,8 @@
 angular.module('SwipeAdmin').controller('AddCuratorCtrl', AddCuratorCtrl);
 
-AddCuratorCtrl.$inject = ['$scope', '$stateParams', 'CuratorService'];
+AddCuratorCtrl.$inject = ['$scope', '$modalInstance', 'CuratorService'];
 
-function AddCuratorCtrl($scope, $stateParams, CuratorService) {
+function AddCuratorCtrl($scope, $modalInstance, CuratorService) {
 
 
   $scope.AddSong = function(song){
@@ -27,4 +27,9 @@ function AddCuratorCtrl($scope, $stateParams, CuratorService) {
         alert("Error");
       });
   }
+
+  $scope.Close = function(){
+    $modalInstance.close();
+  }
+
 };

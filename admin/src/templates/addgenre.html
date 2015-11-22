@@ -1,0 +1,43 @@
+<div class="row">
+  <div class="col-sm-12">
+    <h1>Genre</h1>
+    <form ng-model="$scope.genre" unsaved-warning-form>
+      <div class="form-group">
+        <label for="title">Name</label>
+        <input class="form-control" id="title" ng-model="genre.name" type="text" resettable>
+      </div>
+      <div class="form-group">
+        <label for="description">Description</label>
+        <textarea class="form-control" id="description" ng-model="genre.description" type="text" resettable></textarea>
+      </div>
+      <div class="form-group">
+        <label for="image">Image</label>
+        <input class="form-control" id="image" ng-model="genre.icon" type="text" resettable>
+      </div>
+
+      <div class="form-group">
+        <label for="url">Songs</label>
+        <div class="input-group" style="padding-bottom: 15px;">
+          <input class="form-control" id="url" ng-model="newSong.url" type="text" placeholder="Add a new song" resettable>
+          <span class="input-group-btn">
+            <button class="btn btn-success" ng-click="AddSong(newSong)" type="button">Add</button>
+          </span>
+        </div>
+        <div class="input-group" ng-repeat="song in genre.songs track by $index" style="padding-bottom: 15px;">
+          <input class="form-control" ng-model="song.url" type="text" resettable>
+          <span class="input-group-btn">
+            <button class="btn btn-danger" ng-click="RemoveSong($index)" type="button">Remove</button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
+<div class="row" style="border-top: 1px solid #ccc;">
+  <div class="col-sm-12" style="padding-top: 15px;">
+    <button class="btn btn-primary" ng-click="SaveGenre();" type="submit">Save Changes</button>
+    <button class="btn btn-default" ng-click="Close()" type="button">Close</button>
+
+  </div>
+</div>
