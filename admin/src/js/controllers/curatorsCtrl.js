@@ -1,10 +1,17 @@
 angular.module('SwipeAdmin').controller('CuratosrCtrl', CuratorsCtrl);
 
-CuratorsCtrl.$inject = ['$scope','CuratorService'];
+CuratorsCtrl.$inject = ['$scope','CuratorService', '$modal'];
 
-function CuratorsCtrl($scope, CuratorService){
+function CuratorsCtrl($scope, CuratorService, $modal){
 
   $scope.curators = CuratorService.Curators.query();
+
+  $scope.AddCurator = function(){
+    var modalInstance = $modal.open({
+      templateUrl: 'templates/addcurator.html',
+      controller: AddCuratorCtrl
+    });
+  }
 
   // $scope.currentCurators = [];
   // $scope.curator = {};
