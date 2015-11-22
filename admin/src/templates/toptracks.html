@@ -2,9 +2,9 @@
   <div class="col-sm-12">
     <h1>Top Tracks</h1>
 
-    <form ng-model="$scope.topTracks" unsaved-warning-form>
+    <form ng-model="$scope.topTracks" style="padding-top: 15px;" unsaved-warning-form>
+      <h4 for="url">Add New Song</h4>
       <div class="form-group">
-        <label for="url">Add New Song</label>
         <div class="input-group">
           <input class="form-control" id="url" ng-model="newSong.url" type="text" placeholder="URL">
           <span class="input-group-btn">
@@ -12,12 +12,10 @@
           </span>
         </div>
       </div>
-      <label>
-        Songs
-      </label>
+      <h4>Songs</h4>
       <div class="form-group" ng-repeat="song in topTrack.songs">
         <div class="input-group">
-          <input class="form-control" id="url" ng-model="song.url" type="text">
+          <input class="form-control" ng-model="song.url" type="text">
           <span class="input-group-btn">
             <button class="btn btn-danger" ng-click="RemoveSong($index)" type="button">Remove</button>
           </span>

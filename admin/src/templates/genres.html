@@ -1,12 +1,17 @@
 <div class="row">
   <div class="col-sm-12">
     <h1>Genres</h1>
+  </div>
+</div>
 
-    <div class="row">
-      <div class="col-md-4">
-      <button class="btn btn-default" type="button" ng-click="AddGenre()">Add New Genre</button>
-      </div>
-    </div>
+<div class="row">
+  <div class="col-sm-12">
+    <button class="btn btn-success" type="button" ng-click="AddGenre()">Add New Genre</button>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-sm-12">
     <div class="list-group">
       <a class="list-group-item" ng-repeat="genre in genres" href="#/genres/{{genre._id}}">
         <h4 class="list-group-item-heading">{{genre.name}}</h4>
