@@ -1,16 +1,30 @@
 angular.module('SwipeAdmin').factory('TopTracksService', TopTracksService);
 
-TopTracksService.$inject = ['$resource'];
+TopTracksService.$inject = ['$resource','$http'];
 
-function TopTracksService($resource){
+function TopTracksService($resource,$http){
 
-  return{
-      // This should be named blog, as it returns a single blog object
-    TopTracks: $resource('http://localhost:8888/api/toptracks'),
-    // This should be named blog, as it returns a single blog object
-    TopTrack: $resource('http://localhost:8888/api/toptracks/:toptrack_id', null,
-    {
-        'update': { method:'PUT' }
-    })
-  }
+
+  var TopTracksService = {
+          //arrays
+
+          //methods
+          GetAllTopTracks: _get,
+          UpdateTrack: _update,
+      };
+
+  return TopTracksService;
+
+  // get a single blog
+
+  // get all blogs
+  function _get() {
+    return $http.get('http://localhost:8888/api/toptracks');
+  };
+
+  function _update(id, track){
+    return $http.put('http://localhost:8888/api/toptracks/' + id, track);
+  };
+
+
 };

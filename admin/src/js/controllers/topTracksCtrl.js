@@ -4,22 +4,22 @@ TopTracksCtrl.$inject = ['$scope','TopTracksService'];
 
 function TopTracksCtrl($scope, TopTracksService){
 
-  $scope.topTracks = TopTracksService.TopTracks.query();
+  TopTracksService.GetAllTopTracks().then(function(result){
+      $scope.topTrack = result.data[0];
+  });
 
-  $scope.topTrack = TopTracksService.TopTrack.get({toptrack_id: $scope.topTracks[0]._id});
+  $scope.AddSong = function(song){
+    $scope.topTrack.songs.push(song);
+    $scope.newSong = {};
+  }
 
   $scope.RemoveSong = function(songIndex){
-        $scope.topTracks[0].songs.splice(songIndex, 1);
+        $scope.topTrack.songs.splice(songIndex, 1);
   }
 
   $scope.SaveTopTracks= function() {
-    TopTracksService.TopTracks.update($scope.topTracks, function(data) {
+    TopTracksService.UpdateTrack($scope.topTrack._id,$scope.topTrack).then(function(result){
       alert("Top Tracks Saved!");
-
-    },
-    function(e) {
-      // failure
-      alert("Error");
     });
   }
 
