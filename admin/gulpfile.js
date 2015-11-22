@@ -12,7 +12,7 @@ var gulp = require('gulp'),
 
 var paths = {
     scripts: 'src/js/**/*.*',
-    styles: 'src/less/**/*.*',
+    styles: 'src/less/*.*',
     images: 'src/img/**/*.*',
     templates: 'src/templates/**/*.html',
     index: 'src/index.html',
@@ -64,6 +64,7 @@ gulp.task('custom-js', function() {
 gulp.task('custom-less', function() {
     return gulp.src(paths.styles)
         .pipe(less())
+        .pipe(gulp.dest('src/css'))
         .pipe(gulp.dest('dist/css'));
 });
 
