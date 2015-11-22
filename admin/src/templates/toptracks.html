@@ -3,7 +3,7 @@
     <h1>Top Trackz</h1>
 
     <form ng-model="$scope.topTracks" unsaved-warning-form>
-      <div class="form-group" ng-repeat="song in topTracks[0].songs">
+      <div class="form-group" ng-repeat="song in topTrack.songs">
         <div class="col-md-8">
         <label for="url">URL</label>
         <input class="form-control" id="url" ng-model="song.url" type="text">
