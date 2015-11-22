@@ -18,6 +18,14 @@
         <input class="form-control" id="image" ng-model="curator.icon" type="text">
       </div>
       <label>Songs</label>
+      <div class="form-group">
+        <div class="input-group">
+          <input class="form-control" ng-model="newSong.url" placeholder="url" type="text">
+          <span class="input-group-btn">
+            <button class="btn btn-success" ng-click="AddSong(newSong)" type="button">Add</button>
+          </span>
+        </div>
+      </div>
       <div class="form-group" ng-repeat="song in curator.songs track by $index">
         <div class="input-group">
           <input class="form-control" id="url" ng-model="song.url" type="text">
@@ -26,13 +34,6 @@
           </span>
         </div>
       </div>
-      <div class="form-group">
-        <div class="input-group">
-          <input class="form-control" ng-model="newSong.url" type="text" placeholder="url">
-          <span class="input-group-btn">
-            <button class="btn btn-success" ng-click="AddSong(newSong)" type="button">Add</button>
-          </div>
-        </div>
     </form>
   </div>
 </div>
