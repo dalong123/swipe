@@ -56,7 +56,7 @@ angular.module('swipe', ['ionic', 'swipe.services', 'swipe.controllers', 'ionic.
 /**
  * Configure routing all controllers for all views
  */
-.config(function($stateProvider, $urlRouterProvider) {
+.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
   $stateProvider
 
     .state('app', {
@@ -157,6 +157,8 @@ angular.module('swipe', ['ionic', 'swipe.services', 'swipe.controllers', 'ionic.
 
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/app/home');
+
+  $locationProvider.html5Mode(true).hashPrefix('!')
 })
 
 .directive('noScroll', function($document) {
