@@ -2,14 +2,19 @@
   <div class="col-sm-12">
     <h1>Genres</h1>
 
-    <ul class="list-group">
-      <li class="list-group-item" ng-repeat="genre in genres">
-        <span class="badge">
-          <a href="#/genres/{{genre._id}}" style="color: #ffffff;">Edit</a>
-        </span>
-        {{genre.name}}
-      </li>
-    </ul>
+    <div class="list-group">
+      <a class="list-group-item" href="#/genres/{{genre._id}}" ng-repeat="genre in genres">
+        <h4 class="list-group-item-heading">{{genre.name}}</h4>
+        <p class="list-group-item-text">
+          {{genre.description}}
+          <span class="pull-right" style="margin-top: -15px;">
+            Last updated:
+            <br />
+            {{genre.updatedAt}}
+          </span>
+        </p>
+      </a>
+    </div>
 
   </div>
 </div>
