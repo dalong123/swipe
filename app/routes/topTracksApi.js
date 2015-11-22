@@ -16,9 +16,8 @@ module.exports = function(app, express) {
   router.route('/toptracks')
     .get(toptracksController.getTopTracks);
 
-  // Create endpoint handlers for /genres/:genre_id
+  // Create endpoint handlers for /toptracks/:toptracks_id
   router.route('/toptracks/:toptracks_id')
-    .get(toptracksController.getTopTracksById)
     .put(toptracksController.putTopTracks);
 
   return router;
