@@ -36,4 +36,8 @@
   "cordovaPlatforms": [
     "ios"
   ]
+  ,"main": "server.js",
+  "engines" : {
+    "node": "0.10.x"
+  }
 }

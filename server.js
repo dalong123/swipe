@@ -106,5 +106,9 @@ app.get('*', function(req, res) {
 
 // START THE SERVER
 // ====================================
+// UN-COMMENT THE FOLLOWING LINE BEFORE DEPLOYING TO PRODUCTION
+//app.listen(process.env.PORT)
+
+// TO RUN IN DEVELOPMENT, THE FOLLOWING LINE SHOULD BE UNCOMMENTED
 app.listen(config.port);
 console.log('Magic happens on port ' + config.port);
