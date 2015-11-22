@@ -45,6 +45,11 @@ angular.module('SwipeAdmin').config(['$stateProvider', '$urlRouterProvider',
                 templateUrl: 'templates/curator.html',
                 controller: 'CuratorCtrl'
             })
+            .state('toptracks', {
+                url: '/toptracks',
+                templateUrl: 'templates/toptracks.html',
+                controller: 'TopTracksCtrl'
+            })
             .state('tables', {
                 url: '/tables',
                 templateUrl: 'templates/tables.html'
