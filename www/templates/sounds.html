@@ -12,14 +12,15 @@
       <swipe-card ng-repeat="card in cards" on-card-swipe="cardSwiped($index)" on-destroy="cardDestroyed($index)">
         <div plangular="{{card.url}}">
         <div class="item item-body sound-embed">
-
             <div ng-if="!track" style="text-align: center;">
               <ion-spinner icon="ripple"></ion-spinner>
             </div>
             <div ng-if="track">
               <div class="row padding-bottom">
                 <div class="col padding-top">
-                  <img alt="{{track.title}}" ng-src="{{track.artwork_url}}" style="min-width: 50px;"/>
+                  <a ng-click="playPause()">
+                    <img alt="{{track.title}}" ng-src="{{track.artwork_url}}" style="min-width: 50px;"/>
+                  </a>
                 </div>
                 <div class="col col-70">
                   <h2 class="caps padding-left" style="margin-top: 5px;">
