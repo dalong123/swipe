@@ -2,7 +2,7 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 // genre schema
-var CuratorSchema = new Schema({
+var ChannelSchema = new Schema({
   name: String,
   description: String,
   icon: String,
@@ -14,7 +14,7 @@ var CuratorSchema = new Schema({
 });
 
 // on every save, add the date
-CuratorSchema.pre('save', function(next) {
+ChannelSchema.pre('save', function(next) {
   // get the current date
   var currentDate = new Date();
 
@@ -28,4 +28,4 @@ CuratorSchema.pre('save', function(next) {
   next();
 });
 
-module.exports = mongoose.model('Curator', CuratorSchema);
+module.exports = mongoose.model('Channel', ChannelSchema);

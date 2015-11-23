@@ -326,7 +326,7 @@ angular.module('swipe.controllers', [])
  * @param  {[type]}   function($scope, $stateParams, $filter, $ionicSwipeCardDelegate, $ionicModal, $ionicLoading, Sounds [description]
  * @return {[type]}                    [description]
  */
-.controller('CuratorsCtrl', function($scope, $ionicLoading, DataStore) {
+.controller('ChannelsCtrl', function($scope, $ionicLoading, DataStore) {
 
   $scope.$on('$ionicView.enter', function(e) {
 
@@ -339,11 +339,11 @@ angular.module('swipe.controllers', [])
       showDelay: 0
     });
 
-    DataStore.getItemsAsync('curators').then(
+    DataStore.getItemsAsync('channels').then(
       function(result) {
         // promise was fullfilled (regardless of outcome)
         // checks for information will be peformed here
-        $scope.curators = result;
+        $scope.channels = result;
         $ionicLoading.hide();
       },
       function(error) {
@@ -361,7 +361,7 @@ angular.module('swipe.controllers', [])
  * @param  {[type]}   function($scope, $stateParams, $filter, $ionicSwipeCardDelegate, $ionicModal, $ionicLoading, Sounds [description]
  * @return {[type]}                    [description]
  */
-.controller('CuratorCtrl', function($scope, $stateParams, $ionicSwipeCardDelegate, $ionicModal, $ionicLoading, DataStore) {
+.controller('ChannelCtrl', function($scope, $stateParams, $ionicSwipeCardDelegate, $ionicModal, $ionicLoading, DataStore) {
 
   var cardTypes = [];
 
@@ -376,17 +376,17 @@ angular.module('swipe.controllers', [])
       showDelay: 0
     });
 
-    var curatorId = $stateParams.curatorId;
+    var channelId = $stateParams.channelId;
 
     // the current index of the card being displayed to the user
     $scope.currentIndex = 0;
 
-    DataStore.getItemByIDAsync(curatorId, 'curators').then(
+    DataStore.getItemByIDAsync(channelId, 'channels').then(
       function(result) {
         // promise was fullfilled (regardless of outcome)
         // checks for information will be peformed here
-        $scope.curator = result;
-        cardTypes = $scope.curator.songs;
+        $scope.channel = result;
+        cardTypes = $scope.channel.songs;
         $scope.cards = Array.prototype.slice.call(cardTypes, 0, 0);
         $ionicLoading.hide();
       },

@@ -35,15 +35,15 @@ angular.module('SwipeAdmin').config(['$stateProvider', '$urlRouterProvider',
                 templateUrl: 'templates/blog.html',
                 controller: 'BlogCtrl'
             })
-            .state('curators', {
-                url: '/curators',
-                templateUrl: 'templates/curators.html',
-                controller: 'CuratorsCtrl'
+            .state('channels', {
+                url: '/channels',
+                templateUrl: 'templates/channels.html',
+                controller: 'ChannelsCtrl'
             })
-            .state('curator', {
-                url: '/curators/:curatorId',
-                templateUrl: 'templates/curator.html',
-                controller: 'CuratorCtrl'
+            .state('channel', {
+                url: '/channels/:channelId',
+                templateUrl: 'templates/channel.html',
+                controller: 'ChannelCtrl'
             })
             .state('toptracks', {
                 url: '/toptracks',

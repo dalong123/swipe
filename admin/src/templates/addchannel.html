@@ -4,18 +4,18 @@
 
 <div class="row" style="padding-top: 15px;">
   <div class="col-sm-12">
-    <form ng-model="$scope.curator" unsaved-warning-form>
+    <form ng-model="$scope.channel" unsaved-warning-form>
       <div class="form-group">
         <label for="title">Name</label>
-        <input class="form-control" id="title" ng-model="curator.name" type="text">
+        <input class="form-control" id="title" ng-model="channel.name" type="text">
       </div>
       <div class="form-group">
         <label for="description">Description</label>
-        <textarea class="form-control" id="description" ng-model="curator.description" type="text"></textarea>
+        <textarea class="form-control" id="description" ng-model="channel.description" type="text"></textarea>
       </div>
       <div class="form-group">
         <label for="image">Image</label>
-        <input class="form-control" id="image" ng-model="curator.icon" type="text">
+        <input class="form-control" id="image" ng-model="channel.icon" type="text">
       </div>
       <label>Songs</label>
       <div class="form-group">
@@ -26,7 +26,7 @@
           </span>
         </div>
       </div>
-      <div class="form-group" ng-repeat="song in curator.songs track by $index">
+      <div class="form-group" ng-repeat="song in channel.songs track by $index">
         <div class="input-group">
           <input class="form-control" id="url" ng-model="song.url" type="text">
           <span class="input-group-btn">
@@ -39,6 +39,6 @@
 </div>
 
 <div class="modal-footer">
-  <button class="btn btn-success" ng-click="SaveCurator();" type="button">Save Channel</button>
+  <button class="btn btn-success" ng-click="SaveChannel();" type="button">Save Channel</button>
   <button class="btn btn-default" ng-click="Close()" type="button">Cancel</button>
 </div>

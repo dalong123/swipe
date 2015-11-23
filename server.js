@@ -82,8 +82,8 @@ var blogApi = require('./app/routes/blogApi')(app, express);
 app.use('/api', blogApi);
 var genreApi = require('./app/routes/genreApi')(app, express);
 app.use('/api', genreApi);
-var curatorApi = require('./app/routes/curatorApi')(app, express);
-app.use('/api', curatorApi);
+var channelApi = require('./app/routes/channelApi')(app, express);
+app.use('/api', channelApi);
 var topTracksApi = require('./app/routes/topTracksApi')(app, express);
 app.use('/api', topTracksApi);
 /*=============================================================================

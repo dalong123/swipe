@@ -95,22 +95,22 @@ angular.module('swipe', ['ionic', 'swipe.services', 'swipe.controllers', 'ionic.
     }
   })
 
-  .state('app.curators', {
-    url: '/curators',
+  .state('app.channels', {
+    url: '/channels',
     views: {
       'menuContent': {
-        templateUrl: 'templates/curators.html',
-        controller: 'CuratorsCtrl'
+        templateUrl: 'templates/channels.html',
+        controller: 'ChannelsCtrl'
       }
     }
   })
 
-  .state('app.curator', {
-    url: '/curators/:curatorId',
+  .state('app.channel', {
+    url: '/channels/:channelId',
     views: {
       'menuContent': {
-        templateUrl: 'templates/curator.html',
-        controller: 'CuratorCtrl'
+        templateUrl: 'templates/channel.html',
+        controller: 'ChannelCtrl'
       }
     }
   })
