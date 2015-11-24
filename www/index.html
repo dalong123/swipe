@@ -21,17 +21,19 @@
     <!-- cordova script (this will be a 404 during development) -->
     <script src="cordova.js"></script>
 
-    <!-- your app's js -->
-    <script src="js/app.js"></script>
-    <script src="js/services.js"></script>
-    <script src="js/controllers.js"></script>
+    <script src="lib/pouchdb/dist/pouchdb.min.js"></script>
     <script src="js/ionic.swipecards.js"></script>
-
     <!-- At some point I'd like to get the code from this CDN, unminify it, and add it as a separate, local
         file to the project. A pre-production cleanup item I'm going to do is compile all scripts into a
         single JS file and minify that to improve overall load time and improve the effectiveness of caching
         our static files -->
     <script src="http://d2v52k3cl9vedd.cloudfront.net/plangular/3.1.0/plangular.min.js"></script>
+
+    <!-- your app's js -->
+    <script src="js/app.js"></script>
+    <script src="js/services.js"></script>
+    <script src="js/controllers.js"></script>
+
   </head>
 
   <body ng-app="swipe">
