@@ -30,6 +30,18 @@ angular.module('swipe.services', [])
   }
 }])
 
+.factory('Pouch', function() {
+  var db = new PouchDB('swipe'); // <--- this one uses any available adapter
+  // var idb = new PouchDB('idbpouch', {adapter: 'idb'}); // <--- this one uses
+  // IndexedDB
+  //var websql = new PouchDB('websqlpouch', {adapter: 'websql'}); // <--- this
+  //one uses WebSQL
+
+  var pouchdbSupported = !!db.adapter;
+  //$scope.idbSupported = !!idb.adapter;
+  //$scope.websqlSupported = !!websql.adapter;
+})
+
 .factory('ApiFactory', function($http) {
   return {
 
@@ -44,51 +56,87 @@ angular.module('swipe.services', [])
   }
 })
 
-.factory('DataStore', function($http, $q, LocalStorage, ApiFactory) {
+.factory('DataStore', function($http, $q, $timeout, $filter, LocalStorage, ApiFactory) {
 
   return {
 
-    // This fucntion returns the results of a call to the api/blogs, api/genres, etc. route
+    // This fucntion returns the results of a call to the api/blogs, api/genres,
+    // etc. route
     getItemsAsync: function(itemTypeEnum) {
 
       var itemObject = LocalStorage.getObject(itemTypeEnum);
 
       var deferred = $q.defer();
 
-      // if(!angular.equals({}, itemObject))
-
-      return ApiFactory.performGET(itemTypeEnum)
-        .then(function(response) {
-          // promise is fulfilled
-          LocalStorage.setObject(itemTypeEnum, response.data);
-          deferred.resolve(response.data);
-          return deferred.promise;
-        }, function(response) {
-          // the following line rejects the promise
-          deferred.reject(response);
-          return deferred.promise;
-        });
+      if (!angular.equals({}, itemObject))
+      {
+        $timeout(function(){
+          deferred.resolve(itemObject);
+        },100);
+        return deferred.promise;
+      }
+      else
+      {
+        return ApiFactory.performGET(itemTypeEnum)
+          .then(function(response) {
+            // promise is fulfilled
+            LocalStorage.setObject(itemTypeEnum, response.data);
+            deferred.resolve(response.data);
+            return deferred.promise;
+          }, function(response) {
+            // the following line rejects the promise
+            deferred.reject(response);
+            return deferred.promise;
+          });
+      }
 
     },
 
-    // This fucntion returns the results of a call to the api/blogs/id, api/genres/id, etc. route
+    // This fucntion returns the results of a call to the api/blogs/id,
+    // api/genres/id, etc. route
     getItemByIDAsync: function(itemId, itemTypeEnum) {
 
       var itemObject = LocalStorage.getObject(itemId);
 
       var deferred = $q.defer();
 
-      return ApiFactory.performItemGET(itemId, itemTypeEnum)
-        .then(function(response) {
-          // promise is fulfilled
-          LocalStorage.setObject(itemId, response.data);
-          deferred.resolve(response.data);
+      if (itemTypeEnum !== 'blogs')
+      {
+        var itemObjects = LocalStorage.getObject(itemTypeEnum);
+
+        if (!angular.equals({}, itemObjects))
+        {
+          var result = $filter('filter')(itemObjects, {_id: itemId})[0];
+          $timeout(function()
+          {
+            deferred.resolve(result);
+          },100);
           return deferred.promise;
-        }, function(response) {
-          // the following line rejects the promise
-          deferred.reject(response);
-          return deferred.promise;
-        });
+        }
+      }
+
+      if (!angular.equals({}, itemObject))
+      {
+        $timeout(function()
+        {
+          deferred.resolve(itemObject);
+        },100);
+        return deferred.promise;
+      }
+      else
+      {
+        return ApiFactory.performItemGET(itemId, itemTypeEnum)
+          .then(function(response) {
+            // promise is fulfilled
+            LocalStorage.setObject(itemId, response.data);
+            deferred.resolve(response.data);
+            return deferred.promise;
+          }, function(response) {
+            // the following line rejects the promise
+            deferred.reject(response);
+            return deferred.promise;
+          });
+      }
     },
 
     /**
