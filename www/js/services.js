@@ -68,15 +68,12 @@ angular.module('swipe.services', [])
 
       var deferred = $q.defer();
 
-      if (!angular.equals({}, itemObject))
-      {
-        $timeout(function(){
+      if (!angular.equals({}, itemObject)) {
+        $timeout(function() {
           deferred.resolve(itemObject);
-        },100);
+        }, 0);
         return deferred.promise;
-      }
-      else
-      {
+      } else {
         return ApiFactory.performGET(itemTypeEnum)
           .then(function(response) {
             // promise is fulfilled
@@ -100,42 +97,37 @@ angular.module('swipe.services', [])
 
       var deferred = $q.defer();
 
-      if (itemTypeEnum !== 'blogs')
-      {
+      if (itemTypeEnum !== 'blogs') {
         var itemObjects = LocalStorage.getObject(itemTypeEnum);
 
-        if (!angular.equals({}, itemObjects))
-        {
-          var result = $filter('filter')(itemObjects, {_id: itemId})[0];
-          $timeout(function()
-          {
+        if (!angular.equals({}, itemObjects)) {
+          var result = $filter('filter')(itemObjects, {
+            _id: itemId
+          })[0];
+          $timeout(function() {
             deferred.resolve(result);
-          },100);
+          }, 0);
           return deferred.promise;
         }
-      }
-
-      if (!angular.equals({}, itemObject))
-      {
-        $timeout(function()
-        {
-          deferred.resolve(itemObject);
-        },100);
-        return deferred.promise;
-      }
-      else
-      {
-        return ApiFactory.performItemGET(itemId, itemTypeEnum)
-          .then(function(response) {
-            // promise is fulfilled
-            LocalStorage.setObject(itemId, response.data);
-            deferred.resolve(response.data);
-            return deferred.promise;
-          }, function(response) {
-            // the following line rejects the promise
-            deferred.reject(response);
-            return deferred.promise;
-          });
+      } else {
+        if (!angular.equals({}, itemObject)) {
+          $timeout(function() {
+            deferred.resolve(itemObject);
+          }, 0);
+          return deferred.promise;
+        } else {
+          return ApiFactory.performItemGET(itemId, itemTypeEnum)
+            .then(function(response) {
+              // promise is fulfilled
+              LocalStorage.setObject(itemId, response.data);
+              deferred.resolve(response.data);
+              return deferred.promise;
+            }, function(response) {
+              // the following line rejects the promise
+              deferred.reject(response);
+              return deferred.promise;
+            });
+        }
       }
     },
 
