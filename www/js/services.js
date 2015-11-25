@@ -46,11 +46,11 @@ angular.module('swipe.services', [])
   return {
 
     performGET: function(itemTypeEnum) {
-      return $http.get('http://localhost:8888/api/' + itemTypeEnum)
+      return $http.get('/api/' + itemTypeEnum)
     },
 
     performItemGET: function(itemId, itemTypeEnum) {
-      return $http.get('http://localhost:8888/api/' + itemTypeEnum + '/' + itemId)
+      return $http.get('/api/' + itemTypeEnum + '/' + itemId)
     }
 
   }
@@ -64,7 +64,82 @@ angular.module('swipe.services', [])
     // etc. route
     getItemsAsync: function(itemTypeEnum) {
 
+      // get the item from localStorage. This will return an empty array on the
+      // first vist. Each object is named in localStorage by its path name. this
+      // function saves as blogs, genres, channels, etc.
       var itemObject = LocalStorage.getObject(itemTypeEnum);
+
+      // get the lastUpdatedTime for the current object from localStorage and
+      // default to an empty string if it doesn't exist yet
+      var itemLastUpdated = LocalStorage.get(itemTypeEnum + 'LastUpdated', '');
+
+      // This boolean determines whether the data is fresh enough. If not, we'll
+      // abandon localStorage and make a call to the API. Default to true so we
+      // hit the API on the first call visit
+      var dataIsOutDated = true;
+
+      // Check to see if the item has been updated yet
+      if (!angular.equals('', itemLastUpdated)) {
+
+        // Convert the value saved in localStorage to a Date object
+        var lastUpdatedTime = new Date(itemLastUpdated);
+
+        // Create a new Date object that is set to an hour before the current time
+        // TODO: THIS SHOULD BE A CONSTANT OF SOMESORT IN THE DATASTORE. THE VALUE
+        // CURRENTLY SET TO '60' IS THE NUMBER OF MINUTES THAT WILL BE SUBTRACTED
+        // FROM THE CURRENT TIME
+        var oneHourAgo = new Date(Date.now() - 60*60000);
+
+        // Set the data freshness boolean:
+        // This evaluates to false if that data has been updated within the past
+        // hour and true otherwise
+        dataIsOutDated = (lastUpdatedTime.getTime() < oneHourAgo.getTime());
+
+      }
+
+      var deferred = $q.defer();
+
+      if (!angular.equals({}, itemObject) && !dataIsOutDated)
+      {
+        $timeout(function()
+        {
+          deferred.resolve(itemObject);
+        }, 0);
+
+        console.log('serving local');
+        return deferred.promise;
+
+      }
+      else
+      {
+        return ApiFactory.performGET(itemTypeEnum)
+          .then(function(response) {
+            // Save the object to localStorage using the name of the route as the key
+            LocalStorage.setObject(itemTypeEnum, response.data);
+
+            //Set a variable
+            var currTime = new Date(Date.now());
+            LocalStorage.set(itemTypeEnum + 'LastUpdated', currTime);
+            deferred.resolve(response.data);
+            console.log('serving from db');
+            return deferred.promise;
+
+          }, function(response) {
+
+            // the following line rejects the promise
+            deferred.reject(response);
+            return deferred.promise;
+
+          });
+      }
+
+    },
+
+    // This fucntion returns the results of a call to the api/blogs/_id,
+    // api/genres/_id, etc. route
+    getItemByIDAsync: function(itemId, itemTypeEnum) {
+
+      var itemObject = LocalStorage.getObject(itemId);
 
       var deferred = $q.defer();
 
@@ -72,58 +147,33 @@ angular.module('swipe.services', [])
         $timeout(function() {
           deferred.resolve(itemObject);
         }, 0);
+        console.log('serving local');
         return deferred.promise;
-      } else {
-        return ApiFactory.performGET(itemTypeEnum)
-          .then(function(response) {
-            // promise is fulfilled
-            LocalStorage.setObject(itemTypeEnum, response.data);
-            deferred.resolve(response.data);
-            return deferred.promise;
-          }, function(response) {
-            // the following line rejects the promise
-            deferred.reject(response);
-            return deferred.promise;
-          });
       }
-
-    },
-
-    // This fucntion returns the results of a call to the api/blogs/id,
-    // api/genres/id, etc. route
-    getItemByIDAsync: function(itemId, itemTypeEnum) {
-
-      var itemObject = LocalStorage.getObject(itemId);
-
-      var deferred = $q.defer();
-
-      if (itemTypeEnum !== 'blogs') {
+      else
+      {
         var itemObjects = LocalStorage.getObject(itemTypeEnum);
 
         if (!angular.equals({}, itemObjects)) {
           var result = $filter('filter')(itemObjects, {
             _id: itemId
           })[0];
+          LocalStorage.setObject(itemId, result);
           $timeout(function() {
             deferred.resolve(result);
           }, 0);
+          console.log('serving local');
           return deferred.promise;
         }
-      } else {
-        if (!angular.equals({}, itemObject)) {
-          $timeout(function() {
-            deferred.resolve(itemObject);
-          }, 0);
-          return deferred.promise;
-        } else {
+        else
+        {
           return ApiFactory.performItemGET(itemId, itemTypeEnum)
             .then(function(response) {
-              // promise is fulfilled
               LocalStorage.setObject(itemId, response.data);
               deferred.resolve(response.data);
+              console.log('serving from db');
               return deferred.promise;
             }, function(response) {
-              // the following line rejects the promise
               deferred.reject(response);
               return deferred.promise;
             });
@@ -141,7 +191,7 @@ angular.module('swipe.services', [])
     getBlogFeedAsync: function(kimonoId, isOnDemand) {
 
       var deferred = $q.defer();
-      var URL = 'http://localhost:8888/api/blogs/getfeed/' + kimonoId;
+      var URL = '/api/blogs/getfeed/' + kimonoId;
 
       return $http.get(URL)
         .then(function(response) {
