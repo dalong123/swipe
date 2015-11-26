@@ -31,6 +31,7 @@ function BlogCtrl($scope, $stateParams, BlogService) {
         },null,
         function(data) {
           alert("Blog Deleted!");
+          window.location.href = "/#/blogs";
         },
         function(e) {
           // failure

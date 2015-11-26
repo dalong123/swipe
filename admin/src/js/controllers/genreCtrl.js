@@ -45,6 +45,7 @@ function GenreCtrl($scope, $stateParams, GenreService) {
         }, null,
         function(data) {
           alert("Genre Deleted!");
+          window.location.href = "/#/genres";
         },
         function(e) {
           // failure

@@ -42,6 +42,7 @@ function ChannelCtrl($scope, $stateParams, ChannelService) {
         },null,
         function(data) {
           alert("Channel Deleted!");
+          window.location.href = "/#/channels";
         },
         function(e) {
           // failure
