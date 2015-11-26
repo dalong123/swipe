@@ -19,6 +19,7 @@ function AddChannelCtrl($scope, $modalInstance, ChannelService) {
   $scope.SaveChannel = function(){
     ChannelService.Channels.save($scope.channel,
       function(data) {
+        $scope.channel = {};
         alert("Channel Added!");
       },
       function(e) {

@@ -8,6 +8,7 @@ function AddBlogCtrl($scope, $modalInstance, BlogService) {
   $scope.SaveBlog = function(){
     BlogService.Blogs.save($scope.blog,
       function(data) {
+        $scope.blog = {};
         alert("Blog Added!");
       },
       function(e) {

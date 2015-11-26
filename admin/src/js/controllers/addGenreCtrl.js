@@ -19,6 +19,7 @@ function AddGenreCtrl($scope, $modalInstance, GenreService) {
   $scope.SaveGenre = function(){
     GenreService.Genres.save($scope.genre,
       function(data) {
+        $scope.genre = {};
         alert("Genre Added!");
       },
       function(e) {
