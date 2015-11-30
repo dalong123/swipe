@@ -1,5 +1,18 @@
 angular.module('swipe.services', [])
 
+.factory('ImageService', function() {
+
+  return {
+
+    getImageClass: function() {
+      var images = [
+        "ferns-bg"
+      ]
+      return images[Math.floor(Math.random() * images.length)];
+    }
+  }
+})
+
 /**
  * [factory description]
  * @method factory
@@ -29,6 +42,10 @@ angular.module('swipe.services', [])
     }
   }
 }])
+
+.service('Pouch', function() {
+  this.db = new PouchDB('my_database');
+})
 
 .factory('Pouch', function() {
   var db = new PouchDB('swipe'); // <--- this one uses any available adapter
@@ -62,7 +79,7 @@ angular.module('swipe.services', [])
 
     // This fucntion returns the results of a call to the api/blogs, api/genres,
     // etc. route
-    getItemsAsync: function(itemTypeEnum) {
+    getItemsAsync: function(itemTypeEnum, forceDbCall) {
 
       // get the item from localStorage. This will return an empty array on the
       // first vist. Each object is named in localStorage by its path name. this
@@ -99,7 +116,7 @@ angular.module('swipe.services', [])
 
       var deferred = $q.defer();
 
-      if (!angular.equals({}, itemObject) && !dataIsOutDated)
+      if (!angular.equals({}, itemObject) && !dataIsOutDated && !forceDbCall)
       {
         $timeout(function()
         {
@@ -114,6 +131,7 @@ angular.module('swipe.services', [])
       {
         return ApiFactory.performGET(itemTypeEnum)
           .then(function(response) {
+
             // Save the object to localStorage using the name of the route as the key
             LocalStorage.setObject(itemTypeEnum, response.data);
 
@@ -143,7 +161,8 @@ angular.module('swipe.services', [])
 
       var deferred = $q.defer();
 
-      if (!angular.equals({}, itemObject)) {
+      if (!angular.equals({}, itemObject))
+      {
         $timeout(function() {
           deferred.resolve(itemObject);
         }, 0);

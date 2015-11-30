@@ -8,7 +8,9 @@ angular.module('swipe.controllers', [])
  *   $scope.$on('$ionicView.enter', function(e) {
  *   });
  */
-.controller('AppCtrl', function($scope, $ionicModal, $timeout) {
+.controller('AppCtrl', function($scope, $rootScope, $ionicModal, $timeout, ImageService) {
+
+  $rootScope.bgImg = ImageService.getImageClass();
 
   // Form data for the login modal
   $scope.loginData = {};
@@ -93,7 +95,7 @@ angular.module('swipe.controllers', [])
     $scope.date = new Date();
     // Make calls to the API/Blog services as necessary and initialize all
     // view-centric variables
-    DataStore.getItemsAsync('toptracks').then(
+    DataStore.getItemsAsync('toptracks', false).then(
       function(result) {
         // promise was fullfilled (regardless of outcome)
         // checks for information will be peformed here
@@ -144,10 +146,8 @@ angular.module('swipe.controllers', [])
       showDelay: 0
     });
 
-    DataStore.getItemsAsync('blogs').then(
+    DataStore.getItemsAsync('blogs', false).then(
       function(result) {
-        // promise was fullfilled (regardless of outcome)
-        // checks for information will be peformed here
         $scope.blogs = result;
         $ionicLoading.hide();
       },
@@ -156,8 +156,20 @@ angular.module('swipe.controllers', [])
         console.log(error.statusText);
       }
     );
-
   });
+
+  $scope.doRefresh = function() {
+    DataStore.getItemsAsync('blogs', true).then(
+      function(result) {
+        $scope.blogs = result;
+        // Stop the ion-refresher from spinning
+        $scope.$broadcast('scroll.refreshComplete');
+      },
+      function(error) {
+        console.log(error.statusText);
+      }
+    );
+  }
 })
 
 // We need to figure out a way to pass the entire blog object via the router,
@@ -287,7 +299,7 @@ angular.module('swipe.controllers', [])
     // the current index of the card being displayed to the user
     $scope.currentIndex = 0;
 
-    DataStore.getItemsAsync('toptracks').then(
+    DataStore.getItemsAsync('toptracks', false).then(
       function(result) {
         // promise was fullfilled (regardless of outcome)
         // checks for information will be peformed here
@@ -339,7 +351,7 @@ angular.module('swipe.controllers', [])
       showDelay: 0
     });
 
-    DataStore.getItemsAsync('channels').then(
+    DataStore.getItemsAsync('channels', false).then(
       function(result) {
         // promise was fullfilled (regardless of outcome)
         // checks for information will be peformed here
@@ -352,6 +364,19 @@ angular.module('swipe.controllers', [])
       }
     );
   });
+
+  $scope.doRefresh = function() {
+    DataStore.getItemsAsync('channels', true).then(
+      function(result) {
+        $scope.channels = result;
+        // Stop the ion-refresher from spinning
+        $scope.$broadcast('scroll.refreshComplete');
+      },
+      function(error) {
+        console.log(error.statusText);
+      }
+    );
+  }
 })
 
 /**
@@ -433,7 +458,7 @@ angular.module('swipe.controllers', [])
       showDelay: 0
     });
 
-    DataStore.getItemsAsync('genres').then(
+    DataStore.getItemsAsync('genres', false).then(
       function(result) {
         // promise was fullfilled (regardless of outcome)
         // checks for information will be peformed here
@@ -446,6 +471,19 @@ angular.module('swipe.controllers', [])
       }
     );
   });
+
+  $scope.doRefresh = function() {
+    DataStore.getItemsAsync('genres', true).then(
+      function(result) {
+        $scope.genres = result;
+        // Stop the ion-refresher from spinning
+        $scope.$broadcast('scroll.refreshComplete');
+      },
+      function(error) {
+        console.log(error.statusText);
+      }
+    );
+  }
 })
 
 /**
