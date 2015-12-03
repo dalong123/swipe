@@ -33,14 +33,13 @@
         <label for="onDemandVal">Kimono On-Demand Value</label>
         <input class="form-control" id="onDemandVal" ng-model="blog.onDemandVal" type="text">
       </div>
+      <div class="row">
+        <div class="col-sm-12">
+            <button type="submit" class="btn btn-success" ng-click="SaveBlog();">Save Changes</button>
+            <button class="btn btn-danger" ng-click="DeleteBlog()" type="button">Delete Blog</button>
+        </div>
+      </div>
 
     </form>
-  </div>
-</div>
-
-<div class="row">
-  <div class="col-sm-12">
-      <button type="submit" class="btn btn-success" ng-click="SaveBlog();">Save Changes</button>
-      <button class="btn btn-danger" ng-click="DeleteBlog()" type="button">Delete Blog</button>
   </div>
 </div>
