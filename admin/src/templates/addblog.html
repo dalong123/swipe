@@ -35,11 +35,12 @@
         <label for="onDemandVal">Kimono On-Demand Value</label>
         <input class="form-control" id="onDemandVal" ng-model="blog.onDemandVal" type="text">
       </div>
+
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-success" ng-click="SaveBlog();">Save Blog</button>
+        <button class="btn btn-default" ng-click="Close()">Cancel</button>
+      </div>
+
     </form>
   </div>
-</div>
-
-<div class="modal-footer">
-  <button type="submit" class="btn btn-success" ng-click="SaveBlog();">Save Blog</button>
-  <button class="btn btn-default" ng-click="Close()">Cancel</button>
 </div>
