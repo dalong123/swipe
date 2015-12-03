@@ -4,21 +4,21 @@
 
 <div class="row" style="padding-top: 15px;">
   <div class="col-sm-12">
-    <form ng-model="$scope.genre" unsaved-warning-form>
+    <form ng-model="$scope.genre" name="genreForm" unsaved-warning-form>
 
       <div class="form-group">
         <label for="title">Name</label>
-        <input class="form-control" id="title" ng-model="genre.name" resettable type="text">
+        <input class="form-control" id="title" ng-model="genre.name" resettable type="text" required>
       </div>
 
       <div class="form-group">
         <label for="description">Description</label>
-        <textarea class="form-control" id="description" ng-model="genre.description" resettable type="text"></textarea>
+        <textarea class="form-control" id="description" ng-model="genre.description" resettable type="text" required></textarea>
       </div>
 
       <div class="form-group">
         <label for="image">Image</label>
-        <input class="form-control" id="image" ng-model="genre.icon" resettable type="text">
+        <input class="form-control" id="image" ng-model="genre.icon" resettable type="text" required>
       </div>
 
       <div class="form-group">
@@ -41,7 +41,7 @@
       </div>
 
       <div class="modal-footer">
-        <button class="btn btn-success" ng-click="SaveGenre();" type="submit">Save Genre</button>
+        <button class="btn btn-success" ng-click="SaveGenre();" ng-disabled="genreForm.$invalid" type="submit">Save Genre</button>
         <button class="btn btn-default" ng-click="Close()" type="button">Cancel</button>
       </div>
     </form>

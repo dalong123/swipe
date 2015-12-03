@@ -4,18 +4,18 @@
 
 <div class="row" style="padding-top: 15px;">
   <div class="col-sm-12">
-    <form ng-model="$scope.channel" unsaved-warning-form>
+    <form ng-model="$scope.channel" name="channelForm" unsaved-warning-form>
       <div class="form-group">
         <label for="title">Name</label>
-        <input class="form-control" id="title" ng-model="channel.name" type="text">
+        <input class="form-control" id="title" ng-model="channel.name" type="text" required>
       </div>
       <div class="form-group">
         <label for="description">Description</label>
-        <textarea class="form-control" id="description" ng-model="channel.description" type="text"></textarea>
+        <textarea class="form-control" id="description" ng-model="channel.description" type="text" required></textarea>
       </div>
       <div class="form-group">
         <label for="image">Image</label>
-        <input class="form-control" id="image" ng-model="channel.icon" type="text">
+        <input class="form-control" id="image" ng-model="channel.icon" type="text" required>
       </div>
       <label>Songs</label>
       <div class="form-group">
@@ -35,7 +35,7 @@
         </div>
       </div>
       <div class="modal-footer">
-        <button class="btn btn-success" ng-click="SaveChannel();" type="button">Save Channel</button>
+        <button class="btn btn-success" ng-click="SaveChannel();" ng-disabled="channelForm.$invalid" type="button">Save Channel</button>
         <button class="btn btn-default" ng-click="Close()" type="button">Cancel</button>
       </div>
     </form>
