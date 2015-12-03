@@ -3,13 +3,13 @@ var Schema = mongoose.Schema;
 
 // Blog schema
 var BlogSchema = new Schema({
-  title: String,
-  image: String,
-  url: String,
-  description: String,
-  kimonoId: String,
-  isOnDemand: Boolean,
-  onDemandVal: String,
+  title: { type: String, default: '' },
+  image: { type: String, default: '' },
+  url: { type: String, default: '' },
+  description: { type: String, default: '' },
+  kimonoId: { type: String, default: '' },
+  isOnDemand: { type: Boolean, default: false },
+  onDemandVal: { type: String, default: '' },
   createdAt: Date,
   updatedAt: Date
 });

@@ -1,7 +1,3 @@
-// BASE SETUP
-// ======================================
-
-// CALL THE PACKAGES --------------------
 var express = require('express'); // call express
 var cors = require('cors');
 var app = express(); // define our app using express

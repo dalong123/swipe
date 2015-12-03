@@ -3,11 +3,11 @@ var Schema = mongoose.Schema;
 
 // genre schema
 var GenreSchema = new Schema({
-  name: String,
-  description: String,
-  icon: String,
+  name: { type: String, default: '' },
+  description: { type: String, default: '' },
+  icon: { type: String, default: '' },
   songs: [{
-    url: String
+    url: { type: String, default: '' }
   }],
   createdAt: Date,
   updatedAt: Date
