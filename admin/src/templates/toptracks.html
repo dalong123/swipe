@@ -1,3 +1,9 @@
+<!-- <head>
+  <script type="text/javascript" src="dist/ng-sortable.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="dist/ng-sortable.min.css">
+</head> -->
+
+
 <div class="row">
   <div class="col-sm-12">
     <h1>Top Tracks</h1>
@@ -13,12 +19,16 @@
         </div>
       </div>
       <h4>Songs</h4>
-      <div class="form-group" ng-repeat="song in topTrack.songs">
-        <div class="input-group">
-          <input class="form-control" ng-model="song.url" type="text">
-          <span class="input-group-btn">
-            <button class="btn btn-danger" ng-click="RemoveSong($index)" type="button">Remove</button>
-          </span>
+      <div data-as-sortable="sortableOptions" data-ng-model="topTrack.songs">
+        <div ng-repeat="song in topTrack.songs" data-as-sortable-item>
+          <div as-sortable-item-handle class="as-sortable-item-handle" style="height:50px">
+            <div class="input-group">
+              <input class="form-control" ng-model="song.url" type="text">
+              <span class="input-group-btn">
+                <button class="btn btn-danger" ng-click="RemoveSong($index)" type="button">Remove</button>
+              </span>
+            </div>
+          </div>
         </div>
       </div>
       <div class="row">

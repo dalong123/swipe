@@ -23,14 +23,26 @@
           </span>
         </div>
       </div>
-      <div class="form-group" ng-repeat="song in channel.songs">
+      <div data-as-sortable="sortableOptions" data-ng-model="channel.songs">
+        <div ng-repeat="song in channel.songs" data-as-sortable-item>
+          <div as-sortable-item-handle class="as-sortable-item-handle" style="height:50px">
+            <div class="input-group">
+              <input class="form-control" ng-model="song.url" type="text">
+              <span class="input-group-btn">
+                <button class="btn btn-danger" ng-click="RemoveSong($index)" type="button">Remove</button>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- <div class="form-group" ng-repeat="song in channel.songs">
         <div class="input-group">
           <input class="form-control" id="url" ng-model="song.url" type="text">
           <span class="input-group-btn">
             <button class="btn btn-danger" ng-click="RemoveSong($index)" type="button">Remove</button>
           </span>
         </div>
-      </div>
+      </div> -->
       <div class="row">
         <div class="col-sm-12">
           <button class="btn btn-success" ng-click="SaveChannel();" type="submit">Save Changes</button>

@@ -1,1 +1,1 @@
-angular.module('SwipeAdmin', ['ui.bootstrap', 'ui.router', 'ngResource', 'ngCookies', 'unsavedChanges']);
+angular.module('SwipeAdmin', ['ui.bootstrap', 'ui.router', 'ngResource', 'ngCookies', 'unsavedChanges','as.sortable']);

@@ -12,6 +12,11 @@ function ChannelCtrl($scope, $stateParams, ChannelService) {
     channel_id: channelId
   });
 
+  $scope.sortableOptions = {
+     containment: '#sortable-container'
+   };
+   
+
   $scope.SaveChannel = function() {
     ChannelService.Channel.update({
         channel_id: $scope.channel._id

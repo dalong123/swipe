@@ -12,6 +12,11 @@ function GenreCtrl($scope, $stateParams, GenreService) {
     genre_id: genreId
   });
 
+  $scope.sortableOptions = {
+     containment: '#sortable-container'
+   };
+   
+
   $scope.AddSong = function(song) {
     $scope.genre.songs.push(song);
     $scope.newSong = {};
