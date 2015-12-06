@@ -1,4 +1,3 @@
-var bodyParser = require('body-parser');
 var User = require('../models/user');
 
 /**

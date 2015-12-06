@@ -13,12 +13,10 @@ module.exports = function(app, express) {
 
   // Create endpoint handlers for /genres
   router.route('/genres')
-    .post(genreController.postGenres)
-    .get(genreController.getGenres);
+    .post(genreController.postGenres);
 
   // Create endpoint handlers for /genres/:genre_id
   router.route('/genres/:genre_id')
-    .get(genreController.getGenre)
     .put(genreController.putGenre)
     .delete(genreController.deleteGenre);
 

@@ -1,6 +1,10 @@
 var bodyParser = require('body-parser');
 var jwt = require('jsonwebtoken');
+var config = require('../../config');
 var User = require('../models/user');
+
+// super secret for creating tokens
+var superSecret = config.secret;
 
 // Create endpoint /api/auth for POST
 exports.authenticate = function(req, res) {

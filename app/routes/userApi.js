@@ -1,11 +1,8 @@
 var bodyParser = require('body-parser');
-var channelController = require('../controllers/user');
+var userController = require('../controllers/user');
 var jwt = require('jsonwebtoken');
 var config = require('../../config');
 var request = require('request');
-
-// super secret for creating tokens
-// var superSecret = config.secret;
 
 module.exports = function(app, express) {
 
@@ -17,10 +14,10 @@ module.exports = function(app, express) {
     .get(userController.getUsers);
 
   // Create endpoint handlers for /users/:user_id
-  router.route('/users/:user_id)')
-    .get(channelController.getUser)
-    .put(channelController.putUser)
-    .delete(channelController.deleteUser);
+  // router.route('/users/:user_id)')
+  //   .get(userController.getUser)
+  //   .put(userController.putUser)
+  //   .delete(userController.deleteUser);
 
   // api endpoint to get user information
   router.get('/me', function(req, res) {
@@ -28,5 +25,5 @@ module.exports = function(app, express) {
   });
 
   return router;
-  
+
 };

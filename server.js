@@ -71,8 +71,10 @@ app.use(express.static(__dirname + '/admin/dist'));
 /*=============================================================================
 START API SETUP
 =============================================================================*/
-//var apiRoutes = require('./app/routes/api')(app, express);
-//app.use('/api', apiRoutes);
+var publicApi = require('./app/routes/publicApi')(app, express);
+app.use('/api', publicApi);
+var userApi = require('./app/routes/userApi')(app, express);
+app.use('/api', userApi);
 var blogApi = require('./app/routes/blogApi')(app, express);
 app.use('/api', blogApi);
 var genreApi = require('./app/routes/genreApi')(app, express);
@@ -81,6 +83,8 @@ var channelApi = require('./app/routes/channelApi')(app, express);
 app.use('/api', channelApi);
 var topTracksApi = require('./app/routes/topTracksApi')(app, express);
 app.use('/api', topTracksApi);
+var authApi = require('./app/routes/authApi')(app, express);
+app.use('/api', authApi);
 /*=============================================================================
 END API SETUP
 =============================================================================*/
