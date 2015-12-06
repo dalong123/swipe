@@ -30,10 +30,8 @@
         <div data-as-sortable="sortableOptions" data-ng-model="genre.songs">
           <div data-as-sortable-item ng-repeat="song in genre.songs">
             <div class="input-group" style="margin-bottom: 15px;">
-              <span class="input-group-btn">
-                <button as-sortable-item-handle class="btn btn-default as-sortable-item-handle">
-                  <i class="fa fa-arrows-v"></i>
-                </button>
+              <span as-sortable-item-handle class="input-group-addon as-sortable-item-handle">
+                <i class="fa fa-arrows"></i>
               </span>
               <input class="form-control" ng-model="song.url" type="text">
               <span class="input-group-btn">
@@ -44,9 +42,9 @@
         </div>
       </div>
 
-      <div class="form-group" style="margin-top: 15px;">
+      <div class="form-group" style="margin-top: 30px;">
         <button class="btn btn-success" ng-click="SaveGenre();" type="submit">Save Changes</button>
-        <button class="btn btn-danger" ng-click="DeleteGenre()" type="button">Delete Genre</button>
+        <button class="btn btn-danger pull-right" ng-click="DeleteGenre()" type="button">Delete Genre</button>
       </div>
     </form>
   </div>
