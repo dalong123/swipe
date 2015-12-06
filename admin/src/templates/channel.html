@@ -29,6 +29,9 @@
             <button class="btn btn-success" ng-click="AddSong(newSong)" type="button">Add</button>
           </span>
         </div>
+        <div class="alert alert-warning">
+          Make sure to press 'Save Changes' after reordering any songs.
+        </div>
         <div data-as-sortable="sortableOptions" data-ng-model="channel.songs">
           <div data-as-sortable-item ng-repeat="song in channel.songs">
             <div class="input-group" style="margin-bottom: 15px;">
