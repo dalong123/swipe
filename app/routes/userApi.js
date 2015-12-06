@@ -1,8 +1,4 @@
-var bodyParser = require('body-parser');
 var userController = require('../controllers/user');
-var jwt = require('jsonwebtoken');
-var config = require('../../config');
-var request = require('request');
 
 module.exports = function(app, express) {
 

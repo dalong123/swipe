@@ -1,4 +1,3 @@
-var bodyParser = require('body-parser');
 var channelController = require('../controllers/channel');
 
 module.exports = function(app, express) {

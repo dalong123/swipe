@@ -1,4 +1,6 @@
 var bodyParser = require('body-parser');
+var request = require('request');
+var config = require('../../config');
 var toptracksController = require('../controllers/toptracks');
 var channelController = require('../controllers/channel');
 var genreController = require('../controllers/genre');
@@ -7,6 +9,9 @@ var blogController = require('../controllers/blog');
 module.exports = function(app, express) {
 
   var router = express.Router();
+
+  var kimonoKey = config.kimonoKey;
+  var apiKeyStr = '?apikey=' + kimonoKey;
 
   router.route('/toptracks')
     .get(toptracksController.getTopTracks);
