@@ -1,5 +1,4 @@
 var bodyParser = require('body-parser');
-var cors = require('cors');
 var blogController = require('../controllers/blog');
 var jwt = require('jsonwebtoken');
 var config = require('../../config');

@@ -18,7 +18,7 @@ module.exports = function(app, express) {
   // accessed at GET http://localhost:8080/api
   router.get('/', cors(), function(req, res) {
     res.json({
-      message: 'Hello.'
+      message: 'Hello, world.'
     });
   });
 

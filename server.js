@@ -66,14 +66,13 @@ END MONGODB SETUP
 // set static files location
 // used for requests that our frontend will make
 app.use(express.static(__dirname + '/www'));
-
 app.use(express.static(__dirname + '/admin/dist'));
 
 /*=============================================================================
 START API SETUP
 =============================================================================*/
-var apiRoutes = require('./app/routes/api')(app, express);
-app.use('/api', apiRoutes);
+//var apiRoutes = require('./app/routes/api')(app, express);
+//app.use('/api', apiRoutes);
 var blogApi = require('./app/routes/blogApi')(app, express);
 app.use('/api', blogApi);
 var genreApi = require('./app/routes/genreApi')(app, express);

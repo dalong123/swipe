@@ -1,9 +1,8 @@
 var bodyParser = require('body-parser');
-var cors = require('cors');
 var channelController = require('../controllers/channel');
-var jwt = require('jsonwebtoken');
-var config = require('../../config');
-var request = require('request');
+// var jwt = require('jsonwebtoken');
+// var config = require('../../config');
+// var request = require('request');
 
 // super secret for creating tokens
 // var superSecret = config.secret;

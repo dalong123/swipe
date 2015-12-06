@@ -12,10 +12,6 @@
 
       <swipe-card ng-repeat="card in cards" on-card-swipe="cardSwiped($index)"
                   on-destroy="cardDestroyed($index)">
-        <div class="item">
-          <!-- <img src="mcfly.jpg"> -->
-          <h2>{{card.index}}<span><p style="float: right;">{{card.date}}</p></span></h2>
-        </div>
 
         <div class="item item-body">
           <h2 class="padding-bottom">
@@ -32,13 +28,13 @@
             <p>{{card.description}}</p>
           </div>
           <div ng-if="card.description.text != null">
-            <p>{{card.description.text}}</p>
+            <p>{{ card.description.text | limitTo: 50 }}</p>
           </div>
         </div>
-
         <a ng-controller="ModalCtrl" on-tap="openModal();" ng-model="$scope.cards" class="item item-icon-right">
           <span class="pull-right">View Post<i class="icon ion-ios-arrow-right"></i></span>
         </a>
+
       </swipe-card>
     </swipe-cards>
   </ion-content>
