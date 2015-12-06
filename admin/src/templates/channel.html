@@ -1,7 +1,11 @@
 <div class="row">
   <div class="col-sm-12">
     <h1>{{channel.name}}</h1>
+  </div>
+</div>
 
+<div class="row">
+  <div class="col-sm-12">
     <form ng-model="$scope.channel" unsaved-warning-form>
       <div class="form-group">
         <label for="title">Name</label>
@@ -16,17 +20,23 @@
         <input class="form-control" id="image" ng-model="channel.icon" type="text">
       </div>
       <div class="form-group">
-        <div class="input-group">
-          <input class="form-control" id="url" ng-model="newSong.url" type="text" placeholder="url">
+        <label class="control-label">
+          Songs
+        </label>
+        <div class="input-group" style="margin-bottom: 15px;">
+          <input class="form-control" id="url" ng-model="newSong.url" placeholder="url" type="text">
           <span class="input-group-btn">
             <button class="btn btn-success" ng-click="AddSong(newSong)" type="button">Add</button>
           </span>
         </div>
-      </div>
-      <div data-as-sortable="sortableOptions" data-ng-model="channel.songs">
-        <div ng-repeat="song in channel.songs" data-as-sortable-item>
-          <div as-sortable-item-handle class="as-sortable-item-handle" style="height:50px">
-            <div class="input-group">
+        <div data-as-sortable="sortableOptions" data-ng-model="channel.songs">
+          <div data-as-sortable-item ng-repeat="song in channel.songs">
+            <div class="input-group" style="margin-bottom: 15px;">
+              <span class="input-group-btn">
+                <button as-sortable-item-handle class="btn btn-default as-sortable-item-handle">
+                  <i class="fa fa-arrows-v"></i>
+                </button>
+              </span>
               <input class="form-control" ng-model="song.url" type="text">
               <span class="input-group-btn">
                 <button class="btn btn-danger" ng-click="RemoveSong($index)" type="button">Remove</button>
@@ -35,19 +45,9 @@
           </div>
         </div>
       </div>
-      <!-- <div class="form-group" ng-repeat="song in channel.songs">
-        <div class="input-group">
-          <input class="form-control" id="url" ng-model="song.url" type="text">
-          <span class="input-group-btn">
-            <button class="btn btn-danger" ng-click="RemoveSong($index)" type="button">Remove</button>
-          </span>
-        </div>
-      </div> -->
-      <div class="row">
-        <div class="col-sm-12">
-          <button class="btn btn-success" ng-click="SaveChannel();" type="submit">Save Changes</button>
-          <button class="btn btn-danger" ng-click="DeleteChannel()" type="button">Delete Channel</button>
-        </div>
+      <div class="form-group">
+        <button class="btn btn-success" ng-click="SaveChannel();" type="submit">Save Changes</button>
+        <button class="btn btn-danger" ng-click="DeleteChannel()" type="button">Delete Channel</button>
       </div>
     </form>
   </div>

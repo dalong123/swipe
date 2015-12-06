@@ -1,25 +1,28 @@
 <div class="row">
-  <div class="col-sm-12">
+  <div class="col-xs-8">
     <h1>Blogs</h1>
   </div>
-</div>
-
-<div class="row">
-  <div class="col-sm-12">
-    <button class="btn btn-success" type="button" ng-click="AddBlog()">Add New Blog</button>
+  <div class="col-xs-4">
+    <button class="btn btn-success pull-right" ng-click="AddBlog()" type="button">
+      <i class="fa fa-plus"></i>
+      Add New Blog
+    </button>
   </div>
 </div>
 
 <div class="row">
   <div class="col-sm-12">
-    <ul class="list-group">
-      <li class="list-group-item" ng-repeat="blog in blogs">
-        <span class="badge">
-          <a href="#/blogs/{{blog._id}}" style="color: #ffffff;">Edit</a>
-        </span>
-        {{blog.title}}
-      </li>
-    </ul>
-
+    <div class="list-group">
+      <a class="list-group-item" href="#/blogs/{{blog._id}}" ng-repeat="blog in blogs">
+        <h4 class="list-group-item-heading">{{blog.title}}</h4>
+        <p class="list-group-item-text">
+          {{blog.description}}
+        </p>
+        <small style="padding-top: 5px;">
+          Last updated:
+          {{blog.updatedAt}}
+        </small>
+      </a>
+    </div>
   </div>
 </div>

@@ -1,7 +1,11 @@
 <div class="row">
   <div class="col-sm-12">
     <h1>{{blog.title}}</h1>
+  </div>
+</div>
 
+<div class="row">
+  <div class="col-sm-12">
     <form ng-model="$scope.blog" unsaved-warning-form>
       <div class="form-group">
         <label for="title">Title</label>
@@ -23,23 +27,22 @@
         <label for="kimonoId">Kimono ID</label>
         <input class="form-control" id="kimonoId" ng-model="blog.kimonoId" type="text">
       </div>
-      <div class="checkbox">
-        <label>
-          <input type="checkbox" ng-model="blog.isOnDemand">
-          On-Demand
-        </label>
+      <div class="form-group">
+        <div class="checkbox">
+          <label>
+            <input ng-model="blog.isOnDemand" type="checkbox">
+            On-Demand
+          </label>
+        </div>
       </div>
       <div class="form-group">
         <label for="onDemandVal">Kimono On-Demand Value</label>
         <input class="form-control" id="onDemandVal" ng-model="blog.onDemandVal" type="text">
       </div>
-      <div class="row">
-        <div class="col-sm-12">
-            <button type="submit" class="btn btn-success" ng-click="SaveBlog();">Save Changes</button>
-            <button class="btn btn-danger" ng-click="DeleteBlog()" type="button">Delete Blog</button>
-        </div>
+      <div class="form-group">
+        <button class="btn btn-success" ng-click="SaveBlog();" type="submit">Save Changes</button>
+        <button class="btn btn-danger" ng-click="DeleteBlog()" type="button">Delete Blog</button>
       </div>
-
     </form>
   </div>
 </div>

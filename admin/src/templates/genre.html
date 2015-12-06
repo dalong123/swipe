@@ -1,48 +1,53 @@
 <div class="row">
   <div class="col-sm-12">
     <h1>{{genre.name}}</h1>
+  </div>
+</div>
+<div class="row">
+  <div class="col-sm-12">
     <form ng-model="$scope.genre" unsaved-warning-form>
       <div class="form-group">
         <label for="title">Name</label>
-        <input class="form-control" id="title" ng-model="genre.name" type="text" resettable>
+        <input class="form-control" id="title" ng-model="genre.name" resettable type="text">
       </div>
       <div class="form-group">
         <label for="description">Description</label>
-        <textarea class="form-control" id="description" ng-model="genre.description" type="text" resettable></textarea>
+        <textarea class="form-control" id="description" ng-model="genre.description" resettable type="text"></textarea>
       </div>
       <div class="form-group">
         <label for="image">Image</label>
-        <input class="form-control" id="image" ng-model="genre.icon" type="text" resettable>
+        <input class="form-control" id="image" ng-model="genre.icon" resettable type="text">
       </div>
 
       <div class="form-group">
         <label for="url">Songs</label>
         <div class="input-group" style="padding-bottom: 15px;">
-          <input class="form-control" id="url" ng-model="newSong.url" type="text" placeholder="Add a new song" resettable>
+          <input class="form-control" id="url" ng-model="newSong.url" placeholder="Add a new song" resettable type="text">
           <span class="input-group-btn">
             <button class="btn btn-success" ng-click="AddSong(newSong)" type="button">Add</button>
           </span>
         </div>
         <div data-as-sortable="sortableOptions" data-ng-model="genre.songs">
-          <div ng-repeat="song in genre.songs" data-as-sortable-item>
-            <div as-sortable-item-handle class="as-sortable-item-handle" style="height:50px">
-              <div class="input-group">
-                <input class="form-control" ng-model="song.url" type="text">
-                <span class="input-group-btn">
-                  <button class="btn btn-danger" ng-click="RemoveSong($index)" type="button">Remove</button>
-                </span>
-              </div>
+          <div data-as-sortable-item ng-repeat="song in genre.songs">
+            <div class="input-group" style="margin-bottom: 15px;">
+              <span class="input-group-btn">
+                <button as-sortable-item-handle class="btn btn-default as-sortable-item-handle">
+                  <i class="fa fa-arrows-v"></i>
+                </button>
+              </span>
+              <input class="form-control" ng-model="song.url" type="text">
+              <span class="input-group-btn">
+                <button class="btn btn-danger" ng-click="RemoveSong($index)" type="button">Remove</button>
+              </span>
             </div>
           </div>
         </div>
-        </div>
       </div>
-    </form>
-    <div class="row" style="border-top: 1px solid #ccc;">
-      <div class="col-sm-12" style="padding-top: 15px;">
+
+      <div class="form-group" style="margin-top: 15px;">
         <button class="btn btn-success" ng-click="SaveGenre();" type="submit">Save Changes</button>
         <button class="btn btn-danger" ng-click="DeleteGenre()" type="button">Delete Genre</button>
       </div>
-    </div>
+    </form>
   </div>
 </div>
