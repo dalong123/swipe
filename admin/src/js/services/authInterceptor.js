@@ -4,10 +4,18 @@ AuthInterceptor.$inject = ['$q', '$location', 'AuthToken'];
 
 function AuthInterceptor($q, $location, AuthToken){
 
-	var interceptorFactory = {};
+	var AuthInterceptor = {
+    //arrays
+
+    //methods
+    request: _request,
+    responseError: _responseError
+  };
+
+  return AuthInterceptor;
 
 	// this will happen on all HTTP requests
-	interceptorFactory.request = function(config) {
+	function _request(config) {
 
 		// grab the token
 		var token = AuthToken.getToken();
@@ -20,7 +28,7 @@ function AuthInterceptor($q, $location, AuthToken){
 	};
 
 	// happens on response errors
-	interceptorFactory.responseError = function(response) {
+	function _responseError(response) {
 
 		// if our server returns a 403 forbidden response
 		if (response.status == 403) {
@@ -31,7 +39,5 @@ function AuthInterceptor($q, $location, AuthToken){
 		// return the errors from the server as a promise
 		return $q.reject(response);
 	};
-
-	return interceptorFactory;
 
 };

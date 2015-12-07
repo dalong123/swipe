@@ -4,7 +4,7 @@ GenreService.$inject = ['$resource'];
 
 function GenreService($resource){
 
-  return{
+  return {
 
     // This should be named blog, as it returns a single blog object
     Genre: $resource('http://localhost:8888/api/genres/:genre_id', null,

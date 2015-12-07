@@ -5,6 +5,19 @@
  */
 angular.module('SwipeAdmin')
 
+.run(['$rootScope', '$state', 'AuthService',
+  function ($rootScope, $state, AuthService) {
+    $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams){
+      if (toState.authenticate && !AuthService.isLoggedIn()){
+        console.log('not logged in');
+        // User isn’t authenticated
+        $state.transitionTo("login");
+        event.preventDefault();
+      }
+    });
+  }
+])
+
 .config(['$stateProvider', '$urlRouterProvider',
   function($stateProvider, $urlRouterProvider) {
 
@@ -13,10 +26,16 @@ angular.module('SwipeAdmin')
 
     // Application routes
     $stateProvider
+      .state('login', {
+        url: '/login',
+        templateUrl: 'templates/login.html',
+        controller: 'MasterCtrl',
+        authenticate: false
+      })
       .state('index', {
         url: '/',
         templateUrl: 'templates/dashboard.html',
-        authenticate: false
+        authenticate: true
       })
       .state('genres', {
         url: '/genres',

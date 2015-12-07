@@ -4,9 +4,9 @@
 
 angular.module('SwipeAdmin').controller('MasterCtrl', MasterCtrl);
 
-MasterCtrl.$inject = ['$scope', '$cookieStore', 'AuthService'];
+MasterCtrl.$inject = ['$scope', '$cookieStore', '$state', 'AuthService'];
 
-function MasterCtrl($scope, $cookieStore, AuthService) {
+function MasterCtrl($scope, $cookieStore, $state, AuthService) {
   /**
    * Sidebar Toggle & Cookie Control
    */
@@ -45,13 +45,13 @@ function MasterCtrl($scope, $cookieStore, AuthService) {
     // clear the error
     $scope.error = '';
 
-    Auth.login($scope.loginData.username, $scope.loginData.password)
+    AuthService.login($scope.loginData.username, $scope.loginData.password)
       .success(function(data) {
         $scope.processing = false;
 
         // if a user successfully logs in, redirect to users page
         if (data.success)
-          $location.path('/users');
+          $state.transitionTo("index");
         else
           $scope.error = data.message;
 
@@ -60,7 +60,7 @@ function MasterCtrl($scope, $cookieStore, AuthService) {
 
   // function to handle logging out
   $scope.doLogout = function() {
-    Auth.logout();
-    //$location.path('/login');
+    AuthService.logout();
+    $state.transitionTo("login");
   };
 }

@@ -2,53 +2,59 @@ angular.module('SwipeAdmin').factory('AuthService', AuthService);
 
 AuthService.$inject = ['$http', '$q', 'AuthToken'];
 
-function AuthService($http, $q, AuthToken){
+function AuthService($http, $q, AuthToken) {
 
-	// create auth factory object
-	var authFactory = {};
+  var AuthService = {
+    //arrays
 
-	// log a user in
-	authFactory.login = function(username, password) {
+    //methods
+    login: _login,
+    logout: _logout,
+    isLoggedIn: _isLoggedIn,
+    getUser: _getUser
+  };
 
-		// return the promise object and its data
-		return $http.post('/api/auth', {
-			username: username,
-			password: password
-		})
-			.success(function(data) {
-				AuthToken.setToken(data.token);
-       			return data;
-			});
-	};
+  return AuthService;
 
-	// log a user out by clearing the token
-	authFactory.logout = function() {
-		// clear the token
-		AuthToken.setToken();
-	};
+  // log a user in
+  function _login(username, password) {
 
-	// check if a user is logged in
-	// checks if there is a local token
-	authFactory.isLoggedIn = function() {
-		if (AuthToken.getToken())
-			return true;
-		else
-			return false;
-	};
+    // return the promise object and its data
+    return $http.post('http://localhost:8888/api/auth', {
+        username: username,
+        password: password
+      })
+      .success(function(data) {
+        AuthToken.setToken(data.token);
+        return data;
+      });
+  };
 
-	// get the logged in user
-	authFactory.getUser = function() {
-		if (AuthToken.getToken())
-			return $http.get('/api/me', { cache: true });
-		else
-			return $q.reject({ message: 'User has no token.' });
-	};
+  // log a user out by clearing the token
+  function _logout() {
+    // clear the token
+    AuthToken.setToken();
+  };
 
-	// authFactory.createSampleUser = function() {
-	// 	$http.post('/api/sample');
-	// };
+  // check if a user is logged in
+  // checks if there is a local token
+  function _isLoggedIn() {
+    if (AuthToken.getToken())
+      return true;
+    else
+      return false;
+  };
 
-	// return auth factory object
-	return authFactory;
-	
+  // get the logged in user
+  function _getUser() {
+    if (AuthToken.getToken())
+      return $http.get('http://localhost:8888/api/me', {
+        cache: true
+      });
+    else
+      return $q.reject({
+        message: 'User has no token.'
+      });
+  };
+
 };
