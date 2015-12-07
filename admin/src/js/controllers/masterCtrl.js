@@ -4,9 +4,12 @@
 
 angular.module('SwipeAdmin').controller('MasterCtrl', MasterCtrl);
 
-MasterCtrl.$inject = ['$scope', '$cookieStore', '$state', 'AuthService'];
+MasterCtrl.$inject = ['$scope', '$rootScope', '$cookieStore', '$state', 'AuthService'];
 
-function MasterCtrl($scope, $cookieStore, $state, AuthService) {
+function MasterCtrl($scope, $rootScope, $cookieStore, $state, AuthService) {
+
+  $rootScope.isLoggedIn = AuthService.isLoggedIn();
+
   /**
    * Sidebar Toggle & Cookie Control
    */
