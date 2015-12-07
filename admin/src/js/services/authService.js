@@ -1,12 +1,8 @@
-angular.module('authService', [])
+angular.module('SwipeAdmin').factory('AuthService', AuthService);
 
-// ===================================================
-// auth factory to login and get information
-// inject $http for communicating with the API
-// inject $q to return promise objects
-// inject AuthToken to manage tokens
-// ===================================================
-.factory('Auth', function($http, $q, AuthToken) {
+AuthService.$inject = ['$http', '$q', 'AuthToken'];
+
+function AuthService($http, $q, AuthToken){
 
 	// create auth factory object
 	var authFactory = {};
@@ -15,7 +11,7 @@ angular.module('authService', [])
 	authFactory.login = function(username, password) {
 
 		// return the promise object and its data
-		return $http.post('/api/authenticate', {
+		return $http.post('/api/auth', {
 			username: username,
 			password: password
 		})
@@ -54,69 +50,5 @@ angular.module('authService', [])
 
 	// return auth factory object
 	return authFactory;
-
-})
-
-// ===================================================
-// factory for handling tokens
-// inject $window to store token client-side
-// ===================================================
-.factory('AuthToken', function($window) {
-
-	var authTokenFactory = {};
-
-	// get the token out of local storage
-	authTokenFactory.getToken = function() {
-		return $window.localStorage.getItem('token');
-	};
-
-	// function to set token or clear token
-	// if a token is passed, set the token
-	// if there is no token, clear it from local storage
-	authTokenFactory.setToken = function(token) {
-		if (token)
-			$window.localStorage.setItem('token', token);
-	 	else
-			$window.localStorage.removeItem('token');
-	};
-
-	return authTokenFactory;
-
-})
-
-// ===================================================
-// application configuration to integrate token into requests
-// ===================================================
-.factory('AuthInterceptor', function($q, $location, AuthToken) {
-
-	var interceptorFactory = {};
-
-	// this will happen on all HTTP requests
-	interceptorFactory.request = function(config) {
-
-		// grab the token
-		var token = AuthToken.getToken();
-
-		// if the token exists, add it to the header as x-access-token
-		if (token)
-			config.headers['x-access-token'] = token;
-
-		return config;
-	};
-
-	// happens on response errors
-	interceptorFactory.responseError = function(response) {
-
-		// if our server returns a 403 forbidden response
-		if (response.status == 403) {
-			AuthToken.setToken();
-			$location.path('/login');
-		}
-
-		// return the errors from the server as a promise
-		return $q.reject(response);
-	};
-
-	return interceptorFactory;
-
-});
+	
+};

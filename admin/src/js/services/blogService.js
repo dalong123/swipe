@@ -11,6 +11,7 @@ function BlogService($q,$http,$resource){
     {
         'update': { method:'PUT' }
     }),
+    
     // This should be named blogs, as it returns an array of blog objects
     Blogs: $resource('http://localhost:8888/api/blogs')
   }

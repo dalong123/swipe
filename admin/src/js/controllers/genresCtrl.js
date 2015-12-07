@@ -2,7 +2,7 @@ angular.module('SwipeAdmin').controller('GenresCtrl', GenresCtrl);
 
 GenresCtrl.$inject = ['$scope','GenreService','$modal'];
 
-function GenresCtrl($scope, GenreService,$modal){
+function GenresCtrl($scope, GenreService, $modal){
 
   $scope.genres = GenreService.Genres.query();
 

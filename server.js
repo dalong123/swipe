@@ -83,8 +83,8 @@ var channelApi = require('./app/routes/channelApi')(app, express);
 app.use('/api', channelApi);
 var topTracksApi = require('./app/routes/topTracksApi')(app, express);
 app.use('/api', topTracksApi);
-var authApi = require('./app/routes/authApi')(app, express);
-app.use('/api', authApi);
+// var authApi = require('./app/routes/authApi')(app, express);
+// app.use('/api', authApi);
 /*=============================================================================
 END API SETUP
 =============================================================================*/
