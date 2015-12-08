@@ -20,7 +20,7 @@ exports.authenticate = function(req, res) {
     if (!user) {
       res.json({
         success: false,
-        message: 'Authentication failed. User not found.'
+        message: 'Sorry, jambroni. It looks like that username does not exist.'
       });
     } else if (user) {
 
@@ -29,7 +29,7 @@ exports.authenticate = function(req, res) {
       if (!validPassword) {
         res.json({
           success: false,
-          message: 'Authentication failed. Wrong password.'
+          message: 'Wrong password, bozo.'
         });
       } else {
 

@@ -1,7 +1,6 @@
 /**
  * Master Controller
  */
-
 angular.module('SwipeAdmin').controller('MasterCtrl', MasterCtrl);
 
 MasterCtrl.$inject = ['$scope', '$rootScope', '$cookieStore', '$state', 'AuthService'];
