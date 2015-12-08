@@ -79,7 +79,7 @@ gulp.task('custom-templates', function() {
  */
 gulp.task('watch', function() {
     gulp.watch([paths.images], ['custom-images']);
-    gulp.watch([paths.styles], ['custom-less']);
+    gulp.watch([paths.styles], ['custom-less', 'usemin']);
     gulp.watch([paths.scripts], ['custom-js']);
     gulp.watch([paths.templates], ['custom-templates']);
     gulp.watch([paths.index], ['usemin']);

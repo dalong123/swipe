@@ -9,11 +9,14 @@ angular.module('SwipeAdmin')
   function ($rootScope, $state, AuthService) {
     $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams){
       if (toState.authenticate && !AuthService.isLoggedIn()){
-        console.log('not logged in');
+        console.log('logged in: ' + AuthService.isLoggedIn());
+        //$rootScope.loggedIn = false;
         // User isn’t authenticated
         $state.transitionTo("login");
         event.preventDefault();
       }
+      //$rootScope.loggedIn = true;
+      console.log('logged in: ' + AuthService.isLoggedIn());
     });
   }
 ])

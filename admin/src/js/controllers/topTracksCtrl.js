@@ -7,7 +7,7 @@ function TopTracksCtrl($scope, TopTracksService) {
   $scope.sortableOptions = {
      containment: '#sortable-container'
    };
-   
+
   TopTracksService.GetAllTopTracks().then(function(result) {
     $scope.topTrack = result.data[0];
   });

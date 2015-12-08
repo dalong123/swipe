@@ -8,7 +8,17 @@ MasterCtrl.$inject = ['$scope', '$rootScope', '$cookieStore', '$state', 'AuthSer
 
 function MasterCtrl($scope, $rootScope, $cookieStore, $state, AuthService) {
 
-  $rootScope.isLoggedIn = AuthService.isLoggedIn();
+  $scope.isLoggedIn = AuthService.isLoggedIn();
+
+  $rootScope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams){
+    $scope.isLoggedIn = AuthService.isLoggedIn();
+
+    // get user information on page load
+		AuthService.getUser()
+			.then(function(data) {
+				$scope.user = data.data;
+			});
+  });
 
   /**
    * Sidebar Toggle & Cookie Control
@@ -29,7 +39,6 @@ function MasterCtrl($scope, $rootScope, $cookieStore, $state, AuthService) {
     } else {
       $scope.toggle = false;
     }
-
   });
 
   $scope.toggleSidebar = function() {

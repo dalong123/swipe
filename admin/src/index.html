@@ -32,7 +32,7 @@
   <div id="page-wrapper" ng-class="{'open': toggle}" ng-cloak>
 
     <!-- Sidebar -->
-    <div id="sidebar-wrapper" ng-if="root.isloggedIn">
+    <div id="sidebar-wrapper">
       <ul class="sidebar">
         <li class="sidebar-main">
           <a ng-click="toggleSidebar()">
@@ -41,7 +41,7 @@
           </a>
         </li>
         <li class="sidebar-title"><span>NAVIGATION</span></li>
-        <li class="sidebar-list">
+        <li class="sidebar-list" ng-if="isloggedIn">
           <a href="#" title="Home">Home <span class="menu-icon fa fa-home"></span></a>
         </li>
         <li class="sidebar-list">
@@ -81,7 +81,7 @@
       <div class="page-content">
 
         <!-- Header Bar -->
-        <div class="row header" ng-if="root.isloggedIn">
+        <div class="row header">
           <div class="col-xs-12">
             <div class="user pull-right">
               <div class="item dropdown">
@@ -90,7 +90,7 @@
                 </a>
                 <ul class="dropdown-menu dropdown-menu-right">
                   <li class="dropdown-header">
-                    Admin
+                    {{user.name}}
                   </li>
                   <li class="divider"></li>
                   <li class="link">
