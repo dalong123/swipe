@@ -10,7 +10,10 @@ angular.module('swipe.controllers', [])
  */
 .controller('AppCtrl', function($scope, $rootScope, $ionicModal, $timeout, ImageService) {
 
-  $rootScope.bgImg = ImageService.getImageClass();
+
+    $rootScope.bgUrl = ImageService.getImageUrl();
+
+
 
   // Form data for the login modal
   $scope.loginData = {};

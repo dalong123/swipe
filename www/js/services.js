@@ -4,11 +4,15 @@ angular.module('swipe.services', [])
 
   return {
 
-    getImageClass: function() {
-      var classes = [
-        "ferns-bg"
+    getImageUrl: function() {
+      var urls = [
+        "../img/ferns.jpeg",
+        "../img/Ferns2.jpg",
+        "../img/ferns3.jpg",
+        "../img/ferns4.jpg",
+        "../img/ferns5.jpg"
       ]
-      return classes[Math.floor(Math.random() * classes.length)];
+      return urls[Math.floor(Math.random() * urls.length)];
     }
   }
 })

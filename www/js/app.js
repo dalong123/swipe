@@ -190,4 +190,19 @@ angular.module('swipe', ['ionic', 'swipe.services', 'swipe.controllers', 'ionic.
       });
     }
   }
-});
+})
+.directive('randomBackground', function () {
+
+      return{
+        restrict: 'A',
+        link: function ($scope, $element, $attr) {
+            $element.css({
+                'background-image': 'url(' + $scope.bgUrl + ')',
+                '-webkit-background-size': 'cover',
+                '-moz-background-size': 'cover',
+                '-o-background-size': 'cover',
+                'background-size': 'cover'
+            });
+        }
+      }
+    });

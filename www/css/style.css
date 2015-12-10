@@ -40,6 +40,8 @@ h1, h2, h3, h4, .title, .menu-right .item-content {
   background-image: none;
   border: none;
 }
+
+
 .ferns-bg {
   background: url(../img/ferns.jpeg) no-repeat center center fixed;
   -webkit-background-size: cover;
@@ -47,6 +49,39 @@ h1, h2, h3, h4, .title, .menu-right .item-content {
   -o-background-size: cover;
   background-size: cover;
 }
+
+.ferns-bg2 {
+  background: url(../img/Ferns2.jpeg) no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+.ferns-bg3 {
+  background: url(../img/ferns3.jpeg) no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+.ferns-bg4 {
+  background: url(../img/ferns4.jpeg) no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+.ferns-bg5 {
+  background: url(../img/ferns5.jpeg) no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
 .fade-component {
   background: rgba(255, 255, 255, 0.7) !important;
 }
