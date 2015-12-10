@@ -22,11 +22,6 @@ angular.module('swipe', ['ionic', 'swipe.services', 'swipe.controllers', 'ionic.
 })
 
 /**
- * The next few configs are sort of future-proofing us to render blog posts
- * in-app
- */
-
-/**
  * Needed for routing to work with iFrames
  */
 .config(function($compileProvider) {
@@ -49,6 +44,9 @@ angular.module('swipe', ['ionic', 'swipe.services', 'swipe.controllers', 'ionic.
   $sceDelegateProvider.resourceUrlWhitelist(['**', 'self']);
 })
 
+/*
+ * Configure plangular with our SoundCloud API clientId
+ */
 .config(function(plangularConfigProvider) {
   plangularConfigProvider.clientId = '87b01554e0e9467dca5c7646da65965a';
 })
@@ -151,6 +149,26 @@ angular.module('swipe', ['ionic', 'swipe.services', 'swipe.controllers', 'ionic.
       'menuContent': {
         templateUrl: 'templates/blog.html',
         controller: 'BlogCtrl'
+      }
+    }
+  })
+
+  .state('app.list', {
+    url: '/list/:itemType',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/list.html',
+        controller: 'ListItemsCtrl'
+      }
+    }
+  })
+
+  .state('app.songs', {
+    url: '/songs/:itemType/:itemId',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/songs.html',
+        controller: 'SongCardsCtrl'
       }
     }
   });

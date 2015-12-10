@@ -1,8 +1,8 @@
 angular.module('SwipeAdmin').controller('BlogCtrl', BlogCtrl);
 
-BlogCtrl.$inject = ['$scope', '$stateParams', 'BlogService'];
+BlogCtrl.$inject = ['$scope', '$state', '$stateParams', 'BlogService'];
 
-function BlogCtrl($scope, $stateParams, BlogService) {
+function BlogCtrl($scope, $state, $stateParams, BlogService) {
 
   var blogId = $stateParams.blogId;
 
@@ -31,7 +31,7 @@ function BlogCtrl($scope, $stateParams, BlogService) {
         },null,
         function(data) {
           alert("Blog Deleted!");
-          window.location.href = "/#/blogs";
+          $state.transitionTo("blogs");
         },
         function(e) {
           // failure

@@ -106,6 +106,9 @@ h1, h2, h3, h4, .title, .menu-right .item-content {
   flex: 0 0 70%;
   max-width: 70%;
 }
+input, button, select, textarea {
+  font-family: 'Source Sans Pro', sans-serif;
+}
 swipe-card {
   display: none;
   width: 100%;

@@ -221,7 +221,7 @@ angular.module('swipe.controllers', [])
         "description": "All Blogs",
         "kimonoId": "d3cthg28"
       }
-      cardTypes = LocalStorage.getObject('blogs');
+      //cardTypes = LocalStorage.getObject('blogs');
       $scope.cards = Array.prototype.slice.call(cardTypes, 0, 0);
       $ionicLoading.hide();
     } else {
@@ -281,9 +281,7 @@ angular.module('swipe.controllers', [])
  * @param  {[type]}   function($scope, $stateParams, $filter, $ionicSwipeCardDelegate, $ionicModal, $ionicLoading, Sounds [description]
  * @return {[type]}                    [description]
  */
-.controller('SoundsCtrl', function($scope, $ionicSwipeCardDelegate, $ionicModal, $ionicLoading, DataStore) {
-
-  var cardTypes = [];
+.controller('ListItemsCtrl', function($scope, $stateParams, $ionicLoading, DataStore) {
 
   $scope.$on('$ionicView.enter', function(e) {
 
@@ -296,66 +294,13 @@ angular.module('swipe.controllers', [])
       showDelay: 0
     });
 
-    // the current index of the card being displayed to the user
-    $scope.currentIndex = 0;
+    $scope.itemType = $stateParams.itemType;
 
-    DataStore.getItemsAsync('toptracks', false).then(
+    DataStore.getItemsAsync($scope.itemType, false).then(
       function(result) {
         // promise was fullfilled (regardless of outcome)
         // checks for information will be peformed here
-        var topSongsObj = result[0];
-        cardTypes = topSongsObj.songs;
-        $scope.cards = Array.prototype.slice.call(cardTypes, 0, 0);
-        $ionicLoading.hide();
-      },
-      function(error) {
-        // handle errors here
-        console.log(error.statusText);
-      }
-    );
-
-    $scope.cardSwiped = function(index) {
-      $scope.addCard();
-    };
-    $scope.cardDestroyed = function(index) {
-      $scope.cards.splice(index, 1);
-    };
-    $scope.addCard = function() {
-      var newCard = cardTypes[$scope.currentIndex];
-      $scope.cards.push(angular.extend({}, newCard));
-      $scope.currentIndex++;
-      if ($scope.currentIndex == cardTypes.length) {
-        $scope.currentIndex = 0;
-      }
-    };
-  });
-})
-
-/**
- * [controller description]
- * @method controller
- * @param  {[type]}   'SoundsCtrl'     [description]
- * @param  {[type]}   function($scope, $stateParams, $filter, $ionicSwipeCardDelegate, $ionicModal, $ionicLoading, Sounds [description]
- * @return {[type]}                    [description]
- */
-.controller('ChannelsCtrl', function($scope, $ionicLoading, DataStore) {
-
-  $scope.$on('$ionicView.enter', function(e) {
-
-    $ionicLoading.show({
-      content: 'Loading',
-      template: '<ion-spinner icon="ripple"></ion-spinner>',
-      animation: 'fade-in',
-      showBackdrop: true,
-      maxWidth: 200,
-      showDelay: 0
-    });
-
-    DataStore.getItemsAsync('channels', false).then(
-      function(result) {
-        // promise was fullfilled (regardless of outcome)
-        // checks for information will be peformed here
-        $scope.channels = result;
+        $scope.items = result;
         $ionicLoading.hide();
       },
       function(error) {
@@ -366,9 +311,9 @@ angular.module('swipe.controllers', [])
   });
 
   $scope.doRefresh = function() {
-    DataStore.getItemsAsync('channels', true).then(
+    DataStore.getItemsAsync($scope.itemType, true).then(
       function(result) {
-        $scope.channels = result;
+        $scope.items = result;
         // Stop the ion-refresher from spinning
         $scope.$broadcast('scroll.refreshComplete');
       },
@@ -386,7 +331,7 @@ angular.module('swipe.controllers', [])
  * @param  {[type]}   function($scope, $stateParams, $filter, $ionicSwipeCardDelegate, $ionicModal, $ionicLoading, Sounds [description]
  * @return {[type]}                    [description]
  */
-.controller('ChannelCtrl', function($scope, $stateParams, $ionicSwipeCardDelegate, $ionicModal, $ionicLoading, DataStore) {
+.controller('SongCardsCtrl', function($scope, $stateParams, $ionicSwipeCardDelegate, $ionicModal, $ionicLoading, DataStore) {
 
   var cardTypes = [];
 
@@ -401,132 +346,51 @@ angular.module('swipe.controllers', [])
       showDelay: 0
     });
 
-    var channelId = $stateParams.channelId;
+    var itemType = $stateParams.itemType;
+    var itemId = $stateParams.itemId;
 
-    // the current index of the card being displayed to the user
+    // the index of the current card being displayed to the user
     $scope.currentIndex = 0;
 
-    DataStore.getItemByIDAsync(channelId, 'channels').then(
-      function(result) {
-        // promise was fullfilled (regardless of outcome)
-        // checks for information will be peformed here
-        $scope.channel = result;
-        cardTypes = $scope.channel.songs;
-        $scope.cards = Array.prototype.slice.call(cardTypes, 0, 0);
-        $ionicLoading.hide();
-      },
-      function(error) {
-        // handle errors here
-        console.log(error.statusText);
-      }
-    );
+    if (angular.equals('toptracks', itemType)) {
 
-    $scope.cardSwiped = function(index) {
-      $scope.addCard();
-    };
-    $scope.cardDestroyed = function(index) {
-      $scope.cards.splice(index, 1);
-    };
-    $scope.addCard = function() {
-      var newCard = cardTypes[$scope.currentIndex];
-      $scope.cards.push(angular.extend({}, newCard));
-      $scope.currentIndex++;
-      if ($scope.currentIndex == cardTypes.length) {
-        $scope.currentIndex = 0;
-      }
-    };
-  });
-})
+      DataStore.getItemsAsync('toptracks', false).then(
+        function(result) {
+          // promise was fullfilled (regardless of outcome)
+          // checks for information will be peformed here
+          var topSongsObj = result[0];
+          cardTypes = topSongsObj.songs;
+          $scope.item = {
+            'name': 'Top Tracks',
+            'description': 'The current top tracks'
+          };
+          $scope.cards = Array.prototype.slice.call(cardTypes, 0, 0);
+          $ionicLoading.hide();
+        },
+        function(error) {
+          // handle errors here
+          console.log(error.statusText);
+        }
+      );
 
-/**
- * [controller description]
- * @method controller
- * @param  {[type]}   'SoundsCtrl'     [description]
- * @param  {[type]}   function($scope, $stateParams, $filter, $ionicSwipeCardDelegate, $ionicModal, $ionicLoading, Sounds [description]
- * @return {[type]}                    [description]
- */
-.controller('GenresCtrl', function($scope, $ionicLoading, DataStore) {
+    } else {
 
-  $scope.$on('$ionicView.enter', function(e) {
+      DataStore.getItemByIDAsync(itemId, itemType).then(
+        function(result) {
+          // promise was fullfilled (regardless of outcome)
+          // checks for information will be peformed here
+          $scope.item = result
+          cardTypes = $scope.item.songs;
+          $scope.cards = Array.prototype.slice.call(cardTypes, 0, 0);
+          $ionicLoading.hide();
+        },
+        function(error) {
+          // handle errors here
+          console.log(error.statusText);
+        }
+      );
 
-    $ionicLoading.show({
-      content: 'Loading',
-      template: '<ion-spinner icon="ripple"></ion-spinner>',
-      animation: 'fade-in',
-      showBackdrop: true,
-      maxWidth: 200,
-      showDelay: 0
-    });
-
-    DataStore.getItemsAsync('genres', false).then(
-      function(result) {
-        // promise was fullfilled (regardless of outcome)
-        // checks for information will be peformed here
-        $scope.genres = result;
-        $ionicLoading.hide();
-      },
-      function(error) {
-        // handle errors here
-        console.log(error.statusText);
-      }
-    );
-  });
-
-  $scope.doRefresh = function() {
-    DataStore.getItemsAsync('genres', true).then(
-      function(result) {
-        $scope.genres = result;
-        // Stop the ion-refresher from spinning
-        $scope.$broadcast('scroll.refreshComplete');
-      },
-      function(error) {
-        console.log(error.statusText);
-      }
-    );
-  }
-})
-
-/**
- * [controller description]
- * @method controller
- * @param  {[type]}   'SoundsCtrl'     [description]
- * @param  {[type]}   function($scope, $stateParams, $filter, $ionicSwipeCardDelegate, $ionicModal, $ionicLoading, Sounds [description]
- * @return {[type]}                    [description]
- */
-.controller('GenreCtrl', function($scope, $stateParams, $ionicSwipeCardDelegate, $ionicModal, $ionicLoading, DataStore) {
-
-  var cardTypes = [];
-
-  $scope.$on('$ionicView.enter', function(e) {
-
-    $ionicLoading.show({
-      content: 'Loading',
-      template: '<ion-spinner icon="ripple"></ion-spinner>',
-      animation: 'fade-in',
-      showBackdrop: true,
-      maxWidth: 200,
-      showDelay: 0
-    });
-
-    var genreId = $stateParams.genreId;
-
-    // the current index of the card being displayed to the user
-    $scope.currentIndex = 0;
-
-    DataStore.getItemByIDAsync(genreId, 'genres').then(
-      function(result) {
-        // promise was fullfilled (regardless of outcome)
-        // checks for information will be peformed here
-        $scope.genre = result
-        cardTypes = $scope.genre.songs;
-        $scope.cards = Array.prototype.slice.call(cardTypes, 0, 0);
-        $ionicLoading.hide();
-      },
-      function(error) {
-        // handle errors here
-        console.log(error.statusText);
-      }
-    );
+    }
 
     $scope.cardSwiped = function(index) {
       $scope.addCard();

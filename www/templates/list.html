@@ -6,10 +6,10 @@
       spinner="none">
     </ion-refresher>
     <ion-list>
-      <ion-item class="item item-avatar item-text-wrap fade-component" ng-repeat="genre in genres" href="/app/genres/{{genre._id}}" class="item-avatar">
+      <ion-item class="item item-avatar item-text-wrap fade-component" ng-repeat="item in items" href="/app/songs/{{itemType}}/{{item._id}}" class="item-avatar">
         <img src="/img/ionic.png" />
-        <h2 class="blogs-title">{{genre.name}}</h2>
-        <p>{{genre.description}}</p>
+        <h2 class="blogs-title">{{item.name}}</h2>
+        <p>{{item.description}}</p>
       </ion-item>
     </ion-list>
   </ion-content>

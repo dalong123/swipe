@@ -1,8 +1,8 @@
 angular.module('SwipeAdmin').controller('ChannelCtrl', ChannelCtrl);
 
-ChannelCtrl.$inject = ['$scope', '$stateParams', 'ChannelService'];
+ChannelCtrl.$inject = ['$scope', '$state', '$stateParams', 'ChannelService'];
 
-function ChannelCtrl($scope, $stateParams, ChannelService) {
+function ChannelCtrl($scope, $state, $stateParams, ChannelService) {
 
   var channelId = $stateParams.channelId;
 
@@ -15,7 +15,7 @@ function ChannelCtrl($scope, $stateParams, ChannelService) {
   $scope.sortableOptions = {
      containment: '#sortable-container'
    };
-   
+
 
   $scope.SaveChannel = function() {
     ChannelService.Channel.update({
@@ -47,7 +47,7 @@ function ChannelCtrl($scope, $stateParams, ChannelService) {
         },null,
         function(data) {
           alert("Channel Deleted!");
-          window.location.href = "/#/channels";
+          $state.transitionTo("channels");
         },
         function(e) {
           // failure

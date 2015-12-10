@@ -1,8 +1,8 @@
 angular.module('SwipeAdmin').controller('GenreCtrl', GenreCtrl);
 
-GenreCtrl.$inject = ['$scope', '$stateParams', 'GenreService'];
+GenreCtrl.$inject = ['$scope', '$state', '$stateParams', 'GenreService'];
 
-function GenreCtrl($scope, $stateParams, GenreService) {
+function GenreCtrl($scope, $state, $stateParams, GenreService) {
 
   var genreId = $stateParams.genreId;
 
@@ -15,7 +15,7 @@ function GenreCtrl($scope, $stateParams, GenreService) {
   $scope.sortableOptions = {
      containment: '#sortable-container'
    };
-   
+
 
   $scope.AddSong = function(song) {
     $scope.genre.songs.push(song);
@@ -50,7 +50,7 @@ function GenreCtrl($scope, $stateParams, GenreService) {
         }, null,
         function(data) {
           alert("Genre Deleted!");
-          window.location.href = "/#/genres";
+          $state.transitionTo("genres");
         },
         function(e) {
           // failure

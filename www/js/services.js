@@ -5,10 +5,10 @@ angular.module('swipe.services', [])
   return {
 
     getImageClass: function() {
-      var images = [
+      var classes = [
         "ferns-bg"
       ]
-      return images[Math.floor(Math.random() * images.length)];
+      return classes[Math.floor(Math.random() * classes.length)];
     }
   }
 })
@@ -42,10 +42,6 @@ angular.module('swipe.services', [])
     }
   }
 }])
-
-.service('Pouch', function() {
-  this.db = new PouchDB('my_database');
-})
 
 .factory('Pouch', function() {
   var db = new PouchDB('swipe'); // <--- this one uses any available adapter
@@ -105,19 +101,28 @@ angular.module('swipe.services', [])
         // TODO: THIS SHOULD BE A CONSTANT OF SOMESORT IN THE DATASTORE. THE VALUE
         // CURRENTLY SET TO '60' IS THE NUMBER OF MINUTES THAT WILL BE SUBTRACTED
         // FROM THE CURRENT TIME
-        var oneHourAgo = new Date(Date.now() - 60*60000);
+        var timeOffset = new Date(Date.now() - 30*60000);
 
         // Set the data freshness boolean:
         // This evaluates to false if that data has been updated within the past
         // hour and true otherwise
-        dataIsOutDated = (lastUpdatedTime.getTime() < oneHourAgo.getTime());
+        dataIsOutDated = (lastUpdatedTime.getTime() < timeOffset.getTime());
 
       }
 
+      // All data returning from the DataStore is expected to be async, so we're
+      // injecting $q into the factory, even when returning from LocalStorage,
+      // which is a synchronous call
       var deferred = $q.defer();
 
+      // if the item in LocalStorage is not empty, and the data was retrieved
+      // from LocalStorage recently enough, and we have not requested a forced
+      // database call, return the value from LocalStorage
       if (!angular.equals({}, itemObject) && !dataIsOutDated && !forceDbCall)
       {
+        // use $timeout in order to make the synchronous call to LocalStorage async.
+        // We're setting the timeout time to 0. This whole thing is a bit hacky.
+        // TODO: MAKE THIS ASYNC RESOLUTION LESS HACKY
         $timeout(function()
         {
           deferred.resolve(itemObject);
@@ -131,23 +136,18 @@ angular.module('swipe.services', [])
       {
         return ApiFactory.performGET(itemTypeEnum)
           .then(function(response) {
-
             // Save the object to localStorage using the name of the route as the key
             LocalStorage.setObject(itemTypeEnum, response.data);
-
-            //Set a variable
             var currTime = new Date(Date.now());
+            // set the item's last updated time to the current time
             LocalStorage.set(itemTypeEnum + 'LastUpdated', currTime);
             deferred.resolve(response.data);
             console.log('serving from db');
             return deferred.promise;
-
           }, function(response) {
-
-            // the following line rejects the promise
+            //return an error
             deferred.reject(response);
             return deferred.promise;
-
           });
       }
 
@@ -161,6 +161,16 @@ angular.module('swipe.services', [])
 
       var deferred = $q.defer();
 
+      // There's no data freshness detection in the single item retrieval. The
+      // thinking behind that is that if a user is reaching a singular route (ie. blog),
+      // they've hit the plural page (ie. blogs) right before and therefore
+      // the single item is likely in LocalStorage (especially on a mobile device,
+      // as it's not possible to access routes directly). This route will be hit so
+      // infrequently that it won't hurt to query the db.
+      //
+      // Aside from the lack of data freshness checking, this function operates
+      // almost identically to the one above. If the item exists in LocalStorage
+      // return it, otherwise call the ApiFactory to query the db.
       if (!angular.equals({}, itemObject))
       {
         $timeout(function() {

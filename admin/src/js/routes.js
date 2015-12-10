@@ -10,22 +10,17 @@ angular.module('SwipeAdmin')
     $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams){
       if (toState.authenticate && !AuthService.isLoggedIn()){
         console.log('logged in: ' + AuthService.isLoggedIn());
-        //$rootScope.loggedIn = false;
         // User isn’t authenticated
         $state.transitionTo("login");
         event.preventDefault();
       }
-      //$rootScope.loggedIn = true;
       console.log('logged in: ' + AuthService.isLoggedIn());
     });
   }
 ])
 
-.config(['$stateProvider', '$urlRouterProvider',
-  function($stateProvider, $urlRouterProvider) {
-
-    // For unmatched routes
-    $urlRouterProvider.otherwise('/');
+.config(['$stateProvider', '$urlRouterProvider', '$locationProvider',
+  function($stateProvider, $urlRouterProvider, $locationProvider) {
 
     // Application routes
     $stateProvider
@@ -82,5 +77,9 @@ angular.module('SwipeAdmin')
         controller: 'TopTracksCtrl',
         authenticate: true
       });
+
+      $urlRouterProvider.otherwise('/');
+
+      $locationProvider.html5Mode(true).hashPrefix('!')
   }
 ]);
