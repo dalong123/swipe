@@ -20,18 +20,18 @@
               <div class="row padding-bottom">
                 <div class="col padding-top">
                   <a ng-click="playPause()">
-                    <img alt="{{track.title}}" ng-src="{{track.artwork_url}}" style="max-width: 80px;" />
+                    <img alt="{{track.title}}" ng-src="{{track.artwork_url}}" style="max-width: 98%;" />
                   </a>
                 </div>
                 <div class="col col-70">
-                  <h2 class="caps padding-left" style="margin-top: 5px;">
+                  <h2 class="caps padding-left" style="margin-top: 5px; font-size: 0.85em;">
                     <b>{{track.title}}</b>
                   </h2>
-                  <h2 class="padding-left">
+                  <h2 class="padding-left" style="font-size: 0.8em;">
                     {{track.user.username}}
                     <span style="float: right;">
                       <a ng-href="{{track.permalink_url}}" target="_blank">
-                        <img src="/img/soundcloud.png" style="max-width: 40px;"/>
+                        <img src="/img/soundcloud.png" style="max-width: 30px;"/>
                       </a>
                     </span>
                   </h2>

@@ -12,7 +12,6 @@
 
       <swipe-card ng-repeat="card in cards" on-card-swipe="cardSwiped($index)"
                   on-destroy="cardDestroyed($index)">
-
         <div class="item item-body">
           <h2 class="padding-bottom">
             <a ng-controller="ModalCtrl" on-tap="openModal();" ng-model="$scope.cards" ng-if="card.title.text!=null">{{card.title.text}}</a>
@@ -34,12 +33,7 @@
         <a ng-controller="ModalCtrl" on-tap="openModal();" ng-model="$scope.cards" class="item item-icon-right">
           <span class="pull-right">View Post<i class="icon ion-ios-arrow-right"></i></span>
         </a>
-
       </swipe-card>
     </swipe-cards>
   </ion-content>
-  <div class="bar bar-footer">
-    <button class="button button-clear button-balanced pull-right">Visit
-      {{blog.title}}</button>
-  </div>
 </ion-view>

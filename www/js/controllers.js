@@ -92,7 +92,9 @@ angular.module('swipe.controllers', [])
       showDelay: 0
     });
 
+    // This date is used to display today's date on the homepage
     $scope.date = new Date();
+
     // Make calls to the API/Blog services as necessary and initialize all
     // view-centric variables
     DataStore.getItemsAsync('toptracks', false).then(
