@@ -11,7 +11,25 @@
 
       <swipe-card ng-repeat="card in cards" on-card-swipe="cardSwiped($index)" on-destroy="cardDestroyed($index)">
         <div plangular="{{card.url}}">
-          <div class="item item-body sound-embed">
+          <div class="item item-body">
+            <h2 class="caps padding-left" style="margin-top: 5px; font-size: 0.85em;">
+              <b>{{track.title}}</b>
+            </h2>
+            <h2 class="padding-left" style="font-size: 0.8em;">
+              {{track.user.username}}
+              <span style="float: right;">
+                <a ng-href="{{track.permalink_url}}" target="_blank">
+                  <img src="/img/soundcloud.png" style="max-width: 30px;"/>
+                </a>
+              </span>
+            </h2>
+            <div class="text-center" ng-if="track">
+              <a ng-click="playPause()" title="Play/Pause">
+              <img class="full-image" alt="{{track.title}}" src="{{track.artwork_url | resizeImage}}" style="padding-left: 15px; padding-right: 15px;">
+            </a>
+            </div>
+          </div>
+          <!-- <div class="item item-body">
 
             <div ng-if="!track" style="text-align: center;">
               <ion-spinner icon="ripple"></ion-spinner>
@@ -39,10 +57,10 @@
               </div>
             </div>
 
-          </div>
-          <div class="item">
+          </div> -->
+          <div class="item" style="padding: 0px; padding-right: 15px; padding-bottom: 10px;">
             <div class="row">
-              <div class="col">
+              <div class="col" style="float: left;">
                 <button class="button button-clear" ng-click="playPause()" title="Play/Pause">
                   <i class="icon ion-ios-play" data-icon="play" ng-if="player.playing !== track.src"></i>
                   <i class="icon ion-ios-pause" data-icon="pause" ng-if="player.playing === track.src"></i>

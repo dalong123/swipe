@@ -190,4 +190,14 @@ angular.module('swipe', ['ionic', 'swipe.services', 'swipe.controllers', 'ionic.
       });
     }
   }
+})
+
+.filter('resizeImage', function() {
+
+    return function(text) {
+        if(text.match("large")) {
+          text = text.replace('large', 'crop');
+        }
+        return text;
+    };
 });
