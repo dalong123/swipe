@@ -211,6 +211,7 @@ angular.module('swipe', ['ionic', 'swipe.services', 'swipe.controllers', 'ionic.
 .filter('capitalize', function() {
 
   return function(text) {
+    if (text!=null)
     return text.charAt(0).toUpperCase() + text.slice(1);
   };
 })
