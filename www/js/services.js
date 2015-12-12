@@ -130,7 +130,7 @@ angular.module('swipe.services', [])
         $timeout(function()
         {
           deferred.resolve(itemObject);
-        }, 0);
+        });
 
         console.log('serving local');
         return deferred.promise;
@@ -179,7 +179,7 @@ angular.module('swipe.services', [])
       {
         $timeout(function() {
           deferred.resolve(itemObject);
-        }, 0);
+        });
         console.log('serving local');
         return deferred.promise;
       }
@@ -188,13 +188,13 @@ angular.module('swipe.services', [])
         var itemObjects = LocalStorage.getObject(itemTypeEnum);
 
         if (!angular.equals({}, itemObjects)) {
-          var result = $filter('filter')(itemObjects, {
-            _id: itemId
-          })[0];
-          LocalStorage.setObject(itemId, result);
           $timeout(function() {
+            var result = $filter('filter')(itemObjects, {
+              _id: itemId
+            })[0];
+            LocalStorage.setObject(itemId, result);
             deferred.resolve(result);
-          }, 0);
+          });
           console.log('serving local');
           return deferred.promise;
         }

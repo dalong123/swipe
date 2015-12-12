@@ -1,41 +1,43 @@
 <ion-view view-title="Swipe">
   <ion-content  random-background>
     <div class="list card fade-component">
-      <div class="item item-text-wrap" ng-repeat="sound in sounds" plangular="{{sound.url}}" style="padding-bottom: 0px;">
-        <div class="row">
-          <div ng-if="!track" style="text-align: center;">
-            <ion-spinner icon="ripple"></ion-spinner>
+      <div class="item item-text-wrap" ng-repeat="sound in sounds" style="padding-bottom: 0px;">
+        <div plangular="{{sound.url}}">
+          <div class="row">
+            <div ng-if="!track" style="text-align: center;">
+              <ion-spinner icon="ripple"></ion-spinner>
+            </div>
+            <div class="col">
+              <a ng-click="playPause()">
+                <img alt="{{track.title}}" ng-src="{{track.artwork_url}}" style="max-width: 98%;"/>
+              </a>
+            </div>
+            <div class="col col-70">
+              <h2 class="caps" style="font-size: 0.85em;">{{track.title}}</h2>
+              <h3 class="padding-top" style="font-size: 0.85em;">
+                {{track.user.username}}
+                <span class="padding-right" style="float: right;">
+                  <a ng-href="{{track.permalink_url}}" target="_blank">
+                    <img src="/img/soundcloud.png" style="max-width: 30px;"/>
+                  </a>
+                </span>
+              </h3>
+            </div>
           </div>
-          <div class="col">
-            <a ng-click="playPause()">
-              <img alt="{{track.title}}" ng-src="{{track.artwork_url}}" style="max-width: 98%;"/>
-            </a>
-          </div>
-          <div class="col col-70">
-            <h2 class="caps" style="font-size: 0.85em;">{{track.title}}</h2>
-            <h3 class="padding-top" style="font-size: 0.85em;">
-              {{track.user.username}}
-              <span class="padding-right" style="float: right;">
-                <a ng-href="{{track.permalink_url}}" target="_blank">
-                  <img src="/img/soundcloud.png" style="max-width: 30px;"/>
-                </a>
-              </span>
-            </h3>
+          <div class="row" ng-if="player.playing === track.src">
+            <div class="col col-25" style="padding-top: 0px;">
+              <button class="button button-clear" ng-click="playPause()" title="Play/Pause">
+                <i class="icon ion-ios-play" data-icon="play" ng-if="player.playing !== track.src"></i>
+                <i class="icon ion-ios-pause" data-icon="pause" ng-if="player.playing === track.src"></i>
+              </button>
+            </div>
+            <div class="col padding-top">
+              <progress class="progress" ng-click="seek($event)" ng-value="currentTime / duration || 0">
+              {{ currentTime / duration }}
+            </progress>
           </div>
         </div>
-        <div class="row">
-          <div class="col col-25" style="padding-top: 0px;">
-            <button class="button button-clear" ng-click="playPause()" title="Play/Pause">
-              <i class="icon ion-ios-play" data-icon="play" ng-if="player.playing !== track.src"></i>
-              <i class="icon ion-ios-pause" data-icon="pause" ng-if="player.playing === track.src"></i>
-            </button>
-          </div>
-          <div class="col padding-top">
-            <progress class="progress" ng-click="seek($event)" ng-value="currentTime / duration || 0">
-            {{ currentTime / duration }}
-          </progress>
         </div>
-      </div>
     </div>
   </div>
   <div class="list card fade-component">
