@@ -11,7 +11,10 @@
 
       <swipe-card ng-repeat="card in cards" on-card-swipe="cardSwiped($index)" on-destroy="cardDestroyed($index)">
         <div plangular="{{card.url}}">
-          <div class="item item-body">
+          <div ng-if="!track" class="item item-body" style="text-align: center;">
+            <ion-spinner icon="ripple"></ion-spinner>
+          </div>
+          <div ng-if="track" class="item item-body">
             <h2 class="caps padding-left" style="margin-top: 5px; font-size: 0.85em;">
               <b>{{track.title}}</b>
             </h2>

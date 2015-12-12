@@ -192,27 +192,35 @@ angular.module('swipe', ['ionic', 'swipe.services', 'swipe.controllers', 'ionic.
   }
 })
 
-.directive('randomBackground', function () {
+.directive('randomBackground', function() {
 
-      return{
-        restrict: 'A',
-        link: function ($scope, $element, $attr) {
-            $element.css({
-                'background-image': 'url(' + $scope.bgUrl + ')',
-                '-webkit-background-size': 'cover',
-                '-moz-background-size': 'cover',
-                '-o-background-size': 'cover',
-                'background-size': 'cover'
-            });
-        }
-      }
-    })
+  return {
+    restrict: 'A',
+    link: function($scope, $element, $attr) {
+      $element.css({
+        'background-image': 'url(' + $scope.bgUrl + ')',
+        '-webkit-background-size': 'cover',
+        '-moz-background-size': 'cover',
+        '-o-background-size': 'cover',
+        'background-size': 'cover'
+      });
+    }
+  }
+})
+
+.filter('capitalize', function() {
+
+  return function(text) {
+    return text.charAt(0).toUpperCase() + text.slice(1);
+  };
+})
+
 .filter('resizeImage', function() {
 
-    return function(text) {
-        if(text.match("large")) {
-          text = text.replace('large', 'crop');
-        }
-        return text;
-    };
+  return function(text) {
+    if (text.match("large")) {
+      text = text.replace('large', 'crop');
+    }
+    return text;
+  };
 });
