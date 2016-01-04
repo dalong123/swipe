@@ -1,9 +1,9 @@
 <ion-view view-title="{{itemType | capitalize}}">
   <ion-content  random-background>
     <ion-refresher
-      pulling-text="Pull to refresh..."
+      pulling-icon="ion-jet"
       on-refresh="doRefresh()"
-      spinner="none">
+      spinner="dots">
     </ion-refresher>
     <ion-list>
       <ion-item class="item item-avatar item-text-wrap fade-component" ng-repeat="item in items" href="/app/songs/{{itemType}}/{{item._id}}" class="item-avatar">

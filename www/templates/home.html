@@ -25,13 +25,13 @@
             </div>
           </div>
           <div class="row" ng-if="player.playing === track.src">
-            <div class="col col-25" style="padding-top: 0px;">
+            <!-- <div class="col col-25" style="padding-top: 0px;">
               <button class="button button-clear" ng-click="playPause()" title="Play/Pause">
                 <i class="icon ion-ios-play" data-icon="play" ng-if="player.playing !== track.src"></i>
                 <i class="icon ion-ios-pause" data-icon="pause" ng-if="player.playing === track.src"></i>
               </button>
-            </div>
-            <div class="col padding-top">
+            </div> -->
+            <div class="col">
               <progress class="progress" ng-click="seek($event)" ng-value="currentTime / duration || 0">
               {{ currentTime / duration }}
             </progress>

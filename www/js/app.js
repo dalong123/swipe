@@ -57,7 +57,7 @@ angular.module('swipe', ['ionic', 'swipe.services', 'swipe.controllers', 'ionic.
 .config(function($stateProvider, $urlRouterProvider, $locationProvider) {
   $stateProvider
 
-    .state('app', {
+  .state('app', {
     url: '/app',
     abstract: true,
     templateUrl: 'templates/menu.html',
@@ -93,45 +93,45 @@ angular.module('swipe', ['ionic', 'swipe.services', 'swipe.controllers', 'ionic.
     }
   })
 
-  .state('app.channels', {
-    url: '/channels',
-    views: {
-      'menuContent': {
-        templateUrl: 'templates/channels.html',
-        controller: 'ChannelsCtrl'
-      }
-    }
-  })
-
-  .state('app.channel', {
-    url: '/channels/:channelId',
-    views: {
-      'menuContent': {
-        templateUrl: 'templates/channel.html',
-        controller: 'ChannelCtrl'
-      }
-    }
-  })
-
-  .state('app.genres', {
-    url: '/genres',
-    views: {
-      'menuContent': {
-        templateUrl: 'templates/genres.html',
-        controller: 'GenresCtrl'
-      }
-    }
-  })
-
-  .state('app.genre', {
-    url: '/genres/:genreId',
-    views: {
-      'menuContent': {
-        templateUrl: 'templates/genre.html',
-        controller: 'GenreCtrl'
-      }
-    }
-  })
+  // .state('app.channels', {
+  //   url: '/channels',
+  //   views: {
+  //     'menuContent': {
+  //       templateUrl: 'templates/channels.html',
+  //       controller: 'ChannelsCtrl'
+  //     }
+  //   }
+  // })
+  //
+  // .state('app.channel', {
+  //   url: '/channels/:channelId',
+  //   views: {
+  //     'menuContent': {
+  //       templateUrl: 'templates/channel.html',
+  //       controller: 'ChannelCtrl'
+  //     }
+  //   }
+  // })
+  //
+  // .state('app.genres', {
+  //   url: '/genres',
+  //   views: {
+  //     'menuContent': {
+  //       templateUrl: 'templates/genres.html',
+  //       controller: 'GenresCtrl'
+  //     }
+  //   }
+  // })
+  //
+  // .state('app.genre', {
+  //   url: '/genres/:genreId',
+  //   views: {
+  //     'menuContent': {
+  //       templateUrl: 'templates/genre.html',
+  //       controller: 'GenreCtrl'
+  //     }
+  //   }
+  // })
 
   .state('app.blogs', {
     url: '/blogs',
@@ -184,7 +184,6 @@ angular.module('swipe', ['ionic', 'swipe.services', 'swipe.controllers', 'ionic.
   return {
     restrict: 'A',
     link: function($scope, $element, $attr) {
-
       $document.on('touchmove', function(e) {
         e.preventDefault();
       });
@@ -211,8 +210,8 @@ angular.module('swipe', ['ionic', 'swipe.services', 'swipe.controllers', 'ionic.
 .filter('capitalize', function() {
 
   return function(text) {
-    if (text!=null)
-    return text.charAt(0).toUpperCase() + text.slice(1);
+    if (text != null)
+      return text.charAt(0).toUpperCase() + text.slice(1);
   };
 })
 

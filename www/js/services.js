@@ -73,7 +73,7 @@ angular.module('swipe.services', [])
   }
 })
 
-.factory('DataStore', function($http, $q, $timeout, $filter, LocalStorage, ApiFactory) {
+.factory('DataStore', function($q, $timeout, $filter, LocalStorage, ApiFactory) {
 
   return {
 
@@ -168,7 +168,7 @@ angular.module('swipe.services', [])
       // There's no data freshness detection in the single item retrieval. The
       // thinking behind that is that if a user is reaching a singular route (ie. blog),
       // they've hit the plural page (ie. blogs) right before and therefore
-      // the single item is likely in LocalStorage (especially on a mobile device,
+      // the single item is likely in LocalStorage (especially on the native build,
       // as it's not possible to access routes directly). This route will be hit so
       // infrequently that it won't hurt to query the db.
       //

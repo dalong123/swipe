@@ -336,7 +336,7 @@ angular.module('swipe.controllers', [])
  * @param  {[type]}   function($scope, $stateParams, $filter, $ionicSwipeCardDelegate, $ionicModal, $ionicLoading, Sounds [description]
  * @return {[type]}                    [description]
  */
-.controller('SongCardsCtrl', function($scope, $stateParams, $ionicSwipeCardDelegate, $ionicModal, $ionicLoading, DataStore) {
+.controller('SongCardsCtrl', function($scope, $rootScope, $stateParams, $ionicSwipeCardDelegate, $ionicModal, $ionicLoading, DataStore) {
 
   var cardTypes = [];
 
@@ -405,6 +405,7 @@ angular.module('swipe.controllers', [])
     };
     $scope.addCard = function() {
       var newCard = cardTypes[$scope.currentIndex];
+      $rootScope.nowPlaying = newCard.url;
       $scope.cards.push(angular.extend({}, newCard));
       $scope.currentIndex++;
       if ($scope.currentIndex == cardTypes.length) {

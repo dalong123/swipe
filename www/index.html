@@ -38,5 +38,23 @@
 
   <body ng-app="swipe">
     <ion-nav-view></ion-nav-view>
+    <!-- <div class="bar bar-footer bar-balanced" plangular="{{player.audio.src}}">
+      <div class="row">
+        <div class="col" style="float: left;">
+          <button class="button button-clear" ng-click="playPause()" title="Play/Pause">
+            <i class="icon ion-ios-play" data-icon="play" ng-if="player.playing !== track.src"></i>
+            <i class="icon ion-ios-pause" data-icon="pause" ng-if="player.playing === track.src"></i>
+          </button>
+        </div>
+        <div class="col-80">
+          <progress class="progress" ng-click="seek($event)" ng-value="currentTime / duration || 0" style="margin-top:20px;">
+          {{ currentTime / duration }}
+        </progress>
+        <small>
+          {{currentTime | hhmmss}} | {{duration | hhmmss}}
+        </small>
+      </div>
+    </div>
+    </div> -->
   </body>
 </html>
