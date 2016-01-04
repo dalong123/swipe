@@ -73,7 +73,7 @@ angular.module('swipe.services', [])
   }
 })
 
-.factory('DataStore', function($q, $timeout, $filter, LocalStorage, ApiFactory) {
+.factory('DataStore', function($http, $q, $timeout, $filter, LocalStorage, ApiFactory) {
 
   return {
 
