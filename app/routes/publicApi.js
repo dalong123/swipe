@@ -1,5 +1,6 @@
 var bodyParser = require('body-parser');
 var request = require('request');
+var cheerio = require('cheerio');
 var config = require('../../config');
 var toptracksController = require('../controllers/toptracks');
 var channelController = require('../controllers/channel');
@@ -38,6 +39,28 @@ module.exports = function(app, express) {
   // Create endpoint handlers for /blogs/:blog_id
   router.route('/blogs/:blog_id')
     .get(blogController.getBlog);
+
+  router.route('/pigs')
+    .get(function(req, res) {
+      request('http://pigeonsandplanes.com', function(err, resp, body) {
+        if (err) {
+          throw err;
+        }
+
+        var posts = [];
+
+        $ = cheerio.load(body);
+        $('.postwrap').each(function() {
+          var post = {};
+          post.title = $(this).attr('href');
+          //continue building out object
+
+          posts.push(post);
+        });
+
+        res.json(posts);
+      });
+    });
 
   /**
    * GET route for a single Kimono feed
